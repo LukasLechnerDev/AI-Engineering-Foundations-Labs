@@ -10,4 +10,5 @@ dependencies = [
     "openai>=2.29.0",
     "pandas>=2.3.3",
     "python-jobspy>=1.1.82",
+    "requests>=2.33.0",
 ]
