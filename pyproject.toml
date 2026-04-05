@@ -12,3 +12,8 @@ dependencies = [
     "python-jobspy>=1.1.82",
     "requests>=2.33.0",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.9",
+]
