@@ -1,13 +1,10 @@
 # Project Guidance
-
 This repository is a companion repository for the AI Engineering Fundamentals course.
 
 ## Core Goal
-
 Everything in this repository should be optimized for students learning the material.
 
 ## Development Principles
-
 - Keep code short.
 - Keep code readable.
 - Keep code easy to understand.
@@ -18,12 +15,13 @@ Everything in this repository should be optimized for students learning the mate
 - Add comments only when they make the code easier for students to follow.
 
 ## Teaching Priority
-
 When choosing between a more advanced solution and a simpler solution, prefer the simpler solution unless the advanced approach is clearly necessary for the lesson.
 
 ## Notebook Priority
-
 - Keep notebook cells focused and easy to scan.
 - Prefer explicit code over compact but hard-to-read code.
 - Minimize setup and boilerplate.
 - Make outputs easy for students to interpret.
+
+## General Instructions 
+- ALWAYS run `ruff format` after making any changes to get the code style right
