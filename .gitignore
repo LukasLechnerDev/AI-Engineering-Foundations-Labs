@@ -12,3 +12,4 @@ wheels/
 # Secrets
 .env
 
+# scripts
