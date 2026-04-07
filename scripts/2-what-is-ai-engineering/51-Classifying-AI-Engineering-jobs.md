@@ -263,6 +263,12 @@ The big lesson here is that LLMs are not only for chat interfaces. They are also
 
 In the next lessons, we will use this cleaned dataset to analyze what AI engineering jobs actually look like in practice.
 
+## Take a look at filtered out Job postings
+
+Take a look at some of the job postings that got filtered out. 
+Maybe show some examples where we disagree. 
+And mention that we later in the Evals section modify our prompt or change the model to get better results. 
+
 ## Optional Closing
 
 ### On screen
@@ -273,6 +279,8 @@ In the next lessons, we will use this cleaned dataset to analyze what AI enginee
 At this point, we now have a cleaner set of AI engineering job postings, and that gives us a much better foundation for the rest of the analysis.
 
 So in the next lesson, we can move from data collection and filtering to actual market insights, because now we are analyzing the right set of roles.
+
+
 
 ## Additional Lecture Ideas
 
