@@ -24,4 +24,4 @@ When choosing between a more advanced solution and a simpler solution, prefer th
 - Make outputs easy for students to interpret.
 
 ## General Instructions 
-- ALWAYS run `.venv/bin/ruff format` after you are done with your task to get the code style right
+- ALWAYS run `.venv/bin/ruff format` after you are done with your task to get the code style right, but only do this if you have added or modified python code.
