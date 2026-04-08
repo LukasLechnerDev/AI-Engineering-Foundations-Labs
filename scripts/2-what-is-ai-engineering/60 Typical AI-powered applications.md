@@ -2,6 +2,16 @@
 
 ## Big Picture
 
+from programmierbar podcast (see full notes in IntellJ)
+
+### 1. Most production AI use cases fall into a few recurring patterns
+
+The guest describes three main patterns:
+
+1. Knowledge retrieval chatbots
+2. Classification tasks
+3. Agentic, multi-step workflow automation
+
 ### General
 - the amount of applications that can be built on top of foundation models is endless
 - talk about most popular apps: ChatGPT, Co-Pilot, Codex coding assistant, NotionAI, Grammarly, Duolingo Max (RolePlay, Video Call)
