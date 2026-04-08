@@ -11,6 +11,25 @@ This keeps the teaching focus on AI engineering:
 - Dockerized deployment to AWS
 - light CI without turning the course into a DevOps course
 
+## Skills Demonstrated
+- Python for scraping, data processing, pipeline orchestration, testing, and CLI code
+- OpenAI API usage beyond a single basic prompt
+- prompt engineering for classification, enrichment, matching, and digest writing
+- structured outputs and schema-driven LLM integration
+- LLM evaluations, including gold-set metrics and LLM-as-a-judge
+- observability with Langfuse traces, prompt versions, latency, and cost
+- deterministic software engineering around retries, validation, and failure handling
+- AWS deployment and cloud storage
+- Docker containerization
+- light CI for linting, tests, and smoke checks
+- product thinking: ranking jobs for a user and surfacing skill gaps
+
+Optional advanced skills if time remains:
+- prompt A/B testing and regression analysis
+- tool calling with deterministic helper functions
+- human-in-the-loop review for low-confidence cases
+- cost and latency optimization across pipeline stages
+
 ## Product And Architecture
 The product is a scheduled batch job, not a frontend app.
 
@@ -24,6 +43,7 @@ Pipeline steps:
   - seniority level
   - required skills
 - Compare each job against a fixed user skill profile from config.
+- Include one controlled tool-calling step in the matching stage so the model can call a deterministic helper like `score_skill_match(...)` before writing the fit explanation.
 - Generate:
   - a ranked digest of the best-fit jobs
   - a concise "what you still need to learn" section
@@ -46,6 +66,7 @@ Important interfaces and types:
 - `EnrichedJob`: `ClassifiedJob` plus summary, highlights, benefits, seniority, extracted skills
 - `UserProfileConfig`: skills, interests, preferred seniority, optional exclusions
 - `MatchedJob`: `EnrichedJob` plus fit score, fit reason, skill gaps
+- `SkillMatchResult`: deterministic tool output with overlap score, matched skills, missing skills, seniority fit, and rule-based notes
 - `DigestArtifact`: ranked jobs, intro copy, closing copy, HTML/text render
 - `EvalReport`: deterministic metrics, judge scores, send/no-send decision
 
@@ -56,9 +77,31 @@ OpenAI API usage should intentionally demonstrate:
 - structured outputs for classification and enrichment
 - separate `instructions` and `input`
 - task-specific model choice instead of one default model
-- prompt versioning and comparison
+- prompt versioning and prompt A/B comparison
 - explicit output schemas for reliable downstream code
 - different response styles for extraction vs final digest writing
+- one controlled tool-calling example for deterministic skill-match scoring before natural-language explanation
+
+Tool-calling example:
+- Use tool calling in the matching stage, not in scraping or classification.
+- Expose one deterministic helper function, for example `score_skill_match(...)`.
+- Inputs to the tool:
+  - extracted required skills for the job
+  - normalized user skill profile
+  - extracted seniority level
+  - optional user preferences like remote-only or seniority target
+- Outputs from the tool:
+  - numeric fit score
+  - matched skills
+  - missing skills
+  - seniority fit or mismatch
+  - short rule-based notes that explain the score
+- The tool should contain transparent, testable scoring logic rather than another model call.
+- After the tool returns, the model uses the tool output to write:
+  - the fit explanation
+  - the "what you still need to learn" section
+  - a short personalized summary line for the digest
+- This keeps the deterministic part of the system in Python while still demonstrating how models can orchestrate software tools.
 
 Evaluation should be a headline feature of the project.
 
@@ -67,6 +110,7 @@ Deterministic evals:
 - duplicate removal works
 - schema parsing never silently fails
 - seniority normalization is stable
+- tool-call scoring is stable and produces expected outputs for representative skill profiles
 - ranking and email rendering succeed with representative inputs
 
 Gold-set evals:
@@ -79,6 +123,7 @@ LLM-as-a-judge evals:
 - quality of fit explanation
 - usefulness of "what to learn next"
 - overall digest usefulness for a job-seeking AI engineer
+- prompt A vs prompt B comparisons for at least one core stage like classification or job summary generation
 
 Operational evals:
 - latency per step
@@ -116,6 +161,7 @@ Theory lessons should be attached to implementation moments:
 - "How LLMs work" when classification first appears
 - "How the OpenAI API works" when structured outputs are introduced
 - "Prompt engineering" when output quality becomes the bottleneck
+- "Tool calling" when the model first combines deterministic match scoring with natural-language reasoning
 - "Evaluations" when prompts start changing
 - "Observability" when the system needs debugging and comparison
 - "Deployment" after the local pipeline already works
@@ -149,6 +195,8 @@ Core scenarios:
 - mixed scrape with many false positives
 - malformed or incomplete descriptions
 - duplicate postings across sources
+- tool returns a low fit score with clear missing-skill guidance
+- tool and model explanation agree on the core reasons for the match score
 - low-quality enrichment output that should fail the send gate
 - successful digest generation and send
 - dry-run execution that stores artifacts but skips email
