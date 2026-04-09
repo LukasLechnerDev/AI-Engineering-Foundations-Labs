@@ -25,14 +25,12 @@
             "id": "7949e539340ea50f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "excalidraw",
               "state": {
-                "file": "2-what-is-ai-engineering/0 - Content to Cover.md",
-                "mode": "source",
-                "source": false
+                "file": "2-what-is-ai-engineering/ai-engineering-course-structure.excalidraw"
               },
-              "icon": "lucide-file",
-              "title": "0 - Content to Cover"
+              "icon": "excalidraw-icon",
+              "title": "ai-engineering-course-structure"
             }
           }
         ],
@@ -198,11 +196,11 @@
   },
   "active": "7949e539340ea50f",
   "lastOpenFiles": [
+    "2-what-is-ai-engineering/0 - Content to Cover.md",
     "2-what-is-ai-engineering/ai-engineering-course-structure.excalidraw",
     "2-what-is-ai-engineering/40 - What is an AI Engineer - r2r.md",
     "2-what-is-ai-engineering/3- Your first LLM call - r2r.md",
     "2-what-is-ai-engineering/2 - Development Setup - r2r.md",
-    "2-what-is-ai-engineering/1 - Cloning the course repository -r2r.md",
-    "2-what-is-ai-engineering/0 - Content to Cover.md"
+    "2-what-is-ai-engineering/1 - Cloning the course repository -r2r.md"
   ]
 }
