@@ -10,7 +10,6 @@
 - reflective bonus lessons after students understand the fundamentals
 
 ## Bonus topics
-- raw SDK vs LangChain
 - raw SDK vs PydanticAI
-- what abstractions buy you
-- what abstractions hide
+- what the raw SDK made easier to understand
+- bridge to the next module: refactoring a familiar workflow with LangChain
