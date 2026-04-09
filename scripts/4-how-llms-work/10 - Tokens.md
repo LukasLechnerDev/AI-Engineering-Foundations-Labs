@@ -1,13 +1,19 @@
 # 10 - Tokens
 
+## Teaching goal
+- Help students understand what the model actually reads and writes.
+
 ## Content to learn
-- what tokens are?
-- Why tokens and not characters or words?
-- input vs output tokens
-- define max output tokens
-- token pricing overview
-- use tiktoken(maintained by OpenAI) library to calculate token costs
-- maximium number of input tokens (context size)
+- what a token is
+- why models use tokens instead of whole words
+- one sentence can become many tokens
+- prompts and responses are both measured in tokens
+
+## Keep this light
+- no token pricing overview
+- no cost calculators
+- no `tiktoken` code in the MVP
+- no deep context window discussion here
 
 ## Sources: 
 - [Datalumina Academy](https://app.datalumina.academy/c/genai-accelerator/sections/555177/lessons/2087907)
