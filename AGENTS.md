@@ -27,6 +27,11 @@ When choosing between a more advanced solution and a simpler solution, prefer th
 
 When choosing between broader theory coverage and faster progress toward the MVP, prefer faster progress toward the MVP.
 
+## Course Context Workflow
+- Whenever working on the structure of the course, module outlines, or individual lesson content, first read the whole course in `scripts/` to get full context before making changes.
+- Do not make scope, sequencing, or lesson-placement decisions based only on the current file or module.
+- Use the broader course context to avoid duplication, misplaced topics, and inconsistencies across modules.
+
 ## Notebook Priority
 - Keep notebook cells focused and easy to scan.
 - Prefer explicit code over compact but hard-to-read code.
