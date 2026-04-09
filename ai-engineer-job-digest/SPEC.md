@@ -37,6 +37,7 @@ Pipeline steps:
 - Scrape job postings from the last 24 hours from the existing job sources.
 - Apply deterministic cleanup: title filter, required-field checks, deduplication, timestamp filter.
 - Classify each role as true AI engineering vs not AI engineering.
+- Keep a classification confidence signal and route low-confidence jobs to manual review or a stronger fallback model instead of sending every case through the same path.
 - Enrich accepted jobs with:
   - short role summary
   - benefits/perks/highlights
@@ -61,7 +62,7 @@ Minimal storage design:
 
 Important interfaces and types:
 - `ScrapedJob`: raw posting data
-- `ClassifiedJob`: `ScrapedJob` plus AI-engineering decision and reason
+- `ClassifiedJob`: `ScrapedJob` plus AI-engineering decision, reason, and classification confidence
 - `EnrichedJob`: `ClassifiedJob` plus summary, highlights, benefits, seniority, extracted skills
 - `UserProfileConfig`: skills, interests, preferred seniority, optional exclusions
 - `MatchedJob`: `EnrichedJob` plus fit score, fit reason, skill gaps
