@@ -4,6 +4,14 @@ This repository is a companion repository for the AI Engineering Fundamentals co
 ## Core Goal
 Everything in this repository should be optimized for students learning the material.
 
+## MVP Release Priority
+- Ship the first MVP of the course as fast as possible.
+- Center the MVP around building the `ai-engineer-job-digest` project together with the student.
+- Teach only the minimum theory students need to understand and complete the project.
+- If a topic is not needed for the MVP, cut it or defer it to a later version of the course.
+- Prefer practical project progress over broad or comprehensive theory coverage.
+- Add deeper explanations only when they are clearly necessary for the current lesson.
+
 ## Development Principles
 - Keep code short.
 - Keep code readable.
@@ -16,6 +24,8 @@ Everything in this repository should be optimized for students learning the mate
 
 ## Teaching Priority
 When choosing between a more advanced solution and a simpler solution, prefer the simpler solution unless the advanced approach is clearly necessary for the lesson.
+
+When choosing between broader theory coverage and faster progress toward the MVP, prefer faster progress toward the MVP.
 
 ## Notebook Priority
 - Keep notebook cells focused and easy to scan.
