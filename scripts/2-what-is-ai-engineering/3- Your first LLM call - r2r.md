@@ -87,5 +87,3 @@ So let's run this cell, and, as you can see, it takes a couple of seconds, and t
 
 
 So this should demonstrate how easy it is to get started with the python sdk. Within minues, we have set up everything we need and are ready to interact with the most powerful models in the world. 
-
-#courses/ai-engineer-fundamentals/1-what-is-ai-engineering

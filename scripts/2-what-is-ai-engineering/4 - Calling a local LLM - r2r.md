@@ -59,6 +59,3 @@ And that’s all for this video! We now have a working setup that allows us to w
 If you like you can play around with ollama - maybe download some different models and try out different prompts!
 
 See you in the next lecture!
-
-
-#courses/ai-engineer-fundamentals/1-what-is-ai-engineering

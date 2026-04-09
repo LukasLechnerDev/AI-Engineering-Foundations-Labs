@@ -21,6 +21,3 @@
 - [OpenAI API Pricing](https://openai.com/api/pricing/)
 - [LLMPriceCheck](https://llmpricecheck.com/calculator/)
 - 
-
-
-#courses/ai-engineer-fundamentals/2-how-foundation-models-work

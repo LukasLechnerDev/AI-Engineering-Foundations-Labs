@@ -35,5 +35,3 @@ The first task that we need to do is to download the repository of this course, 
 
 So let's copy the URL of that repo into our clipboard. 
 We can use the terminal to clone the repo, of course, but another convenient way is to simply click on “Clone Git Repository” here in VS Code, then we just have to log in to Github, paste in the repo url, select the folder in which the repo should be saved, and afterwards we can direcly open up that project in VS Code. 
-
-#courses/ai-engineer-fundamentals/1-what-is-ai-engineering

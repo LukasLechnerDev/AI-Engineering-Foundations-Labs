@@ -12,4 +12,3 @@ Retrieval is a special kind of tool calling - so that the LLM gets more informat
 
 https://www.anthropic.com/engineering/building-effective-agents => Bottom shows how to prompt engineer your tools
 	
-#courses/ai-engineer-fundamentals/3-interacting-with-foundation-models

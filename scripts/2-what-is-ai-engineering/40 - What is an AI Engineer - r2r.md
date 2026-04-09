@@ -228,5 +228,3 @@ AI Engineers are builders who want to leverage foundation models to build cool p
 
 ## Random
 - an AI Engineer is a Software Engineer who knows how to productionize AI
-
-#courses/ai-engineer-fundamentals/1-what-is-ai-engineering

@@ -12,5 +12,3 @@
 ## Keep this short
 - one simple contrast is enough
 - do not turn this into a full ML history lesson
-
-#courses/ai-engineer-fundamentals/2-how-foundation-models-work

@@ -7,5 +7,3 @@
   - System
   - Developer, was “system prompt” in the past, with the Responses API we define them as “instructions”
   - User
-
-#courses/ai-engineer-fundamentals/3-interacting-with-foundation-models

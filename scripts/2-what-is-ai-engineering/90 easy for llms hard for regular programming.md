@@ -102,5 +102,3 @@ A very punchy line for teaching this:
 LLMs shine when the problem is easy to recognize as a human, but painful to formalize as code.
 
 If you want, I can turn this into a clean lecture slide with examples per category.
-
-#courses/ai-engineer-fundamentals/1-what-is-ai-engineering

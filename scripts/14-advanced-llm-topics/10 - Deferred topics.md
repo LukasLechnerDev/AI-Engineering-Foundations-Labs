@@ -19,5 +19,3 @@
 ## Why this is separate
 - The MVP needs a simple mental model, not a full survey of LLM concepts.
 - Students can build the first project successfully without this extra theory.
-
-#courses/ai-engineer-fundamentals/advanced-llm-topics

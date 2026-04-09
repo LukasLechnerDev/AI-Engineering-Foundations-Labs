@@ -38,5 +38,3 @@
 * https://openai.com/index/chatgpt/ Introducing ChatGPT
 * Ed Donners Videos on YT
   
-
-#courses/ai-engineer-fundamentals/2-how-foundation-models-work

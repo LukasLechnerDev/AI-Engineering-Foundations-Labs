@@ -62,6 +62,3 @@ You can also try to run this version directly in this notebook by executing the 
 
 If that doesn't work, then Python is not yet installed on your machine. Please follow the official Python guides to install it: 
 - https://docs.python.org/3/using/index.html
-
-
-#courses/ai-engineer-fundamentals/1-what-is-ai-engineering

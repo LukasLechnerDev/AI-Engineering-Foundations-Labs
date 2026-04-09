@@ -7,8 +7,3 @@ pydantic for structured output
 - extension of Python data classes, but with more functionality
 - Pydantic returns human readable error messages, so LLMs can fix problems better
 “to get something we can use programmatically and build our systems around”
-
-
-
-
-#courses/ai-engineer-fundamentals/3-interacting-with-foundation-models

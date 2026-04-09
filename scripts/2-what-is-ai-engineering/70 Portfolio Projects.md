@@ -16,5 +16,3 @@
 
 ## Phrases
 - Implement the project end2end
-
-#courses/ai-engineer-fundamentals/1-what-is-ai-engineering

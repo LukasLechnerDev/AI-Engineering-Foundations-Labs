@@ -15,5 +15,3 @@
 - no math
 - no transformer internals
 - no top-k or top-p in the MVP
-
-#courses/ai-engineer-fundamentals/2-how-foundation-models-work

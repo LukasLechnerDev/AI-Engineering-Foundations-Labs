@@ -29,5 +29,3 @@ Besides learning students AI-Engineering concepts, I also see it as my job to mo
 - First summarization task
 
 ![](0%20-%20Content%20to%20Cover/image.png)
-
-#courses/ai-engineer-fundamentals/1-what-is-ai-engineering
