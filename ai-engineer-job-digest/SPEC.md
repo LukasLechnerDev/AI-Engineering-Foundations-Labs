@@ -18,13 +18,13 @@ This keeps the teaching focus on AI engineering:
 - structured outputs and schema-driven LLM integration
 - LLM evaluations, including gold-set metrics and LLM-as-a-judge
 - observability with Langfuse traces, prompt versions, latency, and cost
-- deterministic software engineering around retries, validation, and failure handling
 - AWS deployment and cloud storage
 - Docker containerization
 - light CI for linting, tests, and smoke checks
 - product thinking: ranking jobs for a user and surfacing skill gaps
 
 Optional advanced skills if time remains:
+- deterministic software engineering around retries, validation, and failure handling
 - prompt A/B testing and regression analysis
 - tool calling with deterministic helper functions
 - human-in-the-loop review for low-confidence cases
@@ -40,13 +40,12 @@ Pipeline steps:
 - Enrich accepted jobs with:
   - short role summary
   - benefits/perks/highlights
-  - seniority level
   - required skills
 - Compare each job against a fixed user skill profile from config.
 - Include one controlled tool-calling step in the matching stage so the model can call a deterministic helper like `score_skill_match(...)` before writing the fit explanation.
 - Generate:
   - a ranked digest of the best-fit jobs
-  - a concise "what you still need to learn" section
+  - a concise "what you still need to learn to get real-world AI Engineering Jobs" section
   - HTML and plain-text email versions
 - Run evaluations before sending.
 - Send the digest only if the eval gate passes.

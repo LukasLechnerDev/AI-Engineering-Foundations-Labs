@@ -8,7 +8,7 @@ from programmierbar podcast (see full notes in IntellJ)
 The guest describes three main patterns:
 
 1. Knowledge retrieval chatbots
-2. Classification tasks
+2. Classification tasks ("Workflows / Pipelines"?)
 3. Agentic, multi-step workflow automation
 
 ### General
