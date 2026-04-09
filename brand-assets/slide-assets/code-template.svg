@@ -1,0 +1,44 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#FAFBFD" />
+  <text x="88" y="108" fill="#2F6BFF" font-family="IBM Plex Sans, Inter, sans-serif" font-size="22" font-weight="700">
+    IMPLEMENTATION
+  </text>
+  <text x="88" y="210" fill="#0B1020" font-family="Space Grotesk, Inter, sans-serif" font-size="68" font-weight="700" letter-spacing="-2">
+    Use structured outputs so
+  </text>
+  <text x="88" y="286" fill="#0B1020" font-family="Space Grotesk, Inter, sans-serif" font-size="68" font-weight="700" letter-spacing="-2">
+    downstream code stays simple
+  </text>
+  <rect x="84" y="332" width="1432" height="492" rx="28" fill="#0B1020" />
+  <rect x="1190" y="372" width="220" height="46" rx="14" fill="#2F6BFF" />
+  <text x="1232" y="401" fill="white" font-family="IBM Plex Sans, Inter, sans-serif" font-size="18" font-weight="700">
+    JSON Schema
+  </text>
+  <text x="128" y="420" fill="#E7EDF7" font-family="IBM Plex Mono, Roboto Mono, monospace" font-size="28">
+    schema = {
+  </text>
+  <text x="128" y="464" fill="#E7EDF7" font-family="IBM Plex Mono, Roboto Mono, monospace" font-size="28">
+      "type": "object",
+  </text>
+  <text x="128" y="508" fill="#E7EDF7" font-family="IBM Plex Mono, Roboto Mono, monospace" font-size="28">
+      "properties": {
+  </text>
+  <text x="128" y="552" fill="#8FB2FF" font-family="IBM Plex Mono, Roboto Mono, monospace" font-size="28">
+          "is_ai_engineering_role": {"type": "boolean"},
+  </text>
+  <text x="128" y="596" fill="#8FB2FF" font-family="IBM Plex Mono, Roboto Mono, monospace" font-size="28">
+          "reason": {"type": "string"},
+  </text>
+  <text x="128" y="640" fill="#8FB2FF" font-family="IBM Plex Mono, Roboto Mono, monospace" font-size="28">
+          "confidence": {"type": "string"}
+  </text>
+  <text x="128" y="684" fill="#E7EDF7" font-family="IBM Plex Mono, Roboto Mono, monospace" font-size="28">
+      },
+  </text>
+  <text x="128" y="728" fill="#E7EDF7" font-family="IBM Plex Mono, Roboto Mono, monospace" font-size="28">
+      "required": ["is_ai_engineering_role", "reason", "confidence"]
+  </text>
+  <text x="128" y="772" fill="#E7EDF7" font-family="IBM Plex Mono, Roboto Mono, monospace" font-size="28">
+    }
+  </text>
+</svg>

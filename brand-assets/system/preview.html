@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lukas Lechner Brand System Preview</title>
+    <link rel="stylesheet" href="./tokens.css" />
+    <style>
+      body {
+        margin: 0;
+        background: var(--color-paper);
+        color: var(--color-ink-950);
+        font-family: var(--font-body);
+      }
+
+      .shell {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 48px 32px 72px;
+      }
+
+      .hero {
+        background: var(--color-ink-950);
+        color: var(--color-white);
+        border-radius: 28px;
+        padding: 40px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        right: 72px;
+        top: -36px;
+        width: 220px;
+        height: 220px;
+        background: rgba(47, 107, 255, 0.18);
+        border-radius: 44px;
+        transform: rotate(14deg);
+      }
+
+      .hero-label {
+        color: var(--color-signal-blue-light);
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .hero-title {
+        margin: 20px 0 0;
+        font-family: var(--font-display);
+        font-size: 72px;
+        line-height: 0.96;
+        letter-spacing: -0.04em;
+        max-width: 840px;
+      }
+
+      .hero-copy {
+        margin: 24px 0 0;
+        font-size: 24px;
+        line-height: 1.5;
+        color: var(--color-mist-100);
+        max-width: 760px;
+      }
+
+      .section {
+        margin-top: 40px;
+      }
+
+      .section h2 {
+        margin: 0 0 16px;
+        font-family: var(--font-display);
+        font-size: 36px;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+      }
+
+      .section p {
+        margin: 0 0 20px;
+        font-size: 18px;
+        line-height: 1.7;
+        color: var(--color-ink-800);
+      }
+
+      .card-grid {
+        display: grid;
+        gap: 20px;
+      }
+
+      .card-grid.two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .card-grid.three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .panel {
+        background: white;
+        border: 1px solid var(--color-mist-100);
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: var(--shadow-card);
+      }
+
+      .swatches {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .swatch {
+        border-radius: 18px;
+        padding: 16px;
+        min-height: 104px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      .swatch strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .logo-list,
+      .icon-list {
+        display: grid;
+        gap: 16px;
+      }
+
+      .logo-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .icon-list {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      .asset {
+        background: white;
+        border: 1px solid var(--color-mist-100);
+        border-radius: 20px;
+        padding: 18px;
+      }
+
+      .asset img {
+        width: 100%;
+        display: block;
+        border-radius: 14px;
+      }
+
+      .asset-label {
+        margin-top: 12px;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--color-slate-500);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .notes {
+        background: white;
+        border: 1px solid var(--color-mist-100);
+        border-radius: 24px;
+        padding: 24px;
+      }
+
+      .notes ul {
+        margin: 0;
+        padding-left: 20px;
+        line-height: 1.8;
+      }
+
+      @media (max-width: 900px) {
+        .card-grid.two,
+        .card-grid.three,
+        .logo-list,
+        .icon-list,
+        .swatches {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-title {
+          font-size: 48px;
+        }
+
+        .hero-copy {
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="hero-label">Lukas Lechner Brand System</div>
+        <h1 class="hero-title">Editorial tech for slides, social, and web</h1>
+        <p class="hero-copy">
+          Personal master brand, course sub-brand, one vivid accent color, and a
+          clear system for logos, icons, generated images, and surface
+          templates.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Core Tokens</h2>
+        <div class="swatches">
+          <div class="swatch" style="background:#0B1020;color:#fff">
+            <strong>Ink 950</strong>
+            <span>#0B1020</span>
+          </div>
+          <div class="swatch" style="background:#1A2236;color:#fff">
+            <strong>Ink 800</strong>
+            <span>#1A2236</span>
+          </div>
+          <div class="swatch" style="background:#E7EDF7;color:#0B1020">
+            <strong>Mist 100</strong>
+            <span>#E7EDF7</span>
+          </div>
+          <div class="swatch" style="background:#2F6BFF;color:#fff">
+            <strong>Signal Blue</strong>
+            <span>#2F6BFF</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Logo Starters</h2>
+        <div class="logo-list">
+          <div class="asset">
+            <img src="../logo/lukas-lechner-wordmark-light.svg" alt="Wordmark light" />
+            <div class="asset-label">Wordmark Light</div>
+          </div>
+          <div class="asset" style="background:#0B1020">
+            <img src="../logo/lukas-lechner-wordmark-dark.svg" alt="Wordmark dark" />
+            <div class="asset-label" style="color:#8FB2FF">Wordmark Dark</div>
+          </div>
+          <div class="asset">
+            <img src="../logo/lukas-lechner-course-lockup.svg" alt="Course lockup" />
+            <div class="asset-label">Course Lockup</div>
+          </div>
+          <div class="asset">
+            <img src="../logo/lukas-lechner-monogram.svg" alt="Monogram" />
+            <div class="asset-label">Monogram</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Icon Set</h2>
+        <div class="icon-list">
+          <div class="asset"><img src="../icons/search.svg" alt="Search icon" /><div class="asset-label">Search</div></div>
+          <div class="asset"><img src="../icons/browser.svg" alt="Browser icon" /><div class="asset-label">Browser</div></div>
+          <div class="asset"><img src="../icons/mail.svg" alt="Mail icon" /><div class="asset-label">Mail</div></div>
+          <div class="asset"><img src="../icons/grid.svg" alt="Grid icon" /><div class="asset-label">Grid</div></div>
+          <div class="asset"><img src="../icons/layers.svg" alt="Layers icon" /><div class="asset-label">Layers</div></div>
+          <div class="asset"><img src="../icons/slide.svg" alt="Slide icon" /><div class="asset-label">Slide</div></div>
+          <div class="asset"><img src="../icons/play.svg" alt="Play icon" /><div class="asset-label">Play</div></div>
+          <div class="asset"><img src="../icons/chart.svg" alt="Chart icon" /><div class="asset-label">Chart</div></div>
+          <div class="asset"><img src="../icons/flow.svg" alt="Flow icon" /><div class="asset-label">Flow</div></div>
+          <div class="asset"><img src="../icons/spark.svg" alt="Spark icon" /><div class="asset-label">Spark</div></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Surface Templates</h2>
+        <div class="card-grid three">
+          <div class="asset">
+            <img src="../slide-assets/cover-template.svg" alt="Cover template" />
+            <div class="asset-label">Slide Cover</div>
+          </div>
+          <div class="asset">
+            <img src="../social/youtube-thumbnail-template.svg" alt="YouTube template" />
+            <div class="asset-label">YouTube Thumbnail</div>
+          </div>
+          <div class="asset">
+            <img src="../web/desktop-hero-template.svg" alt="Desktop hero" />
+            <div class="asset-label">Desktop Hero</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section card-grid two">
+        <div class="notes">
+          <h2>Use This Package</h2>
+          <ul>
+            <li>Import the SVG files into Figma or Figma Slides.</li>
+            <li>Convert the imported assets into components or masters.</li>
+            <li>Keep generated images aligned to the prompt and normalization rules.</li>
+            <li>Use your photo for social avatars and these assets for banners and supporting visuals.</li>
+          </ul>
+        </div>
+        <div class="notes">
+          <h2>Read Next</h2>
+          <ul>
+            <li><a href="./brand-system.md">brand-system.md</a></li>
+            <li><a href="./generated-image-prompts.md">generated-image-prompts.md</a></li>
+            <li><a href="./tokens.css">tokens.css</a></li>
+            <li><a href="./tokens.json">tokens.json</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#FAFBFD" />
+  <rect x="1160" y="-34" width="250" height="250" rx="52" transform="rotate(14 1160 -34)" fill="#2F6BFF" fill-opacity="0.08" />
+  <text x="88" y="108" fill="#2F6BFF" font-family="IBM Plex Sans, Inter, sans-serif" font-size="22" font-weight="700">
+    SYSTEM DESIGN
+  </text>
+  <text x="88" y="210" fill="#0B1020" font-family="Space Grotesk, Inter, sans-serif" font-size="72" font-weight="700" letter-spacing="-2">
+    A good AI workflow is
+  </text>
+  <text x="88" y="292" fill="#0B1020" font-family="Space Grotesk, Inter, sans-serif" font-size="72" font-weight="700" letter-spacing="-2">
+    still software architecture
+  </text>
+  <text x="88" y="370" fill="#1A2236" font-family="IBM Plex Sans, Inter, sans-serif" font-size="28">
+    Keep the pipeline explicit. Add the model where judgment is needed.
+  </text>
+  <text x="88" y="408" fill="#1A2236" font-family="IBM Plex Sans, Inter, sans-serif" font-size="28">
+    Preserve deterministic steps around it.
+  </text>
+  <rect x="88" y="498" width="24" height="4" rx="2" fill="#2F6BFF" />
+  <text x="132" y="510" fill="#1A2236" font-family="IBM Plex Sans, Inter, sans-serif" font-size="30">
+    Use deterministic preprocessing before the model call.
+  </text>
+  <rect x="88" y="582" width="24" height="4" rx="2" fill="#2F6BFF" />
+  <text x="132" y="594" fill="#1A2236" font-family="IBM Plex Sans, Inter, sans-serif" font-size="30">
+    Ask for structured output instead of free text.
+  </text>
+  <rect x="88" y="666" width="24" height="4" rx="2" fill="#2F6BFF" />
+  <text x="132" y="678" fill="#1A2236" font-family="IBM Plex Sans, Inter, sans-serif" font-size="30">
+    Route low-confidence cases through a safer path.
+  </text>
+  <rect x="88" y="750" width="24" height="4" rx="2" fill="#2F6BFF" />
+  <text x="132" y="762" fill="#1A2236" font-family="IBM Plex Sans, Inter, sans-serif" font-size="30">
+    Measure quality before shipping the workflow.
+  </text>
+  <rect x="1040" y="250" width="470" height="500" rx="28" fill="white" stroke="#E7EDF7" />
+  <text x="1080" y="308" fill="#0B1020" font-family="IBM Plex Sans, Inter, sans-serif" font-size="28" font-weight="600">
+    Diagram / supporting visual slot
+  </text>
+  <g opacity="0.75">
+    <path d="M1080 360H1450" stroke="#E7EDF7" />
+    <path d="M1080 422H1450" stroke="#E7EDF7" />
+    <path d="M1080 484H1450" stroke="#E7EDF7" />
+    <path d="M1080 546H1450" stroke="#E7EDF7" />
+    <path d="M1080 608H1450" stroke="#E7EDF7" />
+    <path d="M1080 670H1450" stroke="#E7EDF7" />
+  </g>
+</svg>

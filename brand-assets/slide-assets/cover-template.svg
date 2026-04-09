@@ -1,0 +1,33 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0B1020" />
+  <rect x="1140" y="-40" width="280" height="280" rx="56" transform="rotate(14 1140 -40)" fill="#2F6BFF" fill-opacity="0.18" />
+  <rect x="1240" y="130" width="180" height="12" rx="6" fill="white" fill-opacity="0.7" />
+  <g opacity="0.12">
+    <path d="M80 220H1520" stroke="#8FB2FF" />
+    <path d="M80 278H1520" stroke="#8FB2FF" />
+    <path d="M80 336H1520" stroke="#8FB2FF" />
+    <path d="M80 394H1520" stroke="#8FB2FF" />
+    <path d="M80 452H1520" stroke="#8FB2FF" />
+    <path d="M80 510H1520" stroke="#8FB2FF" />
+    <path d="M80 568H1520" stroke="#8FB2FF" />
+  </g>
+  <text x="88" y="108" fill="#8FB2FF" font-family="IBM Plex Sans, Inter, sans-serif" font-size="22" font-weight="600">
+    AI Engineering Foundations
+  </text>
+  <text x="88" y="292" fill="white" font-family="Space Grotesk, Inter, sans-serif" font-size="92" font-weight="700" letter-spacing="-3">
+    Build Real AI Systems,
+  </text>
+  <text x="88" y="392" fill="white" font-family="Space Grotesk, Inter, sans-serif" font-size="92" font-weight="700" letter-spacing="-3">
+    Not Just Demos
+  </text>
+  <text x="88" y="492" fill="#E7EDF7" font-family="IBM Plex Sans, Inter, sans-serif" font-size="30">
+    Practical workflows, clear system design, and production thinking
+  </text>
+  <text x="88" y="532" fill="#E7EDF7" font-family="IBM Plex Sans, Inter, sans-serif" font-size="30">
+    for modern AI engineers.
+  </text>
+  <rect x="88" y="712" width="330" height="86" rx="20" fill="#2F6BFF" />
+  <text x="132" y="764" fill="white" font-family="IBM Plex Sans, Inter, sans-serif" font-size="30" font-weight="700">
+    Lukas Lechner
+  </text>
+</svg>

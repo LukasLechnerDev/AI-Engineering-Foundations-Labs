@@ -7,6 +7,7 @@
 - why observability matters for AI systems
 - why this course uses Langfuse and what other platforms students may see on the job
 - tracing a multi-step pipeline
+- prompt management
 - prompt and version inspection
 - token usage visibility
 - latency visibility

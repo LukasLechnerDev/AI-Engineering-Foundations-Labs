@@ -1,0 +1,23 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#FAFBFD" />
+  <rect x="88" y="232" width="128" height="8" rx="4" fill="#2F6BFF" />
+  <text x="88" y="368" fill="#0B1020" font-family="Space Grotesk, Inter, sans-serif" font-size="84" font-weight="700" letter-spacing="-2.6">
+    The model is not the
+  </text>
+  <text x="88" y="458" fill="#0B1020" font-family="Space Grotesk, Inter, sans-serif" font-size="84" font-weight="700" letter-spacing="-2.6">
+    application. The model
+  </text>
+  <text x="88" y="548" fill="#0B1020" font-family="Space Grotesk, Inter, sans-serif" font-size="84" font-weight="700" letter-spacing="-2.6">
+    is one part inside a
+  </text>
+  <text x="88" y="638" fill="#0B1020" font-family="Space Grotesk, Inter, sans-serif" font-size="84" font-weight="700" letter-spacing="-2.6">
+    workflow you design.
+  </text>
+  <text x="88" y="742" fill="#6B7280" font-family="IBM Plex Sans, Inter, sans-serif" font-size="28">
+    Use for high-signal takeaways, transitions, and memorable statements.
+  </text>
+  <rect x="88" y="788" width="304" height="72" rx="18" fill="#0B1020" />
+  <text x="132" y="832" fill="white" font-family="IBM Plex Sans, Inter, sans-serif" font-size="28" font-weight="700">
+    Lukas Lechner
+  </text>
+</svg>

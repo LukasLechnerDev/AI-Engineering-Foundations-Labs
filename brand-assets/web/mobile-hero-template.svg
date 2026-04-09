@@ -1,0 +1,36 @@
+<svg width="390" height="844" viewBox="0 0 390 844" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="390" height="844" fill="#FAFBFD" />
+  <rect x="228" y="-10" width="110" height="110" rx="26" transform="rotate(14 228 -10)" fill="#2F6BFF" fill-opacity="0.12" />
+  <g opacity="0.05">
+    <path d="M28 120H362" stroke="#2F6BFF" />
+    <path d="M28 174H362" stroke="#2F6BFF" />
+    <path d="M28 228H362" stroke="#2F6BFF" />
+    <path d="M28 282H362" stroke="#2F6BFF" />
+    <path d="M28 336H362" stroke="#2F6BFF" />
+    <path d="M28 390H362" stroke="#2F6BFF" />
+  </g>
+  <text x="28" y="154" fill="#0B1020" font-family="Space Grotesk, Inter, sans-serif" font-size="44" font-weight="700" letter-spacing="-1">
+    Practical AI
+  </text>
+  <text x="28" y="204" fill="#0B1020" font-family="Space Grotesk, Inter, sans-serif" font-size="44" font-weight="700" letter-spacing="-1">
+    engineering
+  </text>
+  <text x="30" y="286" fill="#1A2236" font-family="IBM Plex Sans, Inter, sans-serif" font-size="20">
+    Projects first. Clear systems.
+  </text>
+  <text x="30" y="316" fill="#1A2236" font-family="IBM Plex Sans, Inter, sans-serif" font-size="20">
+    Modern tools.
+  </text>
+  <rect x="28" y="356" width="160" height="50" rx="14" fill="#0B1020" />
+  <text x="82" y="388" fill="white" font-family="IBM Plex Sans, Inter, sans-serif" font-size="18" font-weight="700">
+    Start
+  </text>
+  <rect x="28" y="464" width="334" height="274" rx="22" fill="#0B1020" />
+  <g opacity="0.08">
+    <path d="M48 520H342" stroke="#8FB2FF" />
+    <path d="M48 560H342" stroke="#8FB2FF" />
+    <path d="M48 600H342" stroke="#8FB2FF" />
+    <path d="M48 640H342" stroke="#8FB2FF" />
+    <path d="M48 680H342" stroke="#8FB2FF" />
+  </g>
+</svg>

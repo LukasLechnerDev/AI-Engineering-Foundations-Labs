@@ -1,0 +1,23 @@
+<svg width="1500" height="500" viewBox="0 0 1500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1500" height="500" fill="#0B1020" />
+  <rect x="1100" y="-24" width="190" height="190" rx="38" transform="rotate(14 1100 -24)" fill="#2F6BFF" fill-opacity="0.18" />
+  <g opacity="0.08">
+    <path d="M40 100H1460" stroke="#8FB2FF" />
+    <path d="M40 146H1460" stroke="#8FB2FF" />
+    <path d="M40 192H1460" stroke="#8FB2FF" />
+    <path d="M40 238H1460" stroke="#8FB2FF" />
+    <path d="M40 284H1460" stroke="#8FB2FF" />
+    <path d="M40 330H1460" stroke="#8FB2FF" />
+  </g>
+  <text x="320" y="180" fill="white" font-family="Space Grotesk, Inter, sans-serif" font-size="64" font-weight="700" letter-spacing="-2">
+    Practical AI Engineering
+  </text>
+  <text x="320" y="248" fill="#E7EDF7" font-family="IBM Plex Sans, Inter, sans-serif" font-size="26">
+    Build useful systems. Learn the workflow, not just the prompt.
+  </text>
+  <rect x="320" y="336" width="240" height="56" rx="18" fill="#2F6BFF" />
+  <text x="366" y="372" fill="white" font-family="IBM Plex Sans, Inter, sans-serif" font-size="24" font-weight="700">
+    Lukas Lechner
+  </text>
+  <circle cx="146" cy="250" r="112" stroke="#8FB2FF" stroke-width="2" stroke-dasharray="10 10" />
+</svg>

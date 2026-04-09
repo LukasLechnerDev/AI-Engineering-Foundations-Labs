@@ -1,0 +1,37 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#FAFBFD" />
+  <text x="88" y="108" fill="#2F6BFF" font-family="IBM Plex Sans, Inter, sans-serif" font-size="22" font-weight="700">
+    WORKFLOW
+  </text>
+  <text x="88" y="208" fill="#0B1020" font-family="Space Grotesk, Inter, sans-serif" font-size="72" font-weight="700" letter-spacing="-2">
+    Routing low-confidence cases
+  </text>
+  <rect x="118" y="358" width="250" height="120" rx="24" fill="white" stroke="#E7EDF7" />
+  <rect x="440" y="358" width="320" height="120" rx="24" fill="white" stroke="#E7EDF7" />
+  <rect x="850" y="270" width="250" height="112" rx="24" fill="white" stroke="#E7EDF7" />
+  <rect x="850" y="440" width="250" height="112" rx="24" fill="white" stroke="#E7EDF7" />
+  <rect x="1180" y="358" width="290" height="120" rx="24" fill="white" stroke="#E7EDF7" />
+  <text x="180" y="430" fill="#0B1020" font-family="IBM Plex Sans, Inter, sans-serif" font-size="30" font-weight="600">
+    Scrape Jobs
+  </text>
+  <text x="478" y="430" fill="#0B1020" font-family="IBM Plex Sans, Inter, sans-serif" font-size="30" font-weight="600">
+    Classify + Confidence
+  </text>
+  <text x="904" y="336" fill="#0B1020" font-family="IBM Plex Sans, Inter, sans-serif" font-size="28" font-weight="600">
+    Manual Review
+  </text>
+  <text x="892" y="506" fill="#0B1020" font-family="IBM Plex Sans, Inter, sans-serif" font-size="28" font-weight="600">
+    Fallback Model
+  </text>
+  <text x="1238" y="430" fill="#0B1020" font-family="IBM Plex Sans, Inter, sans-serif" font-size="30" font-weight="600">
+    Enrich + Rank
+  </text>
+  <path d="M368 418H440" stroke="#2F6BFF" stroke-width="4" stroke-linecap="round" />
+  <path d="M760 418L850 326" stroke="#2F6BFF" stroke-width="4" stroke-linecap="round" />
+  <path d="M760 418L850 494" stroke="#2F6BFF" stroke-width="4" stroke-linecap="round" />
+  <path d="M1100 326L1180 418" stroke="#2F6BFF" stroke-width="4" stroke-linecap="round" />
+  <path d="M1100 494L1180 418" stroke="#2F6BFF" stroke-width="4" stroke-linecap="round" />
+  <text x="88" y="710" fill="#1A2236" font-family="IBM Plex Sans, Inter, sans-serif" font-size="28">
+    Only ambiguous cases get the extra path. Keep the default workflow simple.
+  </text>
+</svg>
