@@ -1,22 +1,34 @@
 # Outline
 
-- completion API vs Responses API
+## Teaching goal
+- Students should learn how to turn model calls into reliable software behavior.
+- This module stays focused on raw API fundamentals.
+
+## What to cover
+- Responses API as the default interface for the course
   - https://www.youtube.com/watch?v=0pGxoubWI6s
-  - which one to use for the course?
-- system vs user vs assistant promt
-- memory (conversation history)
-- stream responses - with gradio chat interface
-- memory (conversation history including tool calls)
-- temperature
-- different sdks you can use (Langchain, Pydantic AI)
+  - when to use it instead of Chat Completions
+- request and response mental model
+- instructions vs input vs message roles
+- conversation state
+  - manual conversation history
+  - conversation history including tool calls
+- stream responses with a Gradio chat interface
+- temperature and response settings
 - structured output
 - multi-modality
-    - upload and analyze image
-    - generate image
-- tools usage
-- built-in tools
+  - upload and analyze an image
+  - generate an image
+- tool calling
+  - custom tools
+  - built-in tools as a short extension
+
+## Keep out of this module
+- costs, latency, and model routing
+- retries, rate limits, fallbacks, and defensive parsing
+- framework comparisons like LangChain or PydanticAI
 - MCP
-- workflows + agent definition - building effective agents blogpost by anthropic
+- workflows and agent definitions
 
 ### OpenAI API Deep Dive
 

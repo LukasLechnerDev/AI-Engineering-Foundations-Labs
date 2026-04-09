@@ -6,7 +6,10 @@
 - show actuall current numbers (Jobs on the Rise, ) that support these claims
 - https://zerotomastery.io/blog/tech-job-market-trends-monthly-march-2026/
 - Compare demand to other Roles like DevOps
-
+- Motivate them that it is really great and has a lot of benefits to learn AI Engineering
+  - work on cool project that use cutting-edge technology
+  - lots of job opportunities
+  - earn lots of money
 
 ## Bolt claims
 

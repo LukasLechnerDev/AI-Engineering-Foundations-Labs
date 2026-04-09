@@ -1,7 +1,6 @@
 # Typical AI-powered applications
 
 ## Big Picture
-
 from programmierbar podcast (see full notes in IntellJ)
 
 ### 1. Most production AI use cases fall into a few recurring patterns
@@ -20,6 +19,7 @@ The guest describes three main patterns:
 - Agents - Customer support agents are popular
 - Workflow Automation
 - See Google Deep Research from April 7
+- Really important usecase: Empower disabled or old people - help them with dimentia - search for more ai-powered products
 
 ### Our Notebook
 - Go through notebook and summarize use cases of "our" jobs

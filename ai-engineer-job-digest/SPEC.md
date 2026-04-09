@@ -220,3 +220,7 @@ Acceptance criteria:
   - digest preview page
   - salary extraction/normalization
   - manual rerun endpoint
+
+## Additional Thoughts
+- I thought about talking about what the different roles (ML Engineer, Data Scientist, Backend Developer, Frontent Developer) need to learn to become AI Engineers
+- I can talk about this topic when I describe the user profile description ("If you are a ML Engineer, your skills are ... but you need to learn ...)
