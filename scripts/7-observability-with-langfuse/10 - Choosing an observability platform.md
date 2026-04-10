@@ -1,15 +1,23 @@
 # 10 - Choosing an observability platform
 
-## Recommendation
-- Use Langfuse in the course.
+## Learning goals
+- Understand why the course uses Langfuse for the observability module in the MVP path.
+- Separate transferable observability concepts from vendor-specific tooling.
+- See why Langfuse fits the course better than a framework-coupled alternative.
 
-## Why this is the best course choice
-- The course teaches the raw OpenAI SDK first, so the observability tool should stay framework-agnostic.
-- Langfuse fits that goal well because it is positioned as open source, self-hostable, and not tied to LangChain.
-- This keeps the course focused on observability concepts instead of teaching a framework-specific platform.
-- It is also easier to justify for students who want a tool they can run cheaply in personal projects.
+## Notes
+- This lecture stays in the MVP path because the project is already a multi-step pipeline by this point.
+- The course still teaches observability concepts, not Langfuse dependency.
+- Langfuse is the chosen tool because it matches the raw SDK path better than LangSmith.
 
-## What the job dataset suggests
+## Script
+- Recommend Langfuse for the course.
+- Explain why this is the best course choice:
+  - The course teaches the raw OpenAI SDK first, so the observability tool should stay framework-agnostic.
+  - Langfuse fits that goal well because it is positioned as open source, self-hostable, and not tied to LangChain.
+  - This keeps the course focused on observability concepts instead of teaching a framework-specific platform.
+  - It is also easier to justify for students who want a tool they can run cheaply in personal projects.
+- Show what the job dataset suggests:
 - The strongest signal is not one specific vendor. The strongest signal is that observability in general matters.
 - In `3-extracted_skills.jsonl`:
   - `observability` appears in 20 of 101 rows
@@ -41,7 +49,7 @@
 - On top of that, teams building LLM products may add an AI-specific layer such as LangSmith or Langfuse.
 - In this dataset, LangSmith appears more often than Langfuse, so students are probably more likely to encounter LangSmith on LangChain-heavy teams.
 - But LangSmith is tightly coupled to the LangChain ecosystem. Teaching it without LangChain creates cognitive dissonance and distracts from the observability concepts themselves.
-- Langfuse is the natural choice for teams not using LangChain — which is exactly the pattern this course teaches (raw Anthropic SDK).
+- Langfuse is the natural choice for teams not using LangChain, which matches the raw SDK path this course teaches.
 
 ## Course stance
 - Teach Langfuse in the course.
@@ -49,3 +57,5 @@
 - Emphasize that the transferable skill is not a single vendor UI.
 - The transferable skill is tracing runs, inspecting prompts and outputs, tracking latency and cost, and comparing versions over time.
 - Also mention OpenTelemetry as the vendor-neutral foundation that makes these tools easier to switch later.
+
+## Sources

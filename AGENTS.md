@@ -51,6 +51,15 @@ When choosing between broader theory coverage and faster progress toward the MVP
   4. `## Sources` — links or references used to prepare the lecture (optional, omit if empty).
 - Apply this structure to every lecture and overview file, including module outline files.
 
+## Excalidraw Diagrams
+- Only adjust Excalidraw diagrams when the user specifically asks for diagram changes.
+Always use the brand colors from `brand-assets/system/` when creating Excalidraw diagrams:
+- Default box fill: `#E7EDF7` (Mist 100), text `#0B1020` (Ink 950)
+- Accent/highlight fill: `#2F6BFF` (Signal Blue), text `#FFFFFF`
+- Supporting text: `#6B7280` (Slate 500)
+- Arrows: `#0B1020` (Ink 950)
+- Canvas background: `#FAFBFD` (Paper)
+
 ## General Instructions 
 - ALWAYS run `.venv/bin/ruff format` after you are done with your task to get the code style right, but only do this if you have added or modified python code.
 - Make sure that all python code follows the current python best practices. Make use of mcp servers to fetch information about best practices. Always shout when you see code that doesn't follow best practises. 

@@ -15,6 +15,9 @@
 
 Hi, and welcome to this course! I am very happy to see you here!
 
+Explain that the repo contains excalidraw files for every module. 
+The student needs to install the excalidraw extension to view the diagrams. 
+
 This is a practical course, and therefore, we want to not start with theory but start to interact with LLMs as quickly as possible. 
 
 But before we can do that we need to first set up our development environment. 
