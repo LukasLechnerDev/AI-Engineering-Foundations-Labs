@@ -8,12 +8,11 @@
 - why models use tokens instead of whole words
 - one sentence can become many tokens
 - prompts and responses are both measured in tokens
-
-## Keep this light
-- no token pricing overview
-- no cost calculators
-- no `tiktoken` code in the MVP
+- token pricing overview
+- cost calculators
+- show `tiktoken` library
 - no deep context window discussion here
+- maybe create a separate lecture regarding costs
 
 ## Sources: 
 - [Datalumina Academy](https://app.datalumina.academy/c/genai-accelerator/sections/555177/lessons/2087907)

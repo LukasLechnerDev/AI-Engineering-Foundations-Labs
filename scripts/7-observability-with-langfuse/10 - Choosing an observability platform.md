@@ -40,6 +40,8 @@
 - That usually means tools like Grafana, Prometheus, CloudWatch, or Application Insights.
 - On top of that, teams building LLM products may add an AI-specific layer such as LangSmith or Langfuse.
 - In this dataset, LangSmith appears more often than Langfuse, so students are probably more likely to encounter LangSmith on LangChain-heavy teams.
+- But LangSmith is tightly coupled to the LangChain ecosystem. Teaching it without LangChain creates cognitive dissonance and distracts from the observability concepts themselves.
+- Langfuse is the natural choice for teams not using LangChain — which is exactly the pattern this course teaches (raw Anthropic SDK).
 
 ## Course stance
 - Teach Langfuse in the course.

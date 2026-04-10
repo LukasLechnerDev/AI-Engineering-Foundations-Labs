@@ -32,11 +32,21 @@ When choosing between broader theory coverage and faster progress toward the MVP
 - Do not make scope, sequencing, or lesson-placement decisions based only on the current file or module.
 - Use the broader course context to avoid duplication, misplaced topics, and inconsistencies across modules.
 
+## Environment Workflow
+- Use `uv sync` to create or refresh the project environment when dependencies or the notebook kernel are missing.
+- In notebooks, use the repo `.venv` as the Jupyter kernel.
+- Preserve the existing project-output flow between lessons. If a notebook depends on files from an earlier step such as `jobs/1-scraped_jobs.jsonl`, keep that dependency explicit instead of hiding it.
+
 ## Notebook Priority
 - Keep notebook cells focused and easy to scan.
 - Prefer explicit code over compact but hard-to-read code.
 - Minimize setup and boilerplate.
 - Make outputs easy for students to interpret.
+
+## Script and Outline Style
+- Keep teaching goals in outline files very concise — drop "Students should learn how to" and similar prefixes. Write the goal itself, not a sentence about the goal.
+- Instead of "Students should learn how to measure X", write "Measure X".
+- Apply to all Teaching goal / Teaching goals sections in outline and lecture scripts.
 
 ## General Instructions 
 - ALWAYS run `.venv/bin/ruff format` after you are done with your task to get the code style right, but only do this if you have added or modified python code.
