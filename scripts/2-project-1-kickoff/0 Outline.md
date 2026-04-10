@@ -1,11 +1,10 @@
 # Outline
 
 ## Learning goals
-- Understand what `ai-engineer-job-digest` does and why it is a strong first portfolio project.
+- Present what we are going to build with `ai-engineer-job-digest` 
+- why it is a strong first portfolio project => which skills it demonstrates
 - Explain, that this is a AI Workflow or AI Pipeline and what's different to AI Agents
 - Understand when a no-code tool is enough and when a custom Python app is the better choice.
-- See the MVP path before the course adds optional tooling and deeper production topics.
-- Understand where prompt work, evals, deployment, and later post-MVP modules fit into the build.
 
 ## Notes
 - This module sets the course story for the rest of the project.
