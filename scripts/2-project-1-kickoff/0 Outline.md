@@ -11,6 +11,15 @@
 - from notebook to python file: Create first version of pipeline
   - that does SCRAPING - FILTERING - CLASSIFICATION - HTML RENDER
 - basically just the code that we have written in the notebooks
+- then extend with enriching and skill matching
+- then the user already has the first nice project early in the course
+
+Next steps: 
+- Costs?
+  - how much did our run cost?
+  - use tik token
+  - what is a token?
+  - how can we make the run cheaper
 
 ## Notes
 - This module sets the course story for the rest of the project.
