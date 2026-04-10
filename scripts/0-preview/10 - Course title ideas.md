@@ -10,7 +10,7 @@
 - `Bootcamp`, `Python`, `LLM Apps`, `Production`, and `Portfolio Project` are useful supporting terms.
 - `Fundamentals` feels broader and less outcome-driven than the current course direction.
 - The title should promise practical outcomes, not broad AI theory.
-- Current favorite: `AI Engineer Bootcamp: Build Real LLM Apps with Python`
+- Current favorite: `AI Engineer Bootcamp: Build and Deploy Real LLM Apps with Python with Evaluations and Monitoring`
 
 ## Script
 - Recommended working title:

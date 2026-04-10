@@ -28,6 +28,11 @@ You can escape this again with Esc.
 ## Model download
 
 ==🟡TODO: Improve this once I have more knowledge about parameter sizes, oss models etc.== 
+
+> Info from academind video (link below): Take the parameter amount in billion, double that and then you have the gigabyte amount that you need to run locally to have an estimate about how much memory you need. 1b => 2GB of memory, preferably GPU memory
+
+> Frontier models are of course more capable, but local models can still be useful for some tasks like summarizing or creating text
+
 Okay, so now that ollama is running, we can now download our first open source model and run it locally. To see which models are available for Ollama, simply go to the ollama website and click on “Models”.
 Here, you can see some models that are currently popular, like …
 An important model property to take into consideration is the parameters size. 
@@ -59,3 +64,7 @@ And that’s all for this video! We now have a working setup that allows us to w
 If you like you can play around with ollama - maybe download some different models and try out different prompts!
 
 See you in the next lecture!
+
+## Sources: 
+https://pro.academind.com/courses/ai-agents-workflows-the-practical-guide/lectures/62110808
+

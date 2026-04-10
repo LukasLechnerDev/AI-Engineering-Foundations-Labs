@@ -12,6 +12,7 @@
 - instructions vs input vs message roles
 - conversation state
   - manual conversation history
+  - a LLM doesn't have memory by default, every call is stateless
   - conversation history including tool calls
 - stream responses with a Gradio chat interface
 - temperature and response settings

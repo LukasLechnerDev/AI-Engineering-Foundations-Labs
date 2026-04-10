@@ -87,7 +87,7 @@ This is the course that I wanted when I started my AI engineering journey.
 - fodus on the fundamentals, not the hype
 
 ## Pre-requisites
-- Python knowledge
+- Python knowledge is good, but Python is an easy to learn and understand language, so if you have experience with any programming language, you wont have a hard time understanding python
 - Git usage
 - Virtual Environments, environment variables
 - know what an "Api Key" is
