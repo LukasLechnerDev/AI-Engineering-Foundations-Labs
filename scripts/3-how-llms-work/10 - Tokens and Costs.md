@@ -9,7 +9,7 @@
 - one sentence can become many tokens
 - prompts and responses are both measured in tokens
 - token pricing overview
-- cost calculators
+- cost calculators? Or talk about costs in Langfuse monitoring module?
 - show `tiktoken` library
 - no deep context window discussion here
 - maybe create a separate lecture regarding costs

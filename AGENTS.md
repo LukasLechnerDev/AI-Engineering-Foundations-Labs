@@ -46,8 +46,9 @@ When choosing between broader theory coverage and faster progress toward the MVP
 ## Script and Outline Style
 - All lecture and overview markdown files use this section structure, in this order:
   1. `## Learning goals` — concise bullets, no "Students should learn how to" prefix. Write the goal itself: "Measure X" not "Students should learn how to measure X".
-  2. `## Notes` — background research, data, platform comparisons, or other supporting context.
+  2. `## Notes` — background research, data, platform comparisons, or other supporting context, also very concise
   3. `## Script` — the actual lecture content.
+  4. `## Sources` — links or references used to prepare the lecture (optional, omit if empty).
 - Apply this structure to every lecture and overview file, including module outline files.
 
 ## General Instructions 
