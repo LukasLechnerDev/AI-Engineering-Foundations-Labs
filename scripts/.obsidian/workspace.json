@@ -25,12 +25,10 @@
             "id": "7949e539340ea50f",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "2-what-is-ai-engineering/ai-engineering-course-structure.excalidraw"
-              },
-              "icon": "excalidraw-icon",
-              "title": "ai-engineering-course-structure"
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ],
@@ -196,11 +194,41 @@
   },
   "active": "7949e539340ea50f",
   "lastOpenFiles": [
-    "2-what-is-ai-engineering/0 - Content to Cover.md",
     "2-what-is-ai-engineering/ai-engineering-course-structure.excalidraw",
-    "2-what-is-ai-engineering/40 - What is an AI Engineer - r2r.md",
-    "2-what-is-ai-engineering/3- Your first LLM call - r2r.md",
-    "2-what-is-ai-engineering/2 - Development Setup - r2r.md",
-    "2-what-is-ai-engineering/1 - Cloning the course repository -r2r.md"
+    "1-what-is-ai-engineering/ai-engineering-course-structure.excalidraw",
+    "1-what-is-ai-engineering/80 - Transition from different roles.md",
+    "1-what-is-ai-engineering/90 easy for llms hard for regular programming.md",
+    "1-what-is-ai-engineering/70 Portfolio Projects.md",
+    "1-what-is-ai-engineering/60 Typical AI-powered applications.md",
+    "1-what-is-ai-engineering/55 In-Demand Skills of an AI Engineer copy.md",
+    "1-what-is-ai-engineering/52 Responsibilities of an AI Engineer.md",
+    "1-what-is-ai-engineering/51-Classifying-AI-Engineering-jobs.md",
+    "1-what-is-ai-engineering/45 - High Demand for AI Engineers.md",
+    "1-what-is-ai-engineering/40 - What is an AI Engineer - r2r.md",
+    "1-what-is-ai-engineering/4 - Calling a local LLM - r2r.md",
+    "1-what-is-ai-engineering/3- Your first LLM call - r2r.md",
+    "1-what-is-ai-engineering/2 - Development Setup - r2r.md",
+    "1-what-is-ai-engineering/1 - Cloning the course repository -r2r.md",
+    "1-what-is-ai-engineering/0 - Content to Cover.md",
+    "1-what-is-ai-engineering",
+    "2-project-1-kickoff/0 Outline.md",
+    "2-project-1-kickoff",
+    "3-how-llms-work/30 - Foundation models VS ML models.md",
+    "3-how-llms-work/10 - Tokens.md",
+    "3-how-llms-work/20 - Next-token prediction.md",
+    "3-how-llms-work/0 - Content to Cover.md",
+    "3-how-llms-work",
+    "4-interacting-with-model-endpoints/80 - Tool Calling.md",
+    "4-interacting-with-model-endpoints/60 - Structured Output.md",
+    "4-interacting-with-model-endpoints/50 - System vs User Prompt.md",
+    "4-interacting-with-model-endpoints/0 Outline.md",
+    "4-interacting-with-model-endpoints",
+    "5-prompt-engineering/0 Outline.md",
+    "5-prompt-engineering",
+    "6-evaluations",
+    "7-observability-with-langfuse/10 - Choosing an observability platform.md",
+    "7-observability-with-langfuse",
+    "8-productionizing-ai-systems",
+    "9-deployment-on-aws"
   ]
 }
