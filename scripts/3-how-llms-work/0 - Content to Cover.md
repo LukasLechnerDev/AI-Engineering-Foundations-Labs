@@ -15,8 +15,13 @@
 - probabilistic output
   - the model predicts probabilities, not one guaranteed answer
   - temperature changes how stable or varied the output is
+  
+  This is a useful mental model for the course:
+- accuracy: is the output good enough?
+- cost: can this scale economically?
+- latency: is the response fast enough for the use case?
 
-## Keep out of this module
+## Keep out of this module?
 - supervised vs unsupervised taxonomy
 - parameters and parameter count
 - top-k and top-p

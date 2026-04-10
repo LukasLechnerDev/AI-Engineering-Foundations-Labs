@@ -22,6 +22,8 @@
 - tool calling
   - custom tools
   - built-in tools as a short extension
+  - batch mode?
+  - Basic Overview of Inference Services
 
 ## Keep out of this module
 - costs, latency, and model routing

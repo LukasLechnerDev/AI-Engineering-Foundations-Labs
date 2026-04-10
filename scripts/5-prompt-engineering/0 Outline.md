@@ -24,3 +24,6 @@
 - A good first anchor example is the job-posting classification prompt.
 - The same iteration pattern can later be reused for extraction and summarization steps.
 - The goal is to make the project output noticeably better with simple, testable prompt changes.
+
+## Sources: 
+- https://github.com/anthropics/courses/blob/master/prompt_engineering_interactive_tutorial/README.md
