@@ -13,3 +13,4 @@ wheels/
 .env
 
 # scripts
+scripts/.obsidian/
