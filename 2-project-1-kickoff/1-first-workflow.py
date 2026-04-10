@@ -22,7 +22,7 @@ jobs = scrape_jobs(
     country_indeed="USA",
     job_type="fulltime",
     hours_old=24,
-    results_wanted=5,
+    results_wanted=10,
 )
 
 df = pd.DataFrame(jobs)
@@ -121,44 +121,93 @@ for _, job in ai_jobs.iterrows():
     </div>
 """
 
-icon_svg = """
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" width="48" height="48" aria-hidden="true">
-  <!-- Briefcase body -->
-  <rect x="2" y="7" width="20" height="14" rx="2" stroke="#0B1020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Handle -->
-  <path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" stroke="#0B1020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Horizontal divider -->
-  <line x1="2" y1="13" x2="22" y2="13" stroke="#0B1020" stroke-width="2" stroke-linecap="round"/>
-  <!-- Signal Blue clasp -->
-  <rect x="10.5" y="11.5" width="3" height="3" rx="0.75" fill="#2F6BFF"/>
-</svg>
-"""
+icon_img = '<img src="digest-icon.png" width="32" height="32" alt="" style="filter: brightness(0) invert(1);">'
 
 html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>AI Engineer Job Digest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    body {{ font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; background: #f5f5f5; }}
-    .header {{ display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }}
-    h1 {{ color: #0B1020; margin: 0; }}
-    .subtitle {{ color: #6B7280; margin-bottom: 32px; }}
-    .card {{ background: white; border-radius: 8px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }}
-    .card h2 {{ margin: 0 0 6px; font-size: 1.1rem; }}
-    .card a {{ color: #2F6BFF; text-decoration: none; }}
-    .card a:hover {{ text-decoration: underline; }}
-    .company {{ margin: 0 0 10px; color: #6B7280; font-weight: 600; font-size: 0.9rem; }}
-    .reason {{ margin: 0; color: #444; font-size: 0.9rem; line-height: 1.5; }}
+    * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+    body {{ font-family: 'IBM Plex Sans', sans-serif; background: #FAFBFD; color: #0B1020; }}
+
+    .hero {{
+      background: #0B1020;
+      padding: 40px;
+    }}
+    .hero-inner {{
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }}
+    .icon-wrap {{
+      background: #1A2236;
+      border-radius: 12px;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }}
+    .hero-text h1 {{
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      line-height: 1.2;
+    }}
+    .hero-text h1 span {{
+      color: #2F6BFF;
+    }}
+    .hero-text p {{
+      color: #8FB2FF;
+      font-size: 0.875rem;
+      margin-top: 6px;
+    }}
+    .content {{
+      max-width: 800px;
+      margin: 36px auto;
+      padding: 0 40px;
+    }}
+
+    .card {{
+      background: white;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 12px;
+      border: 1px solid #8FB2FF;
+    }}
+    .card h2 {{
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }}
+    .card h2 a {{ color: #0B1020; text-decoration: none; }}
+    .card h2 a:hover {{ color: #2F6BFF; }}
+    .company {{ color: #6B7280; font-size: 0.825rem; font-weight: 500; margin-bottom: 10px; }}
+    .reason {{ color: #3D4660; font-size: 0.875rem; line-height: 1.6; }}
   </style>
 </head>
 <body>
-  <div class="header">
-    {icon_svg}
-    <h1>AI Engineer Job Digest</h1>
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="icon-wrap">{icon_img}</div>
+      <div class="hero-text">
+        <h1>AI Engineer <span>Job Digest</span></h1>
+        <p>{len(ai_jobs)} verified roles &nbsp;·&nbsp; from {len(df)} candidates &nbsp;·&nbsp; Last 24 hours</p>
+      </div>
+    </div>
   </div>
-  <p class="subtitle">Found {len(ai_jobs)} verified AI engineering roles (from {len(df)} candidates)</p>
-  {cards}
+  <div class="content">
+    {cards}
+  </div>
 </body>
 </html>"""
 

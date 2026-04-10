@@ -6,6 +6,12 @@
 - Explain, that this is a AI Workflow or AI Pipeline and what's different to AI Agents
 - Understand when a no-code tool is enough and when a custom Python app is the better choice.
 
+## Storyline
+- first lecture presents what we are going to build for the MVP
+- from notebook to python file: Create first version of pipeline
+  - that does SCRAPING - FILTERING - CLASSIFICATION - HTML RENDER
+- basically just the code that we have written in the notebooks
+
 ## Notes
 - This module sets the course story for the rest of the project.
 - The MVP path should stay simple: build the product, improve prompts, add local evals, ship it, then expand.
