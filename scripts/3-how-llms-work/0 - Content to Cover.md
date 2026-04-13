@@ -12,7 +12,7 @@
 - pretraining and next-token prediction
   - the model learns patterns from lots of text
   - at runtime it generates one token at a time
-- probabilistic output
+- probabilistic output - why not deterministic?
   - the model predicts probabilities, not one guaranteed answer
   - temperature changes how stable or varied the output is
   

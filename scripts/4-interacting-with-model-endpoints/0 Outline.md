@@ -10,11 +10,12 @@
   - when to use it instead of Chat Completions
 - request and response mental model
 - instructions vs input vs message roles
+- parameters: temperature, max-tokens, timeout, max retries (from langchain course, maybe these are specific for langchain?)
 - conversation state
   - manual conversation history
   - a LLM doesn't have memory by default, every call is stateless
   - conversation history including tool calls
-- stream responses with a Gradio chat interface
+- stream responses with a Gradio chat interface - Streaming to reduce the perceived latency of our system
 - temperature and response settings
 - structured output
 - multi-modality
