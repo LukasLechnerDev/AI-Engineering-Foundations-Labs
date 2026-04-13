@@ -27,7 +27,7 @@ print("Step 1: Scraping jobs...")
 
 jobs = scrape_jobs(
     site_name=["indeed", "linkedin"],
-    linkedin_fetch_description=True,
+    linkedin_fetch_description=True, 
     search_term='"AI Engineer"',
     location="USA",
     country_indeed="USA",
