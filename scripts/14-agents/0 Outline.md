@@ -16,3 +16,6 @@
 - workflow patterns
 - agent definitions
 - how tools, memory, and decision loops come together in an agentic system
+
+## Sources
+- https://academy.langchain.com/courses/take/foundation-introduction-to-langchain-python/lessons/71234843-course-overview => good definition of what is an Agent and what not and concept that it is a spectrum of how autonomous an agent is, not a binary yes/no

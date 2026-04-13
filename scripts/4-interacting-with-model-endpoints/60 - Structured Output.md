@@ -1,9 +1,20 @@
-# 60 - Structured Output
+# Structured Output
 
-https://github.com/567-labs/instructor
-https://github.com/dottxt-ai/outlines
-pydantic for structured output
+## Learning Goals
+- What is Structured Output
+- Why Structured Output?
+- Why Pydantic?
+- Use Pydantic in AIE job digest
+
+## Notes
+-  pydantic for structured output
 - the most widely used data validation library in Python
 - extension of Python data classes, but with more functionality
 - Pydantic returns human readable error messages, so LLMs can fix problems better
-“to get something we can use programmatically and build our systems around”
+- “to get something we can use programmatically and build our systems around”
+
+## Script
+
+## Sources
+- https://github.com/567-labs/instructor
+- https://github.com/dottxt-ai/outlines
