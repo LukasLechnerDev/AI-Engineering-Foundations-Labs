@@ -20,7 +20,7 @@
 - temperature and response settings
 - structured output
 - multi-modality?
-  - upload and analyze an image => yes?
+  - upload and analyze an PDF => yes, use it with AI Engineer Job Digest as the profile
   - generate an image => no?
 - tool calling
   - custom tools
