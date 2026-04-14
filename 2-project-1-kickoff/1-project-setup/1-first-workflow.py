@@ -118,9 +118,94 @@ print(
     f"\n  AI engineering roles: {len(classified_jobs)} / {len(scraped_jobs_df)} screened"
 )
 
-# ── Step 4: Render HTML ───────────────────────────────────────────────────────
+# ── Step 4: Extract required skills ───────────────────────────────────────────
 
-print("\nStep 4: Rendering HTML digest...")
+print("\nStep 4: Extracting required skills...")
+
+skill_categories = [
+    "ai-engineering",
+    "ml",
+    "data",
+    "backend",
+    "cloud",
+    "ops",
+    "languages",
+    "frontend",
+    "other",
+]
+
+category_text = "\n".join(f"- {category}" for category in skill_categories)
+
+skill_instructions = """
+You extract required skills from AI engineering job postings.
+
+Return concise normalized skill names like 'python', 'rag', 'sql', 'aws', or 'docker'.
+Only include skills that are clearly important for the role.
+Assign each skill to one of the provided categories.
+""".strip()
+
+skill_schema = {
+    "type": "object",
+    "properties": {
+        "skills": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "skill": {"type": "string"},
+                    "category": {"type": "string", "enum": skill_categories},
+                },
+                "required": ["skill", "category"],
+                "additionalProperties": False,
+            },
+        }
+    },
+    "required": ["skills"],
+    "additionalProperties": False,
+}
+
+extracted_skills_per_job = []
+
+for i, (_, job) in enumerate(classified_jobs.iterrows(), start=1):
+    print(f"  Extracting skills {i}/{len(classified_jobs)}: {job['title']}")
+
+    prompt = f"""
+Extract the required skills for this AI engineering job posting.
+
+Use only these categories:
+{category_text}
+
+Description:
+{job["description"]}
+""".strip()
+
+    response = client.responses.create(
+        model="gpt-5.4-mini",
+        instructions=skill_instructions,
+        input=prompt,
+        text={
+            "format": {
+                "type": "json_schema",
+                "name": "ai_engineering_skill_extraction",
+                "schema": skill_schema,
+                "strict": True,
+            },
+        },
+    )
+
+    result = json.loads(response.output_text)
+    extracted_skills_per_job.append(
+        [
+            {"skill": item["skill"].strip().lower(), "category": item["category"]}
+            for item in result["skills"]
+        ]
+    )
+
+classified_jobs["extracted_skills"] = extracted_skills_per_job
+
+# ── Step 5: Render HTML ───────────────────────────────────────────────────────
+
+print("\nStep 5: Rendering HTML digest...")
 
 card_template = Template(
     """
@@ -128,9 +213,32 @@ card_template = Template(
   <h2><a href="$job_url" target="_blank">$title</a></h2>
   <p class="company">$company</p>
   <p class="reason">$reason</p>
+  <div class="skills">$skill_groups</div>
 </div>
 """.strip()
 )
+
+
+def render_skill_groups(skills):
+    grouped = {}
+    for item in skills:
+        grouped.setdefault(item["category"], []).append(item["skill"])
+
+    groups_html = []
+    for category in skill_categories:
+        if category not in grouped:
+            continue
+        chips = "".join(
+            f'<span class="chip">{escape(skill)}</span>' for skill in grouped[category]
+        )
+        groups_html.append(
+            f'<div class="skill-group skill-group--{category}">'
+            f'<span class="skill-category">{escape(category)}</span>'
+            f'<div class="chips">{chips}</div>'
+            f"</div>"
+        )
+    return "\n".join(groups_html)
+
 
 cards = []
 for _, job in classified_jobs.iterrows():
@@ -140,6 +248,7 @@ for _, job in classified_jobs.iterrows():
             title=escape(job.get("title") or ""),
             company=escape(job.get("company") or ""),
             reason=escape(job.get("reason") or ""),
+            skill_groups=render_skill_groups(job.get("extracted_skills") or []),
         )
     )
 
@@ -155,9 +264,9 @@ html = html_template.substitute(
     cards="\n".join(cards),
 )
 
-# ── Step 5: Save HTML ─────────────────────────────────────────────────────────
+# ── Step 6: Save HTML ─────────────────────────────────────────────────────────
 
-print("\nStep 5: Saving digest...")
+print("\nStep 6: Saving digest...")
 
 html_path = project_dir / "digest.html"
 html_path.write_text(html, encoding="utf-8")

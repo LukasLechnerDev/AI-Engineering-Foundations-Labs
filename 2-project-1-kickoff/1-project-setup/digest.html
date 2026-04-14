@@ -68,6 +68,29 @@
     .card h2 a:hover { color: #2F6BFF; }
     .company { color: #6B7280; font-size: 0.825rem; font-weight: 500; margin-bottom: 10px; }
     .reason { color: #3D4660; font-size: 0.875rem; line-height: 1.6; }
+
+    .skills { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+    .skill-group { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .skill-category {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #6B7280;
+      min-width: 110px;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      background: #E7EDF7;
+      color: #0B1020;
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+    .skill-group--ai-engineering .chip { background: #2F6BFF; color: #FFFFFF; }
+    .skill-group--ml .chip { background: #DCE6FF; color: #0B1020; }
+    .skill-group--languages .chip { background: #E7EDF7; color: #0B1020; }
   </style>
 </head>
 <body>
@@ -84,12 +107,24 @@
     <div class="card">
   <h2><a href="https://www.linkedin.com/jobs/view/4401082009" target="_blank">AI Engineer</a></h2>
   <p class="company">Chaos Labs</p>
-  <p class="reason">The role is primarily about building AI-powered product features on top of foundation models/LLMs: designing agentic systems, integrating LLMs via SDKs, building tool-calling workflows, RAG, evaluations, and production AI features. It is not mainly model training, classical ML, or MLOps/platform work.</p>
+  <p class="reason">The role is centered on building product features on top of foundation models/LLMs: designing agentic systems, integrating LLMs via SDKs, building tool-calling workflows, running LLM evaluations, and deploying AI-powered financial workflows. This matches AI engineering rather than model training, classical ML, or MLOps/platform-only work.</p>
+  <div class="skills"><div class="skill-group skill-group--ai-engineering"><span class="skill-category">ai-engineering</span><div class="chips"><span class="chip">llm</span><span class="chip">agentic systems</span><span class="chip">tool calling</span><span class="chip">mcp</span><span class="chip">langgraph</span><span class="chip">llm evaluation</span><span class="chip">prompt engineering</span><span class="chip">rag</span><span class="chip">embeddings</span></div></div>
+<div class="skill-group skill-group--ml"><span class="skill-category">ml</span><div class="chips"><span class="chip">production ai/ml systems</span></div></div>
+<div class="skill-group skill-group--data"><span class="skill-category">data</span><div class="chips"><span class="chip">vector databases</span><span class="chip">data pipelines</span><span class="chip">financial data</span></div></div>
+<div class="skill-group skill-group--backend"><span class="skill-category">backend</span><div class="chips"><span class="chip">api design</span><span class="chip">retries</span><span class="chip">state management</span><span class="chip">distributed systems</span></div></div>
+<div class="skill-group skill-group--ops"><span class="skill-category">ops</span><div class="chips"><span class="chip">logging</span><span class="chip">tracing</span></div></div>
+<div class="skill-group skill-group--languages"><span class="skill-category">languages</span><div class="chips"><span class="chip">python</span></div></div></div>
 </div>
 <div class="card">
   <h2><a href="https://www.linkedin.com/jobs/view/4401567258" target="_blank">AI Engineer</a></h2>
   <p class="company">Foundational Industries</p>
-  <p class="reason">The role’s core responsibilities are building and deploying AI-powered product/system features on top of existing foundation models in an industrial setting: evaluating AI integration points, designing AI-ready data architecture, prototyping intelligent systems, and delivering production systems with measurable operational impact. It is not primarily model training/research or MLOps/platform work.</p>
+  <p class="reason">The role is primarily about building product/application features on top of AI and integrating AI into an enterprise/industrial stack: evaluating AI integration points, designing AI-ready data architecture, prototyping intelligent systems, and shipping production systems using multimodal AI and edge inference. This aligns with AI engineering rather than model training, research, or MLOps/platform-only work.</p>
+  <div class="skills"><div class="skill-group skill-group--ai-engineering"><span class="skill-category">ai-engineering</span><div class="chips"><span class="chip">multimodal ai</span><span class="chip">ai integration</span><span class="chip">rapid prototyping</span><span class="chip">edge inference</span><span class="chip">ai pipeline tooling</span></div></div>
+<div class="skill-group skill-group--ml"><span class="skill-category">ml</span><div class="chips"><span class="chip">time series modeling</span><span class="chip">graph modeling</span></div></div>
+<div class="skill-group skill-group--data"><span class="skill-category">data</span><div class="chips"><span class="chip">data architecture</span><span class="chip">graph databases</span></div></div>
+<div class="skill-group skill-group--backend"><span class="skill-category">backend</span><div class="chips"><span class="chip">embedded systems</span></div></div>
+<div class="skill-group skill-group--languages"><span class="skill-category">languages</span><div class="chips"><span class="chip">python</span></div></div>
+<div class="skill-group skill-group--other"><span class="skill-category">other</span><div class="chips"><span class="chip">industrial protocols</span></div></div></div>
 </div>
   </div>
 </body>
