@@ -1,8 +1,7 @@
 # Outline
 
 ## Learning goals
-- Measure whether the AI system is actually working before shipping it.
-- Add a safety net to the project, not academic benchmarking.
+- Add a safety net to the project
 - Understand three practical evaluation levels:
   - deterministic checks / code based grading
   - human-annotated data / human based grading
