@@ -38,3 +38,8 @@
 ## Note
 - This should stay short and opinionated.
 - The goal is framework literacy, not framework dependence.
+- The name LangChain comes from “Language” (like Language models) and “Chains”.
+
+## Sources
+- History of LangChain is interesting: https://docs.langchain.com/oss/python/langchain/philosophy
+- 

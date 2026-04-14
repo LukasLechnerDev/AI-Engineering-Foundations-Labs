@@ -13,25 +13,27 @@
 - parameters: temperature, max-tokens, timeout, max retries (from langchain course, maybe these are specific for langchain?)
 - conversation state
   - manual conversation history
+  - "short-term memory"
   - a LLM doesn't have memory by default, every call is stateless
   - conversation history including tool calls
 - stream responses with a Gradio chat interface - Streaming to reduce the perceived latency of our system
 - temperature and response settings
 - structured output
-- multi-modality
-  - upload and analyze an image
-  - generate an image
+- multi-modality?
+  - upload and analyze an image => yes?
+  - generate an image => no?
 - tool calling
   - custom tools
   - built-in tools as a short extension
-  - batch mode?
-  - Basic Overview of Inference Services
+  - server-side tool calls
+- batch mode?
+- Basic Overview of Inference Services
+- MCP (short overview)
 
 ## Keep out of this module
 - costs, latency, and model routing
 - retries, rate limits, fallbacks, and defensive parsing
 - framework comparisons like LangChain or PydanticAI
-- MCP
 - workflows and agent definitions
 
 ### OpenAI API Deep Dive

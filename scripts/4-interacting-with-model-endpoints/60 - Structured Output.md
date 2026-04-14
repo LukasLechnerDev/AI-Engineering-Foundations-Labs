@@ -7,6 +7,7 @@
 - Use Pydantic in AIE job digest
 
 ## Notes
+- define "soft structure of output": eg Name: xxx, Description: yyy
 -  pydantic for structured output
 - the most widely used data validation library in Python
 - extension of Python data classes, but with more functionality

@@ -1,5 +1,9 @@
 # 80 - Tool Calling
 
+## Learning Goals
+- show a simple example
+- show a web-search example => project 1 with web search for the agent?
+
 The LLM is not calling the function you provide, it only tells us which function it wants to use with which parameters. We have to call the tools ourselves.
 
 The model returns finish-reason = tool_calls when it wants to use a tool. 
@@ -10,5 +14,9 @@ Before jumping directly into the code, give the student a simplified explanation
 
 Retrieval is a special kind of tool calling - so that the LLM gets more information
 
-https://www.anthropic.com/engineering/building-effective-agents => Bottom shows how to prompt engineer your tools
+## Notes
+- tool errors should be reported to the agent rather than failing, so that the agent can adapt its invocation and try again
+
+## Sources
+- https://www.anthropic.com/engineering/building-effective-agents => Bottom shows how to prompt engineer your tools
 	

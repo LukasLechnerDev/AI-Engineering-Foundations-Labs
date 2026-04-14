@@ -10,6 +10,7 @@
 - Replace `print()` with structured `logging`
 - Validate configuration with `pydantic-settings`
 - Unit test deterministic pipeline steps with `pytest` without hitting the API
+- Extract prompt to separate file?
 
 ## Notes
 - Refactors the working MVP from a single script into professional-quality Python — same output, better code

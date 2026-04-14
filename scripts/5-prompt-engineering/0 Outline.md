@@ -5,6 +5,7 @@
 - This module should feel like practical iteration on real tasks, not a survey of prompt tricks.
 
 ## Where this fits
+- MAYBE work on this section after Langfuse Evaluations so that we directly see the effects of our prompt improvements
 - Students already know how to make model calls from the previous module.
 - Now the question is no longer "How do I call the model?"
 - The question is "How do I get better results for my task?"
