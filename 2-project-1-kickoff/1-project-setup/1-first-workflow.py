@@ -134,8 +134,6 @@ skill_categories = [
     "other",
 ]
 
-category_text = "\n".join(f"- {category}" for category in skill_categories)
-
 skill_instructions = """
 You extract required skills from AI engineering job postings.
 
@@ -173,7 +171,7 @@ for i, (_, job) in enumerate(classified_jobs.iterrows(), start=1):
 Extract the required skills for this AI engineering job posting.
 
 Use only these categories:
-{category_text}
+{"\n".join(f"- {category}" for category in skill_categories)}
 
 Description:
 {job["description"]}
@@ -244,11 +242,11 @@ cards = []
 for _, job in classified_jobs.iterrows():
     cards.append(
         card_template.substitute(
-            job_url=escape(job.get("job_url") or ""),
-            title=escape(job.get("title") or ""),
-            company=escape(job.get("company") or ""),
-            reason=escape(job.get("reason") or ""),
-            skill_groups=render_skill_groups(job.get("extracted_skills") or []),
+            job_url=escape(job["job_url"]),
+            title=escape(job["title"]),
+            company=escape(job["company"]),
+            reason=escape(job["reason"]),
+            skill_groups=render_skill_groups(job["extracted_skills"]),
         )
     )
 
