@@ -1,10 +1,11 @@
-# 10 - Deterministic checks
+# Deterministic checks
 
 ## Learning goals
 - Understand what a deterministic eval is and when to use it.
 - Write deterministic checks for the classification step of `ai-engineer-job-digest`.
 
 ## Notes
+- Get the test set by going through Langfuse
 - The classification step outputs `is_ai_engineering_role: bool` and `reason: str`.
 - Deterministic checks are the right fit here because the output is structured and the expected answer is knowable in advance.
 - Build a small labeled test set from real scraped jobs — a handful of clear positives and clear negatives is enough to start.

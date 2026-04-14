@@ -1,7 +1,8 @@
 # Outline
 
 ## Learning goals
-- Add a safety net to the project
+- What are evals?
+- Why evals are important
 - Understand three practical evaluation levels:
   - deterministic checks / code based grading
   - human-annotated data / human based grading
@@ -16,35 +17,16 @@ online vs offline evaluations
 when to execute evals - guardrails, retries, ...
 
 ## Notes
-- Students have already improved their prompts in the previous module.
-- The question now is: "How do I know my prompts still work after I change them?"
-- Evals answer that question systematically instead of relying on manual spot-checking or vibe checks.
+- Go through Langfuse traces and search for errors
 - Anchor the module on the classification and extraction steps in the project.
-- Start with deterministic checks (does the output match the expected label?).
-- Add a model-graded / LLM as a judge check for the summary quality.
-- The goal is a runnable eval script students can reuse as the project evolves.
+- Start with deterministic checks (is the classification right?).
+- Add a model-graded / LLM as a judge check for the summary quality or reason string.
 - Keep out: eval frameworks and platforms (Langfuse, LangSmith, Braintrust, and similar tools), statistical significance, large-scale benchmarking, fine-tuning, dataset curation, and A/B testing in production.
 - Langfuse-based eval inspection belongs later, after students already have local evals running in code.
 - How can the OpenAI API help with evals?
 
-## Questions that Evals can answer
-- "Which LLM is the best choice for our needs?"
-- "Can we achieve high performance without excessive costs?"
-
 
 ## Script
-1. Why evals matter: the cost of finding failures late vs. early
-2. What makes a good eval: representative inputs, clear expected outputs, and a pass/fail signal
-3. Three levels of evals and when to use each:
-   - Deterministic checks (exact match, regex, schema validation)
-   - Heuristic checks (word count, structure, keyword presence)
-   - Model-graded checks (LLM-as-judge for open-ended outputs)
-4. Building a small eval set from real project outputs
-5. Writing and running evals against the `ai-engineer-job-digest` pipeline
-6. Interpreting results and deciding when something is good enough to ship
-7. Clarify the boundary: local eval code is part of the MVP, while Langfuse-based eval workflows come later
-
-Evals are all about assigning metrics to quantify the quality of our prompt + model combination.
 with promptfoo we can define multiple prompts, models, etc. and have a nice dashboard to analyze the results of our evals
 We have a nice overview of model+prompt combinations and their eval scores
 

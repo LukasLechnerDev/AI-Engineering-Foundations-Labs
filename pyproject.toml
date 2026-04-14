@@ -15,5 +15,9 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "pytest>=9.0.3",
     "ruff>=0.15.9",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["5-professionalize-project-1/tests"]
