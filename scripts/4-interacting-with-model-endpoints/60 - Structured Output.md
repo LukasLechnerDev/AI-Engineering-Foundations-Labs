@@ -13,6 +13,7 @@
 - extension of Python data classes, but with more functionality
 - Pydantic returns human readable error messages, so LLMs can fix problems better
 - “to get something we can use programmatically and build our systems around”
+- I tried the classification with the gpt-3.5-turbo model, but got the error that 'text' parameter is not supported. Did structured output got introduced later into the API?
 
 ## Script
 
