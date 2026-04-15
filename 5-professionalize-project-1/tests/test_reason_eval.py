@@ -2,27 +2,28 @@ import json
 import sys
 from pathlib import Path
 
+import pandas as pd
 from dotenv import load_dotenv
 from openai import OpenAI
 
 load_dotenv()
 
-# Allow importing from the parent directory (step_3_classify.py lives there)
 sys.path.insert(0, str(Path(__file__).parents[1]))
 
-from step_3_classify import instructions, schema
+from step_3_classify import classify, instructions
 
-EVAL_FILE = Path(__file__).parents[1] / "evals/eval-jobs.jsonl"
+EVAL_FILE = Path(__file__).parents[1] / "evals/1-scraped_jobs.jsonl"
 SAMPLE_SIZE = 20
-CLASSIFIER_MODEL = "gpt-4o-mini"
-JUDGE_MODEL = "gpt-5-mini"
+JUDGE_MODEL = "gpt-5.4-mini"
 
 
 judge_instructions = f"""
 You evaluate whether the reason given for an AI engineering job classification is high quality.
 
 The classifier was given these rules:
+<classification rules>
 {instructions}
+</classification rules>
 
 A good reason must satisfy all three criteria:
 1. Grounded: it references specific details from the job description (no hallucinations).
@@ -47,29 +48,12 @@ def load_eval_jobs():
     return [json.loads(line) for line in EVAL_FILE.read_text().splitlines() if line]
 
 
-def classify_single(job: dict, client: OpenAI) -> dict:
-    response = client.responses.create(
-        model=CLASSIFIER_MODEL,
-        instructions=instructions,
-        input=f"Title: {job['title']}\n\nDescription:\n{job['description']}",
-        text={
-            "format": {
-                "type": "json_schema",
-                "name": "job_classification",
-                "schema": schema,
-                "strict": True,
-            }
-        },
-    )
-    return json.loads(response.output_text)
-
-
-def judge_reason(job: dict, result: dict, client: OpenAI) -> dict:
+def judge_reason(job: dict, client: OpenAI) -> dict:
     input_text = (
         f"Title: {job['title']}\n\n"
         f"Description:\n{job['description']}\n\n"
-        f"Classification: is_ai_engineering_role={result['is_ai_engineering_role']}\n"
-        f"Reason: {result['reason']}"
+        f"Classification: is_ai_engineering_role={job['is_ai_engineering_role']}\n"
+        f"Reason: {job['reason']}"
     )
     response = client.responses.create(
         model=JUDGE_MODEL,
@@ -90,20 +74,32 @@ def judge_reason(job: dict, result: dict, client: OpenAI) -> dict:
 # Execute with: uv run pytest tests/test_reason_eval.py -s
 def test_reason_quality():
     jobs = load_eval_jobs()[:SAMPLE_SIZE]
+    df = pd.DataFrame(
+        [
+            {
+                "title": j["title"],
+                "job_url": j["job_url"],
+                "description": j["description"],
+            }
+            for j in jobs
+        ]
+    )
+
     client = OpenAI()
+    result_df = classify(df, client)
 
     passes = 0
-    for i, job in enumerate(jobs, start=1):
-        result = classify_single(job, client)
-        judgment = judge_reason(job, result, client)
+    for _, row in result_df.iterrows():
+        judgment = judge_reason(row.to_dict(), client)
 
         status = "PASS" if judgment["passes"] else "FAIL"
-        print(f"  [{status}] {i}/{len(jobs)} {job['title']}: {judgment['feedback']}")
+        print(f"  [{status}] {row['title']}: {judgment['feedback']}")
 
         if judgment["passes"]:
             passes += 1
 
-    rate = passes / len(jobs)
-    print(f"\nReason quality: {passes}/{len(jobs)} ({rate:.1%})")
+    total = len(result_df)
+    rate = passes / total
+    print(f"\nReason quality: {passes}/{total} ({rate:.1%})")
 
     assert rate >= 0.80, f"Reason quality {rate:.1%} is below the 80% threshold"

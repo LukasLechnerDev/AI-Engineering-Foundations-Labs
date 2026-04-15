@@ -3,6 +3,8 @@ import json
 import pandas as pd
 from openai import OpenAI
 
+model = "gpt-4o"
+
 instructions = """
 You classify whether a job posting is truly for an AI Engineering role.
 
@@ -37,7 +39,7 @@ def classify(df: pd.DataFrame, client: OpenAI) -> pd.DataFrame:
         print(f"  Classifying {i}/{len(df)}: {job['title']}")
 
         response = client.responses.create(
-            model="gpt-5.4-mini",
+            model=model,
             instructions=instructions,
             input=f"Title: {job['title']}\n\nDescription:\n{job['description']}",
             text={
@@ -57,9 +59,7 @@ def classify(df: pd.DataFrame, client: OpenAI) -> pd.DataFrame:
     # Add the classification columns next to the original job data.
     df = pd.concat([df.reset_index(drop=True), results_df], axis=1)
 
-    # Keep only the rows classified as AI engineering roles.
-    classified_jobs = df[df["is_ai_engineering_role"]].copy()
+    ai_count = df["is_ai_engineering_role"].sum()
+    print(f"\n  AI engineering roles: {ai_count} / {len(df)} screened")
 
-    print(f"\n  AI engineering roles: {len(classified_jobs)} / {len(df)} screened")
-
-    return classified_jobs
+    return df

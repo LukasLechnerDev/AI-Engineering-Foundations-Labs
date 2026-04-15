@@ -3,6 +3,8 @@ import json
 import pandas as pd
 from openai import OpenAI
 
+model = "gpt-4o"
+
 SKILL_CATEGORIES = [
     "ai-engineering",
     "ml",
@@ -47,6 +49,8 @@ skill_schema = {
 def extract_skills(df: pd.DataFrame, client: OpenAI) -> pd.DataFrame:
     print("\nStep 4: Extracting required skills...")
 
+    df = df[df["is_ai_engineering_role"]].copy()
+
     category_text = "\n".join(f"- {c}" for c in SKILL_CATEGORIES)
     extracted_skills_per_job = []
 
@@ -64,7 +68,7 @@ Description:
 """.strip()
 
         response = client.responses.create(
-            model="gpt-5.4-mini",
+            model=model,
             instructions=skill_instructions,
             input=prompt,
             text={
