@@ -3,7 +3,7 @@ import json
 import pandas as pd
 from openai import OpenAI
 
-model = "gpt-4o"
+model = "gpt-4o-mini"
 
 instructions = """
 You classify whether a job posting is truly for an AI Engineering role.
