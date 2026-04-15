@@ -11,12 +11,11 @@ load_dotenv()
 
 sys.path.insert(0, str(Path(__file__).parents[1]))
 
-from step_3_classify import classify
 from step_4_summarize import instructions, summarize
 
-EVAL_FILE = Path(__file__).parents[1] / "evals/1-scraped_jobs.jsonl"
+EVAL_FILE = Path(__file__).parents[1] / "evals/3-classified_jobs.jsonl"
 SAMPLE_SIZE = 20
-JUDGE_MODEL = "gpt-5.3-mini"
+JUDGE_MODEL = "gpt-5.4-mini"
 
 
 judge_instructions = f"""
@@ -150,14 +149,14 @@ def test_summary_quality():
                 "title": j["title"],
                 "job_url": j["job_url"],
                 "description": j["description"],
+                "is_ai_engineering_role": j["is_ai_engineering_role"],
             }
             for j in jobs
         ]
     )
 
     client = OpenAI()
-    classified_df = classify(df, client)
-    result_df = summarize(classified_df, client)
+    result_df = summarize(df, client)
 
     passes = 0
     report_rows = []

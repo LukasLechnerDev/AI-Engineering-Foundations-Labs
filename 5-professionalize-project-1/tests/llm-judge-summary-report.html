@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Eval Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'IBM Plex Sans', sans-serif; background: #FAFBFD; color: #0B1020; }
+    .hero { background: #0B1020; padding: 40px; }
+    .hero-inner { max-width: 800px; margin: 0 auto; }
+    .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 600; color: #fff; }
+    .hero h1 span { color: #2F6BFF; }
+    .hero p { color: #8FB2FF; font-size: 0.875rem; margin-top: 6px; }
+    .content { max-width: 800px; margin: 36px auto; padding: 0 40px; }
+    .card { background: white; border-radius: 10px; padding: 20px 24px; margin-bottom: 12px; border: 1px solid #E7EDF7; }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+    .card-header a { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; color: #0B1020; text-decoration: none; }
+    .card-header a:hover { color: #2F6BFF; }
+    .badge { font-size: 0.75rem; font-weight: 600; color: white; padding: 2px 10px; border-radius: 999px; white-space: nowrap; }
+    .classification { font-size: 0.825rem; color: #6B7280; margin-bottom: 12px; }
+    .label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #6B7280; margin-bottom: 4px; margin-top: 12px; }
+    .reason { font-size: 0.875rem; color: #3D4660; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-inner">
+      <h1>Eval Report: <span>Summary Quality</span></h1>
+      <p>3/4 passed &nbsp;·&nbsp; 75.0% pass rate</p>
+    </div>
+  </div>
+  <div class="content">
+    
+<div class="card">
+  <div class="card-header">
+    <a href="https://www.indeed.com/viewjob?jk=a1a3ed739404be8f" target="_blank">AI Engineer - GenAI, Creative-X</a>
+    <span class="badge" style="background:#16a34a">PASS</span>
+  </div>
+  <p class="classification">Classification: <strong>AI engineering</strong></p>
+  <p class="label">LLM summary</p>
+  <p class="reason">Amazon Advertising&#x27;s Creative X team develops AI-driven solutions to enhance advertising creatives for brands. The role focuses on deploying generative AI models, particularly through the building and scaling of AI agents and processes for large-scale data analysis and model serving. Candidates will collaborate closely with scientists and engineers to transition research into production-grade applications.</p>
+  <p class="label">Judge feedback</p>
+  <p class="reason">The summary is 3 sentences, accurately describes Amazon Advertising’s Creative X team and the role’s core responsibility, and captures the main technical focus on deploying generative AI models and AI agents at scale without introducing unsupported claims.</p>
+</div>
+<div class="card">
+  <div class="card-header">
+    <a href="https://www.indeed.com/viewjob?jk=a3c066573be8a9a0" target="_blank">Senior Software Development Engineer, GenAIUX</a>
+    <span class="badge" style="background:#16a34a">PASS</span>
+  </div>
+  <p class="classification">Classification: <strong>AI engineering</strong></p>
+  <p class="label">LLM summary</p>
+  <p class="reason">Amazon is developing Generative AIUX products aimed at enhancing the design process for AWS customers, focusing on AI-powered tools and rapid prototyping. The Senior Software Development Engineer will lead the integration of backend systems with large language models to optimize performance and develop scalable AI-driven services. This role emphasizes collaboration across teams to create intuitive user experiences while mentoring junior engineers.</p>
+  <p class="label">Judge feedback</p>
+  <p class="reason">The summary is 3 sentences, stays within the requested length, and accurately reflects the posting. It correctly identifies Amazon’s GenAIUX products, the role’s core backend/system ownership, and the focus on LLM/AI service integration and performance, without introducing unsupported technologies or responsibilities.</p>
+</div>
+<div class="card">
+  <div class="card-header">
+    <a href="https://www.linkedin.com/jobs/view/4402075201" target="_blank">AI/ML Engineer - Vision AI</a>
+    <span class="badge" style="background:#16a34a">PASS</span>
+  </div>
+  <p class="classification">Classification: <strong>AI engineering</strong></p>
+  <p class="label">LLM summary</p>
+  <p class="reason">Proconex is seeking a Senior Vision AI Engineer to advance its Vision AI and Cognitive Automation platform, focusing on computer vision and AI applications in industrial and biopharmaceutical settings. The role involves designing and deploying production-grade vision models and building end-to-end pipelines for real-time applications, aiming to address complex industrial challenges. Candidates should have extensive experience in computer vision, machine learning, and deploying AI systems in production environments.</p>
+  <p class="label">Judge feedback</p>
+  <p class="reason">The summary is 3 sentences, stays neutral, and accurately reflects the job posting’s focus on industrial Vision AI, production-grade computer vision models, and real-time pipelines. It also avoids unsupported claims and does not introduce technologies or responsibilities not present in the description.</p>
+</div>
+<div class="card">
+  <div class="card-header">
+    <a href="https://www.linkedin.com/jobs/view/4401737470" target="_blank">AI Engineer</a>
+    <span class="badge" style="background:#dc2626">FAIL</span>
+  </div>
+  <p class="classification">Classification: <strong>AI engineering</strong></p>
+  <p class="label">LLM summary</p>
+  <p class="reason">The AI Engineer at this high-growth startup will develop the core intelligence layer that drives their fintech product aimed at helping families access state education funds. The role focuses on optimizing LLM and VLM pipelines, creating evaluation frameworks, and building AI products from prototype to production. Candidates should be comfortable with ambiguity and have experience with LLM APIs and model fine-tuning.</p>
+  <p class="label">Judge feedback</p>
+  <p class="reason">The summary is 3 sentences, but it includes an unsupported claim about the product being a ‘fintech product’ and about candidates ‘having experience with LLM APIs and model fine-tuning’ as if these are requirements rather than optional pluses. It is otherwise mostly accurate, but it should avoid introducing or overstating details not clearly supported by the posting.</p>
+</div>
+  </div>
+</body>
+</html>
