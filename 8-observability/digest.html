@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Engineer Job Digest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'IBM Plex Sans', sans-serif; background: #FAFBFD; color: #0B1020; }
+
+    .hero {
+      background: #0B1020;
+      padding: 40px;
+    }
+    .hero-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .icon-wrap {
+      background: #1A2236;
+      border-radius: 12px;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .hero-text h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      line-height: 1.2;
+    }
+    .hero-text h1 span { color: #2F6BFF; }
+    .hero-text p {
+      color: #8FB2FF;
+      font-size: 0.875rem;
+      margin-top: 6px;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 36px auto;
+      padding: 0 40px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 12px;
+      border: 1px solid #8FB2FF;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .card h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    .card h2 a { color: #0B1020; text-decoration: none; }
+    .card h2 a:hover { color: #2F6BFF; }
+    .company { color: #6B7280; font-size: 0.825rem; font-weight: 500; }
+
+    .score {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 100px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .score-high { background: #EEF3FF; color: #2F6BFF; }
+    .score-mid  { background: #F3F4F6; color: #6B7280; }
+    .score-low  { background: #F9FAFB; color: #9CA3AF; }
+
+    .section-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #2F6BFF;
+      padding-top: 12px;
+      margin-bottom: 6px;
+    }
+    .summary { color: #3D4660; font-size: 0.875rem; line-height: 1.6; margin-bottom: 14px; }
+
+    .skills { margin-bottom: 12px; display: flex; flex-direction: column; gap: 8px; }
+    .skill-group { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .skill-category {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #6B7280;
+      min-width: 110px;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      background: #E7EDF7;
+      color: #0B1020;
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+    /* Green chip for skills the user has — overrides category color */
+    .chip-match { background: #D1FAE5; color: #065F46; }
+    .skill-group--ai-engineering .chip:not(.chip-match) { background: #2F6BFF; color: #FFFFFF; }
+    .skill-group--ml .chip:not(.chip-match) { background: #DCE6FF; color: #0B1020; }
+
+    .highlights {
+      margin: 0 0 0 16px;
+      color: #3D4660;
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+    .reasoning {
+      margin: 0 0 0 16px;
+      color: #3D4660;
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="icon-wrap"><img src="../1-project-setup/digest-icon.png" width="32" height="32" alt="" style="filter: brightness(0) invert(1);"></div>
+      <div class="hero-text">
+        <h1>AI Engineer <span>Job Digest</span></h1>
+        <p>2 verified roles &nbsp;·&nbsp; from 2 candidates &nbsp;·&nbsp; ranked by skill match &nbsp;·&nbsp; Last 24 hours</p>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="card">
+  <div class="card-header">
+    <div>
+      <h2><a href="https://www.linkedin.com/jobs/view/4402075201" target="_blank">AI/ML Engineer - Vision AI</a></h2>
+      <p class="company">Proconex</p>
+    </div>
+    <div class="score score-mid">Matching 40%</div>
+  </div>
+  <p class="section-label">Description</p>
+  <p class="summary">The Senior Vision AI Engineer at Linque will focus on developing and deploying advanced computer vision and AI solutions tailored for industrial and biopharmaceutical environments. Key responsibilities include designing production-grade AI models, creating optimized vision pipelines, and collaborating across teams to translate complex industrial challenges into scalable AI architectures.</p>
+  <p class='section-label'>Highlights</p><ul class='highlights'><li>Opportunity to impact real industrial problems through cutting-edge AI technology.</li><li>Flexible and growth-oriented work environment that fosters team collaboration.</li><li>Competitive benefits including premium medical, 401K match, and tuition reimbursement.</li></ul>
+  <p class='section-label'>Match Analysis</p><ul class='reasoning'><li>The candidate has a solid background in Python, which is essential for machine learning tasks.</li><li>However, they lack specific experience in key areas like computer vision, PyTorch, TensorFlow, and ML lifecycle management, which are crucial for the role.</li><li>The experience with LLMs is relevant but not directly aligned with the required skills focused on traditional machine learning applications.</li></ul>
+  <p class="section-label">Required Skills</p>
+  <div class="skills"><div class="skill-group skill-group--ai-engineering"><span class="skill-category">ai-engineering</span><div class="chips"><span class="chip">computer vision</span></div></div>
+<div class="skill-group skill-group--ml"><span class="skill-category">ml</span><div class="chips"><span class="chip">machine learning</span><span class="chip">pytorch</span><span class="chip">tensorflow</span><span class="chip">ml lifecycle</span></div></div>
+<div class="skill-group skill-group--data"><span class="skill-category">data</span><div class="chips"><span class="chip">image processing</span></div></div>
+<div class="skill-group skill-group--cloud"><span class="skill-category">cloud</span><div class="chips"><span class="chip">cloud deployment</span></div></div>
+<div class="skill-group skill-group--ops"><span class="skill-category">ops</span><div class="chips"><span class="chip">ai systems deployment</span></div></div>
+<div class="skill-group skill-group--languages"><span class="skill-category">languages</span><div class="chips"><span class="chip">python</span></div></div>
+<div class="skill-group skill-group--other"><span class="skill-category">other</span><div class="chips"><span class="chip">real-time applications</span></div></div></div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <div>
+      <h2><a href="https://www.indeed.com/viewjob?jk=a1a3ed739404be8f" target="_blank">AI Engineer - GenAI, Creative-X</a></h2>
+      <p class="company">Amazon.com</p>
+    </div>
+    <div class="score score-mid">Matching 30%</div>
+  </div>
+  <p class="section-label">Description</p>
+  <p class="summary">As an AI Engineer on the Creative-X team at Amazon Advertising, you&#x27;ll develop and deploy AI-driven solutions that enhance advertising creatives, leveraging techniques like Generative AI and reinforcement learning. Your key responsibilities include collaborating with applied scientists to transform research into scalable production systems while mentoring team members and presenting results to leadership.</p>
+  <p class='section-label'>Highlights</p><ul class='highlights'><li>Competitive salary package with performance-based sign-on bonuses and restricted stock units (RSUs).</li><li>Flexible work environment fostering innovation and collaboration within a fun, entrepreneurial team culture.</li><li>Comprehensive health and wellness benefits, including mental health support and generous parental leave policies.</li></ul>
+  <p class='section-label'>Match Analysis</p><ul class='reasoning'><li>Candidate has relevant experience with LLMs, which aligns with some of the required skills.</li><li>Missing key skills such as generative AI and software development knowledge that are crucial for the role.</li><li>Overall experience lacks breadth in AI-specific areas listed in the requirements.</li></ul>
+  <p class="section-label">Required Skills</p>
+  <div class="skills"><div class="skill-group skill-group--ai-engineering"><span class="skill-category">ai-engineering</span><div class="chips"><span class="chip">ai-agent</span><span class="chip">generative-ai</span></div></div>
+<div class="skill-group skill-group--ml"><span class="skill-category">ml</span><div class="chips"><span class="chip">latent-diffusion</span><span class="chip">large-language-models</span><span class="chip">computer-vision</span><span class="chip">reinforcement-learning</span><span class="chip">distributed-training</span><span class="chip">model-serving</span></div></div>
+<div class="skill-group skill-group--data"><span class="skill-category">data</span><div class="chips"><span class="chip">data-analysis</span></div></div>
+<div class="skill-group skill-group--backend"><span class="skill-category">backend</span><div class="chips"><span class="chip">software-development</span></div></div></div>
+</div>
+  </div>
+</body>
+</html>
