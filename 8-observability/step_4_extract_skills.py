@@ -1,6 +1,7 @@
 import json
 
 import pandas as pd
+from langfuse import observe
 from openai import OpenAI
 
 SKILL_CATEGORIES = [
@@ -44,6 +45,7 @@ schema = {
 }
 
 
+@observe(name="extract-skills")
 def extract_skills(df: pd.DataFrame, client: OpenAI) -> pd.DataFrame:
     print("\nStep 4: Extracting required skills...")
 
@@ -67,7 +69,7 @@ Description:
 """.strip()
 
         response = client.responses.create(
-            model="gpt-4o-mini",
+            model="gpt-5.4-mini",
             instructions=instructions,
             input=prompt,
             text={

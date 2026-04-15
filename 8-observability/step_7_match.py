@@ -1,6 +1,7 @@
 import json
 
 import pandas as pd
+from langfuse import observe
 from openai import OpenAI
 
 # Edit this to match your own background.
@@ -40,6 +41,7 @@ schema = {
 }
 
 
+@observe(name="match-skills")
 def match_skills(df: pd.DataFrame, client: OpenAI) -> pd.DataFrame:
     print("\nStep 7: Matching skills against your profile...")
 
@@ -60,7 +62,7 @@ def match_skills(df: pd.DataFrame, client: OpenAI) -> pd.DataFrame:
             continue
 
         response = client.responses.create(
-            model="gpt-4o-mini",
+            model="gpt-5.4-mini",
             instructions=instructions,
             input=f"Candidate profile:\n{USER_PROFILE}\n\nRequired skills:\n{', '.join(required_skill_names)}",
             text={

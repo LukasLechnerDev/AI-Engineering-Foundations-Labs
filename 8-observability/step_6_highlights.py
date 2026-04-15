@@ -1,6 +1,7 @@
 import json
 
 import pandas as pd
+from langfuse import observe
 from openai import OpenAI
 
 instructions = """
@@ -22,6 +23,7 @@ schema = {
 }
 
 
+@observe(name="extract-highlights")
 def extract_highlights(df: pd.DataFrame, client: OpenAI) -> pd.DataFrame:
     print("\nStep 6: Extracting highlights and perks...")
 
@@ -31,7 +33,7 @@ def extract_highlights(df: pd.DataFrame, client: OpenAI) -> pd.DataFrame:
         print(f"  Extracting highlights {i}/{len(df)}: {job['title']}")
 
         response = client.responses.create(
-            model="gpt-4o-mini",
+            model="gpt-5.4-mini",
             instructions=instructions,
             input=f"Title: {job['title']}\n\nDescription:\n{job['description']}",
             text={

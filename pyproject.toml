@@ -10,6 +10,7 @@ dependencies = [
     "openai>=2.29.0",
     "pandas>=2.3.3",
     "python-jobspy>=1.1.82",
+    "langfuse>=2.0.0",
     "requests>=2.33.0",
 ]
 
