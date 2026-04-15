@@ -4,13 +4,15 @@ from string import Template
 
 import pandas as pd
 
-from step_4_extract_skills import SKILL_CATEGORIES
+from step_5_extract_skills import SKILL_CATEGORIES
 
 card_template = Template(
     """
 <div class="card">
   <h2><a href="$job_url" target="_blank">$title</a></h2>
   <p class="company">$company</p>
+  <p class="classification">Classification: <strong>$classification</strong></p>
+  <p class="summary">$summary</p>
   <p class="reason">$reason</p>
   <div class="skills">$skill_groups</div>
 </div>
@@ -42,7 +44,7 @@ def render_skill_groups(skills: list) -> str:
 def render_html(
     classified_jobs: pd.DataFrame, screened_count: int, project_dir: Path
 ) -> str:
-    print("\nStep 5: Rendering HTML digest...")
+    print("\nStep 6: Rendering HTML digest...")
 
     cards = []
     for _, job in classified_jobs.iterrows():
@@ -51,6 +53,10 @@ def render_html(
                 job_url=escape(job["job_url"]),
                 title=escape(job["title"]),
                 company=escape(job["company"]),
+                classification="AI engineering"
+                if job["is_ai_engineering_role"]
+                else "Not AI engineering",
+                summary=escape(job["summary"]),
                 reason=escape(job["reason"]),
                 skill_groups=render_skill_groups(job["extracted_skills"]),
             )

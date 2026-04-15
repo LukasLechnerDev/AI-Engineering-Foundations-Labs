@@ -47,7 +47,7 @@ skill_schema = {
 
 
 def extract_skills(df: pd.DataFrame, client: OpenAI) -> pd.DataFrame:
-    print("\nStep 4: Extracting required skills...")
+    print("\nStep 5: Extracting required skills...")
 
     df = df[df["is_ai_engineering_role"]].copy()
 
