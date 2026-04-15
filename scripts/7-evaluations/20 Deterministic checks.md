@@ -5,6 +5,12 @@
 - Write deterministic checks for the classification step of `ai-engineer-job-digest`.
 
 ## Notes
+- use "Edit CSV" extension to have a table view
+- CSV so that domain experts have an easy way to enter data
+- Scrape some jobs with notebook in module 1
+- copy that JSONL file to evals folder of current module
+- convert JSONL to CSV
+- go through job postings and make human-classify
 - Get the test set by going through Langfuse
 - The classification step outputs `is_ai_engineering_role: bool` and `reason: str`.
 - Deterministic checks are the right fit here because the output is structured and the expected answer is knowable in advance.

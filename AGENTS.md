@@ -36,6 +36,10 @@ When choosing between broader theory coverage and faster progress toward the MVP
 - Use `uv sync` to create or refresh the project environment when dependencies or the notebook kernel are missing.
 - In notebooks, use the repo `.venv` as the Jupyter kernel.
 - Preserve the existing project-output flow between lessons. If a notebook depends on files from an earlier step such as `jobs/1-scraped_jobs.jsonl`, keep that dependency explicit instead of hiding it.
+- The current MVP app flow in `5-professionalize-project-1/` is organized as `step_1_scrape.py` through `step_6_save.py`, with `workflow.py` wiring the steps together.
+- Run the end-to-end MVP app with `uv run python 5-professionalize-project-1/workflow.py`. It writes the digest to `5-professionalize-project-1/digest.html`.
+- Run the project tests from the repo root with `uv run pytest`. `pyproject.toml` currently points pytest at `5-professionalize-project-1/tests`.
+- The eval dataset lives at `5-professionalize-project-1/evals/eval-jobs.jsonl`. The current eval tests call the OpenAI API, so they require the relevant environment variables and are not offline checks.
 
 ## Notebook Priority
 - Keep notebook cells focused and easy to scan.
