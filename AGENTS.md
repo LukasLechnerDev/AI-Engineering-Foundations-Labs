@@ -36,10 +36,12 @@ When choosing between broader theory coverage and faster progress toward the MVP
 - Use `uv sync` to create or refresh the project environment when dependencies or the notebook kernel are missing.
 - In notebooks, use the repo `.venv` as the Jupyter kernel.
 - Preserve the existing project-output flow between lessons. If a notebook depends on files from an earlier step such as `jobs/1-scraped_jobs.jsonl`, keep that dependency explicit instead of hiding it.
-- The current MVP app flow in `5-professionalize-project-1/` is organized as `step_1_scrape.py` through `step_6_save.py`, with `workflow.py` wiring the steps together.
+- The current MVP app flow in `5-professionalize-project-1/` is organized as `step_1_scrape.py` through `step_7_save.py`, with `step_6_render.py` producing the HTML and `workflow.py` wiring the steps together.
 - Run the end-to-end MVP app with `uv run python 5-professionalize-project-1/workflow.py`. It writes the digest to `5-professionalize-project-1/digest.html`.
 - Run the project tests from the repo root with `uv run pytest`. `pyproject.toml` currently points pytest at `5-professionalize-project-1/tests`.
 - The eval dataset lives at `5-professionalize-project-1/evals/eval-jobs.jsonl`. The current eval tests call the OpenAI API, so they require the relevant environment variables and are not offline checks.
+- To prepare the classification eval labels, run `uv run python 5-professionalize-project-1/evals/make_eval_csv.py 5-professionalize-project-1/evals/1-scraped_jobs.jsonl`, fill in `human_classification` in the generated CSV, then run `uv run pytest 5-professionalize-project-1/tests/test_classify_eval.py -s`.
+- Run the LLM-judge evals with `uv run pytest 5-professionalize-project-1/tests/test_reason_eval.py -s` and `uv run pytest 5-professionalize-project-1/tests/test_summary_eval.py -s`. They write HTML reports to `5-professionalize-project-1/tests/llm-judge-report.html` and `5-professionalize-project-1/tests/llm-judge-summary-report.html`.
 
 ## Notebook Priority
 - Keep notebook cells focused and easy to scan.

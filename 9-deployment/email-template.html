@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="x-apple-disable-message-reformatting">
+  <title>AI Engineer Job Digest</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, Helvetica, sans-serif; background: #FAFBFD; color: #0B1020; }
+
+    .hero {
+      background: #0B1020;
+      padding: 40px;
+    }
+    .hero-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .icon-wrap {
+      background: #1A2236;
+      border-radius: 12px;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .hero-text h1 {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      line-height: 1.2;
+    }
+    .hero-text h1 span { color: #2F6BFF; }
+    .hero-text p {
+      color: #8FB2FF;
+      font-size: 0.875rem;
+      margin-top: 6px;
+    }
+
+    .content {
+      max-width: 600px;
+      margin: 36px auto;
+      padding: 0 24px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 12px;
+      border: 1px solid #8FB2FF;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .card h2 {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    .card h2 a { color: #0B1020; text-decoration: none; }
+    .company { color: #6B7280; font-size: 0.825rem; font-weight: 500; }
+
+    .score {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 100px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .score-high { background: #EEF3FF; color: #2F6BFF; }
+    .score-mid  { background: #F3F4F6; color: #6B7280; }
+    .score-low  { background: #F9FAFB; color: #9CA3AF; }
+
+    .section-label {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #2F6BFF;
+      padding-top: 12px;
+      margin-bottom: 6px;
+    }
+    .summary { color: #3D4660; font-size: 0.875rem; line-height: 1.6; margin-bottom: 14px; }
+
+    .skills { margin-bottom: 12px; display: flex; flex-direction: column; gap: 8px; }
+    .skill-group { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .skill-category {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #6B7280;
+      min-width: 110px;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      background: #E7EDF7;
+      color: #0B1020;
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+    .chip-match { background: #D1FAE5; color: #065F46; }
+    .skill-group--ai-engineering .chip:not(.chip-match) { background: #2F6BFF; color: #FFFFFF; }
+    .skill-group--ml .chip:not(.chip-match) { background: #DCE6FF; color: #0B1020; }
+
+    .highlights {
+      margin: 0 0 0 16px;
+      color: #3D4660;
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+    .reasoning {
+      margin: 0 0 0 16px;
+      color: #3D4660;
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="icon-wrap">$icon_img</div>
+      <div class="hero-text">
+        <h1>AI Engineer <span>Job Digest</span></h1>
+        <p>$verified_role_count verified roles &nbsp;·&nbsp; from $screened_job_count candidates &nbsp;·&nbsp; ranked by skill match &nbsp;·&nbsp; Last 24 hours</p>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    $cards
+  </div>
+</body>
+</html>
