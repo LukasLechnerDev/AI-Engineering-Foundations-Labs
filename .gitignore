@@ -18,3 +18,6 @@ scripts/
 # Claude Code local settings (user-specific, not shared)
 .claude/settings.local.json
 .claude/worktrees/
+
+# VSCode local settings (user-specific, not shared)
+.vscode/
