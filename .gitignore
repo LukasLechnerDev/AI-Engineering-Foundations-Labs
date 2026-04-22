@@ -12,5 +12,5 @@ wheels/
 # Secrets
 .env
 
-# scripts
-scripts/.obsidian/
+# scripts (author-only, lives in a separate private repo)
+scripts/
