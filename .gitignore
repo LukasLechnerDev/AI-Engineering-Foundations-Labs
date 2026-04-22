@@ -14,3 +14,7 @@ wheels/
 
 # scripts (author-only, lives in a separate private repo)
 scripts/
+
+# Claude Code local settings (user-specific, not shared)
+.claude/settings.local.json
+.claude/worktrees/
