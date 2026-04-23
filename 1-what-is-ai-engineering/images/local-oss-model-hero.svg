@@ -1,0 +1,47 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#FAFBFD"/>
+  <circle cx="180" cy="760" r="240" fill="#E7EDF7"/>
+  <circle cx="1410" cy="120" r="170" fill="#E7EDF7"/>
+  <rect x="92" y="78" width="1416" height="742" rx="42" fill="white" stroke="#D7DFEE" stroke-width="4"/>
+
+  <rect x="144" y="136" width="858" height="528" rx="34" fill="#0B1020"/>
+  <rect x="178" y="172" width="790" height="84" rx="24" fill="#111A36"/>
+  <circle cx="224" cy="214" r="10" fill="#FF7A70"/>
+  <circle cx="256" cy="214" r="10" fill="#FFCB4F"/>
+  <circle cx="288" cy="214" r="10" fill="#51D27A"/>
+  <rect x="338" y="196" width="236" height="36" rx="18" fill="#1C2A57"/>
+  <text x="366" y="220" fill="#E8EEF8" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">ollama-local-model</text>
+
+  <text x="226" y="334" fill="#51D27A" font-family="Courier New, monospace" font-size="30" font-weight="700">$ ollama pull gemma3:4b</text>
+  <text x="226" y="388" fill="#D8E1F0" font-family="Courier New, monospace" font-size="28">Downloading model weights...</text>
+  <text x="226" y="438" fill="#D8E1F0" font-family="Courier New, monospace" font-size="28">Serving local endpoint...</text>
+  <text x="226" y="488" fill="#D8E1F0" font-family="Courier New, monospace" font-size="28">base_url = localhost:11434/v1</text>
+
+  <rect x="226" y="540" width="292" height="56" rx="18" fill="#2F6BFF"/>
+  <text x="258" y="575" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Model: gemma3:4b</text>
+  <rect x="548" y="540" width="330" height="56" rx="18" fill="#E7EDF7"/>
+  <text x="586" y="575" fill="#0B1020" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">API Key: ollama</text>
+
+  <rect x="1060" y="140" width="356" height="164" rx="28" fill="#F5F8FE" stroke="#D7DFEE" stroke-width="4"/>
+  <text x="1096" y="194" fill="#0B1020" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Install Ollama</text>
+  <text x="1096" y="236" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="22">Run it locally on your machine</text>
+  <rect x="1096" y="256" width="210" height="30" rx="15" fill="#E7EDF7"/>
+  <text x="1116" y="277" fill="#0B1020" font-family="Courier New, monospace" font-size="16" font-weight="700">ollama.com</text>
+
+  <rect x="1060" y="336" width="356" height="176" rx="28" fill="#2F6BFF"/>
+  <text x="1096" y="392" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Pull a Model</text>
+  <text x="1096" y="434" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="22">Start with Gemma 3 4B</text>
+  <rect x="1096" y="456" width="262" height="32" rx="16" fill="#D9E5FF"/>
+  <text x="1118" y="478" fill="#0B1020" font-family="Courier New, monospace" font-size="16" font-weight="700">ollama pull gemma3:4b</text>
+
+  <rect x="1060" y="544" width="356" height="206" rx="28" fill="#F5F8FE" stroke="#D7DFEE" stroke-width="4"/>
+  <text x="1096" y="600" fill="#0B1020" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">OpenAI SDK</text>
+  <text x="1096" y="642" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="22">Use Ollama's compatible API</text>
+  <rect x="1096" y="662" width="236" height="30" rx="15" fill="#E7EDF7"/>
+  <text x="1118" y="683" fill="#0B1020" font-family="Courier New, monospace" font-size="16" font-weight="700">localhost:11434/v1</text>
+  <rect x="1096" y="704" width="182" height="30" rx="15" fill="#E7EDF7"/>
+  <text x="1118" y="725" fill="#0B1020" font-family="Courier New, monospace" font-size="16" font-weight="700">Who are you?</text>
+
+  <rect x="196" y="744" width="770" height="52" rx="18" fill="#F5F8FE" stroke="#D7DFEE" stroke-width="3"/>
+  <text x="580" y="776" text-anchor="middle" fill="#0B1020" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Free local inference through Ollama's OpenAI-compatible API</text>
+</svg>
