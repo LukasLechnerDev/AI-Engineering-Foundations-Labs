@@ -1,226 +1,94 @@
 # Portfolio Project 1: AI Engineer Job Digest (Email-First)
 
 ## Summary
-Build a scheduled AI job digest system that scrapes fresh AI Engineer jobs from the last 24 hours, filters out false positives with LLM classification, enriches the accepted jobs, matches them against a fixed user skill profile, evaluates output quality, logs everything to Langfuse, and sends a polished email digest.
-
-This keeps the teaching focus on AI engineering:
-- OpenAI API usage in a real pipeline
-- prompt engineering tied to visible product quality
-- evaluations, including LLM-as-a-judge
-- observability with Langfuse
-- Dockerized deployment to AWS
-- light CI without turning the course into a DevOps course
+A scheduled batch job that scrapes AI Engineer postings from the last 24 hours, classifies and enriches them with LLMs, matches them against a fixed user profile, runs evals, logs to Langfuse, and emails a ranked digest.
 
 ## Skills Demonstrated
-- Python for scraping, data processing, pipeline orchestration, testing, and CLI code
-- OpenAI API usage beyond a single basic prompt
-- prompt engineering for classification, enrichment, matching, and digest writing
-- structured outputs and schema-driven LLM integration
-- LLM evaluations, including gold-set metrics and LLM-as-a-judge
-- observability with Langfuse traces, prompt versions, latency, and cost
-- AWS deployment and cloud storage
-- Docker containerization
-- light CI for linting, tests, and smoke checks
-- product thinking: ranking jobs for a user and surfacing skill gaps
+- OpenAI API in a real pipeline (structured outputs, task-specific models, one tool call)
+- Prompt engineering for classification, enrichment, matching, and digest writing
+- Evaluations: deterministic, gold-set, and LLM-as-a-judge
+- Observability with Langfuse (traces, prompt versions, latency, cost)
+- Docker + AWS deployment, light CI
+- Product thinking: ranking jobs and surfacing skill gaps
 
-Optional advanced skills if time remains:
-- deterministic software engineering around retries, validation, and failure handling
-- prompt A/B testing and regression analysis
-- tool calling with deterministic helper functions
-- human-in-the-loop review for low-confidence cases
-- cost and latency optimization across pipeline stages
+## Pipeline
+1. Scrape postings from existing sources (last 24h)
+2. Deterministic cleanup: title filter, required fields, dedup, timestamp filter
+3. Classify AI vs not-AI; route low-confidence to manual review or fallback model
+4. Enrich: summary, benefits/highlights, required skills, seniority
+5. Match against user profile via a `score_skill_match(...)` tool call, then write fit explanation and skill-gap notes
+6. Render ranked digest (HTML + text)
+7. Run evals; gate the send on critical thresholds
+8. Save artifacts to S3; send email if gate passes
 
-## Product And Architecture
-The product is a scheduled batch job, not a frontend app.
+## Storage
+- S3: raw scrapes, curated JSON, rendered emails, eval reports
+- Env/config: recipient(s), user profile, API keys
+- No database in v1
 
-Pipeline steps:
-- Scrape job postings from the last 24 hours from the existing job sources.
-- Apply deterministic cleanup: title filter, required-field checks, deduplication, timestamp filter.
-- Classify each role as true AI engineering vs not AI engineering.
-- Keep a classification confidence signal and route low-confidence jobs to manual review or a stronger fallback model instead of sending every case through the same path.
-- Enrich accepted jobs with:
-  - short role summary
-  - benefits/perks/highlights
-  - required skills
-- Compare each job against a fixed user skill profile from config.
-- Include one controlled tool-calling step in the matching stage so the model can call a deterministic helper like `score_skill_match(...)` before writing the fit explanation.
-- Generate:
-  - a ranked digest of the best-fit jobs
-  - a concise "what you still need to learn to get real-world AI Engineering Jobs" section
-  - HTML and plain-text email versions
-- Run evaluations before sending.
-- Send the digest only if the eval gate passes.
-- Save artifacts to S3.
+## Key Types
+`ScrapedJob` → `ClassifiedJob` (+ decision, reason, confidence) → `EnrichedJob` (+ summary, highlights, skills, seniority) → `MatchedJob` (+ fit score, reason, gaps). Plus `UserProfileConfig`, `SkillMatchResult` (tool output), `DigestArtifact`, `EvalReport`.
 
-Minimal storage design:
-- `S3` for raw scrape snapshots, curated job JSON, rendered email HTML/text, and eval reports
-- environment variables / config for:
-  - recipient email(s)
-  - user skill profile
-  - OpenAI, Langfuse, and email-provider keys
-- no database in `v1`
+## OpenAI Usage
+Use the OpenAI SDK directly (no LangChain). Demonstrate:
+- Structured outputs for classification and enrichment
+- Separate `instructions` and `input`
+- Task-specific model choice
+- Prompt versioning and A/B comparison
+- One tool call: `score_skill_match(required_skills, user_profile, seniority, prefs) → { score, matched, missing, seniority_fit, notes }`. Deterministic Python logic — no nested model call. The model uses the result to write the fit explanation, skill-gap section, and personalized summary line.
 
-Important interfaces and types:
-- `ScrapedJob`: raw posting data
-- `ClassifiedJob`: `ScrapedJob` plus AI-engineering decision, reason, and classification confidence
-- `EnrichedJob`: `ClassifiedJob` plus summary, highlights, benefits, seniority, extracted skills
-- `UserProfileConfig`: skills, interests, preferred seniority, optional exclusions
-- `MatchedJob`: `EnrichedJob` plus fit score, fit reason, skill gaps
-- `SkillMatchResult`: deterministic tool output with overlap score, matched skills, missing skills, seniority fit, and rule-based notes
-- `DigestArtifact`: ranked jobs, intro copy, closing copy, HTML/text render
-- `EvalReport`: deterministic metrics, judge scores, send/no-send decision
+## Evaluations
+Eval is a headline feature.
 
-## OpenAI, Prompts, And Evals
-Use the OpenAI SDK directly, not LangChain, so students learn the core API first.
+- **Deterministic:** 24h scrape window, dedup, schema parsing, seniority normalization, tool scoring stability, rendering
+- **Gold-set:** labeled classification set; small labeled set for seniority/skill extraction
+- **LLM-as-a-judge:** summary faithfulness, highlights usefulness, fit explanation, "what to learn next", overall digest quality, prompt A/B on one core stage
+- **Operational:** latency, token cost, failure rate, version comparison over time
+- **Send gate:** block send on critical failures; always save the failed digest + report
 
-OpenAI API usage should intentionally demonstrate:
-- structured outputs for classification and enrichment
-- separate `instructions` and `input`
-- task-specific model choice instead of one default model
-- prompt versioning and prompt A/B comparison
-- explicit output schemas for reliable downstream code
-- different response styles for extraction vs final digest writing
-- one controlled tool-calling example for deterministic skill-match scoring before natural-language explanation
-
-Tool-calling example:
-- Use tool calling in the matching stage, not in scraping or classification.
-- Expose one deterministic helper function, for example `score_skill_match(...)`.
-- Inputs to the tool:
-  - extracted required skills for the job
-  - normalized user skill profile
-  - extracted seniority level
-  - optional user preferences like remote-only or seniority target
-- Outputs from the tool:
-  - numeric fit score
-  - matched skills
-  - missing skills
-  - seniority fit or mismatch
-  - short rule-based notes that explain the score
-- The tool should contain transparent, testable scoring logic rather than another model call.
-- After the tool returns, the model uses the tool output to write:
-  - the fit explanation
-  - the "what you still need to learn" section
-  - a short personalized summary line for the digest
-- This keeps the deterministic part of the system in Python while still demonstrating how models can orchestrate software tools.
-
-Evaluation should be a headline feature of the project.
-
-Deterministic evals:
-- scrape window really is last 24 hours
-- duplicate removal works
-- schema parsing never silently fails
-- seniority normalization is stable
-- tool-call scoring is stable and produces expected outputs for representative skill profiles
-- ranking and email rendering succeed with representative inputs
-
-Gold-set evals:
-- labeled classification set for true AI engineering vs false positives
-- small labeled set for seniority and skill extraction sanity checks
-
-LLM-as-a-judge evals:
-- summary faithfulness to the posting
-- usefulness of benefits/highlights
-- quality of fit explanation
-- usefulness of "what to learn next"
-- overall digest usefulness for a job-seeking AI engineer
-- prompt A vs prompt B comparisons for at least one core stage like classification or job summary generation
-
-Operational evals:
-- latency per step
-- token/cost per step
-- failure rate per step
-- prompt/model version comparison over time
-
-Send gate:
-- do not send the email if critical eval thresholds fail
-- always save the failed digest and eval report to S3 for inspection
-
-Langfuse usage:
-- trace every OpenAI call
-- log prompt versions, latency, and cost
-- attach eval scores to runs
-- make failures reviewable after deployment
+## Langfuse
+Trace every OpenAI call, log prompt versions/latency/cost, attach eval scores.
 
 ## Teaching Flow
-Teach this by building the product first and inserting theory exactly when it becomes necessary.
+Build product-first; insert theory when it becomes necessary.
 
-Suggested sequence:
-1. Define the product and the daily digest workflow.
-2. Reuse the existing scraping and classification ideas from `1-introduction`.
-3. Turn the notebook logic into small Python modules and a CLI entrypoint.
-4. Add enrichment prompts for summaries, perks, seniority, and skill extraction.
-5. Add skill-profile matching and ranking.
-6. Add digest rendering to HTML and text.
-7. Introduce evaluation datasets and baseline metrics.
-8. Add LLM-as-a-judge and the send gate.
-9. Add Langfuse instrumentation.
-10. Dockerize the job.
-11. Deploy the scheduled container on AWS.
+1. Define product and daily workflow
+2. Reuse scraping/classification from `1-introduction`
+3. Notebook → Python modules + CLI
+4. Add enrichment prompts
+5. Add matching and ranking
+6. Render HTML/text digest
+7. Eval datasets and baselines
+8. LLM-judge + send gate
+9. Langfuse instrumentation
+10. Dockerize
+11. Schedule on AWS
 
-Theory lessons should be attached to implementation moments:
-- "How LLMs work" when classification first appears
-- "How the OpenAI API works" when structured outputs are introduced
-- "Prompt engineering" when output quality becomes the bottleneck
-- "Tool calling" when the model first combines deterministic match scoring with natural-language reasoning
-- "Evaluations" when prompts start changing
-- "Observability" when the system needs debugging and comparison
-- "Deployment" after the local pipeline already works
+Theory attaches to implementation: LLMs at classification, OpenAI API at structured outputs, prompt engineering at quality bottlenecks, tool calling at matching, evals when prompts start changing, observability when debugging, deployment after local works.
 
-## Deployment And CI
-Recommended deployment shape:
-- Docker container for the batch job
-- `ECS Fargate` scheduled task
-- `EventBridge` schedule
-- `S3` artifact bucket
-- `Resend` for email sending
-- `Secrets Manager` or ECS task secrets for API keys
+## Deployment & CI
+- Docker → ECS Fargate scheduled task → EventBridge schedule
+- S3 artifacts, Resend for email, Secrets Manager for keys
+- Local: run with fixed config, preview HTML, dry-run mode
+- CI: lint, unit tests, Docker build, one smoke test with mocked services
+- No CD in v1 — deploy manually
 
-Local developer workflow:
-- run pipeline locally with a fixed config
-- preview HTML email locally before any send
-- support a dry-run mode that skips real email sending
+## Test Scenarios
+No jobs in 24h; many false positives; malformed descriptions; duplicates; low fit score with clear gaps; tool and model explanation agree; low-quality enrichment fails the gate; successful send; dry-run.
 
-CI scope should stay light:
-- lint
-- unit tests
-- Docker build
-- one small pipeline smoke test with mocked external services
+## Acceptance Criteria
+- Student can run pipeline end-to-end locally
+- One useful digest email sent to fixed recipient
+- All OpenAI calls visible in Langfuse
+- Eval results saved and visible
+- Container runs on AWS on schedule
 
-No full CD in `v1`.
-Deploy manually so the infrastructure story stays short and understandable.
+## Assumptions & Defaults
+- v1 is email-only, fixed recipient list, no auth/unsubscribe/DB
+- No LangChain, RAG, agents, or PyTorch
+- S3 is the only persistent storage
+- Resend over SES (less setup)
+- Stretch: multiple recipient profiles, preview page, salary extraction, manual rerun endpoint
 
-## Test Plan
-Core scenarios:
-- no jobs found in the last 24 hours
-- mixed scrape with many false positives
-- malformed or incomplete descriptions
-- duplicate postings across sources
-- tool returns a low fit score with clear missing-skill guidance
-- tool and model explanation agree on the core reasons for the match score
-- low-quality enrichment output that should fail the send gate
-- successful digest generation and send
-- dry-run execution that stores artifacts but skips email
-
-Acceptance criteria:
-- a student can run the pipeline locally end-to-end
-- the system sends one useful digest email for a fixed recipient
-- all OpenAI calls are visible in Langfuse
-- eval results are saved and visible
-- the container runs on AWS on a schedule
-
-## Assumptions And Defaults
-- `v1` is email-only
-- recipient list is fixed in config
-- no subscriber management, auth, unsubscribe flow, or database
-- no LangChain, no RAG, no agents, no PyTorch
-- S3 is the only persistent project storage
-- Resend is preferred over SES to reduce setup friction
-- if time remains, the best stretch goals are:
-  - multiple recipient profiles
-  - digest preview page
-  - salary extraction/normalization
-  - manual rerun endpoint
-
-## Additional Thoughts
-- I thought about talking about what the different roles (ML Engineer, Data Scientist, Backend Developer, Frontent Developer) need to learn to become AI Engineers
-- I can talk about this topic when I describe the user profile description ("If you are a ML Engineer, your skills are ... but you need to learn ...)
+## Notes
+Consider framing the user profile around source roles (ML Engineer, Data Scientist, Backend/Frontend Dev) and what each needs to learn to become an AI Engineer.

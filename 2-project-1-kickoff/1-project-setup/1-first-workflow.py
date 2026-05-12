@@ -1,15 +1,17 @@
 import json
+import os
 from html import escape
-from pathlib import Path
 from string import Template
 
 import pandas as pd
+import resend
 from dotenv import load_dotenv
 from jobspy import scrape_jobs
 from openai import OpenAI
 
 load_dotenv()
 client = OpenAI()
+resend.api_key = os.environ["RESEND_API_KEY"]
 
 # ── Step 1: Scrape ────────────────────────────────────────────────────────────
 
@@ -201,41 +203,31 @@ Description:
 
 classified_jobs["extracted_skills"] = extracted_skills_per_job
 
-# ── Step 5: Render HTML ───────────────────────────────────────────────────────
+# ── Step 5: Render email HTML ─────────────────────────────────────────────────
 
-print("\nStep 5: Rendering HTML digest...")
+print("\nStep 5: Rendering email HTML...")
 
 card_template = Template(
     """
-<div class="card">
-  <h2><a href="$job_url" target="_blank">$title</a></h2>
-  <p class="company">$company</p>
-  <p class="reason">$reason</p>
-  <div class="skills">$skill_groups</div>
-</div>
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;background:#ffffff;border:1px solid #e5e7eb;border-radius:8px;">
+  <tr><td style="padding:20px;font-family:-apple-system,Segoe UI,sans-serif;">
+    <a href="$job_url" style="font-size:18px;font-weight:600;color:#2F6BFF;text-decoration:none;">$title</a>
+    <div style="color:#6B7280;font-size:14px;margin-top:4px;">$company</div>
+    <p style="color:#0B1020;font-size:14px;line-height:1.5;margin:12px 0;">$reason</p>
+    <div>$skill_chips</div>
+  </td></tr>
+</table>
 """.strip()
 )
 
 
-def render_skill_groups(skills):
-    grouped = {}
-    for item in skills:
-        grouped.setdefault(item["category"], []).append(item["skill"])
-
-    groups_html = []
-    for category in skill_categories:
-        if category not in grouped:
-            continue
-        chips = "".join(
-            f'<span class="chip">{escape(skill)}</span>' for skill in grouped[category]
-        )
-        groups_html.append(
-            f'<div class="skill-group skill-group--{category}">'
-            f'<span class="skill-category">{escape(category)}</span>'
-            f'<div class="chips">{chips}</div>'
-            f"</div>"
-        )
-    return "\n".join(groups_html)
+def render_skill_chips(skills):
+    return "".join(
+        '<span style="display:inline-block;background:#E7EDF7;color:#0B1020;'
+        "font-size:12px;padding:4px 10px;border-radius:12px;margin:2px 4px 2px 0;"
+        f'font-family:-apple-system,Segoe UI,sans-serif;">{escape(item["skill"])}</span>'
+        for item in skills
+    )
 
 
 cards = []
@@ -246,25 +238,34 @@ for _, job in classified_jobs.iterrows():
             title=escape(job["title"]),
             company=escape(job["company"]),
             reason=escape(job["reason"]),
-            skill_groups=render_skill_groups(job["extracted_skills"]),
+            skill_chips=render_skill_chips(job["extracted_skills"]),
         )
     )
 
-icon_img = '<img src="digest-icon.png" width="32" height="32" alt="" style="filter: brightness(0) invert(1);">'
-project_dir = Path(__file__).parent
-html_template = Template(
-    (project_dir / "digest-template.html").read_text(encoding="utf-8")
-)
-html = html_template.substitute(
-    icon_img=icon_img,
-    verified_role_count=len(classified_jobs),
-    screened_job_count=len(scraped_jobs_df),
-    cards="\n".join(cards),
-)
+html = f"""
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FAFBFD;padding:32px 0;">
+  <tr><td align="center">
+    <table width="600" cellpadding="0" cellspacing="0" border="0">
+      <tr><td style="font-family:-apple-system,Segoe UI,sans-serif;color:#0B1020;">
+        <h1 style="font-size:24px;margin:0 0 8px 0;">AI Engineer Job Digest</h1>
+        <p style="color:#6B7280;margin:0 0 24px 0;">{len(classified_jobs)} roles found today</p>
+        {"".join(cards)}
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+"""
 
-# ── Step 6: Save HTML ─────────────────────────────────────────────────────────
+# ── Step 6: Send email ────────────────────────────────────────────────────────
 
-print("\nStep 6: Saving digest...")
+print("\nStep 6: Sending email...")
 
-html_path = project_dir / "digest.html"
-html_path.write_text(html, encoding="utf-8")
+params: resend.Emails.SendParams = {
+    "from": "Acme <onboarding@resend.dev>",
+    "to": ["office@lukaslechner.com"],
+    "subject": "AI Engineer job digest",
+    "html": html,
+}
+
+email = resend.Emails.send(params)
+print(email)

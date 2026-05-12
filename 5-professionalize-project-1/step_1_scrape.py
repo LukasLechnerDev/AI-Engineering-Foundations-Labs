@@ -9,11 +9,11 @@ def scrape() -> pd.DataFrame:
         site_name=["indeed", "linkedin"],
         linkedin_fetch_description=True,
         search_term='"AI Engineer"',
-        location="USA",
-        country_indeed="USA",
+        location="Austria",
+        country_indeed="Austria",
         job_type="fulltime",
-        hours_old=24,
-        results_wanted=3,
+        hours_old=240,
+        results_wanted=20,
     )
 
     df = pd.DataFrame(jobs)
