@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Engineer Job Agent Report</title>
+<style>
+  :root {
+    --paper: #FAFBFD;
+    --mist: #E7EDF7;
+    --ink: #0B1020;
+    --slate: #6B7280;
+    --signal: #2F6BFF;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+  }
+  .container { max-width: 960px; margin: 0 auto; }
+  header { margin-bottom: 2rem; }
+  header h1 { margin: 0 0 0.25rem; font-size: 2rem; }
+  header p { margin: 0; color: var(--slate); }
+  .grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+  .card {
+    background: white;
+    border: 1px solid var(--mist);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 1px 2px rgba(11, 16, 32, 0.04);
+  }
+  .card h2 { margin: 0 0 1rem; font-size: 1.15rem; line-height: 1.35; }
+  .card h2 a { color: var(--ink); text-decoration: none; }
+  .card h2 a:hover { color: var(--signal); }
+  .category { margin-top: 0.75rem; }
+  .category h3 {
+    margin: 0 0 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--slate);
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .chip {
+    background: var(--mist);
+    color: var(--ink);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+  }
+  .category-ai-engineering .chip {
+    background: #DCE7FF;
+    color: #1D4ED8;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>AI Engineer Job Agent Report</h1>
+    <p>{{ result_count }} matching job{{ job_plural }}</p>
+  </header>
+  <div class="grid">
+    {{ job_cards }}
+  </div>
+</div>
+</body>
+</html>
