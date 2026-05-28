@@ -36,14 +36,12 @@ SKILL_MATCH_SCHEMA = {
                     "required_skill": {"type": "string"},
                     "matched_profile_skill": {"type": ["string", "null"]},
                     "match_type": {"type": "string", "enum": MATCH_TYPES},
-                    "confidence": {"type": "number"},
                     "reason": {"type": "string"},
                 },
                 "required": [
                     "required_skill",
                     "matched_profile_skill",
                     "match_type",
-                    "confidence",
                     "reason",
                 ],
                 "additionalProperties": False,
@@ -122,7 +120,6 @@ class SkillMatchingStep:
                         "required_skill": required_skill,
                         "matched_profile_skill": None,
                         "match_type": "no-match",
-                        "confidence": 0,
                         "reason": "The model did not return a decision for this skill.",
                     }
                 else:

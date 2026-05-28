@@ -12,15 +12,10 @@ APPLICATION_DECISIONS = [
     "No fit",
 ]
 
-APPLICATION_DECISION_RANK = {
-    decision: index for index, decision in enumerate(APPLICATION_DECISIONS)
-}
-
 OVERALL_MATCH_INSTRUCTIONS = dedent("""
     You evaluate how well an AI engineering job fits a student.
 
     Consider:
-    - required skills
     - role type
     - additional student preferences
     - skill match results
@@ -32,11 +27,11 @@ OVERALL_MATCH_INSTRUCTIONS = dedent("""
     - No fit: the role has a hard mismatch with the student's requirements or goals. The student should not apply and should not use this role as a learning target.
 
     Rules:
-    - Return an overall match score from 0 to 100.
+    - Return an overall match score from 0 to 1, where 1 is the strongest fit.
     - Be conservative and grounded in the provided data.
     - Do not invent facts about the student, company, or role.
     - Do not mention numeric scores or percentages in the reasoning.
-    - Use the additional student preferences as plain text guidance, not as separate structured checks.
+    - Use the additional student preferences as plain text guidance.
     - Choose exactly one decision category.
     - Keep the reason under 70 words.
     - Keep the mismatch summary under 50 words.
@@ -46,7 +41,7 @@ OVERALL_MATCH_INSTRUCTIONS = dedent("""
 OVERALL_MATCH_SCHEMA = {
     "type": "object",
     "properties": {
-        "overall_match_score": {"type": "integer"},
+        "overall_match_score": {"type": "number"},
         "application_decision": {
             "type": "string",
             "enum": APPLICATION_DECISIONS,
@@ -77,29 +72,29 @@ class OverallMatchingStep:
         for i, job in enumerate(jobs, start=1):
             print(f"Calculating overall match {i}/{len(jobs)}: {job['title']}")
 
-            prompt = f"""
-Evaluate the overall match between this job and the student profile.
+            prompt = dedent(f"""
+                Evaluate the overall match between this job and the student profile.
 
-Job:
-- title: {job["title"]}
-- company: {job.get("company", "")}
-- job_type: {job["job_type"]}
-- location: {job["location"]}
-- salary: {job["salary"]}
-- job_summary: {job["job_summary"]}
-- company_summary: {job["company_summary"]}
-- highlights_and_benefits: {job["highlights_and_benefits"]}
-- required_skills: {json.dumps([item["skill"] for item in job["skills"]], indent=2)}
-- posting_description: {job["description"]}
+                Job:
+                - title: {job["title"]}
+                - company: {job.get("company", "")}
+                - job_type: {job["job_type"]}
+                - location: {job["location"]}
+                - salary: {job["salary"]}
+                - job_summary: {job["job_summary"]}
+                - company_summary: {job["company_summary"]}
+                - highlights_and_benefits: {job["highlights_and_benefits"]}
+                - required_skills: {json.dumps([item["skill"] for item in job["skills"]], indent=2)}
+                - posting_description: {job["description"]}
 
-Student profile:
-{json.dumps(STUDENT_PROFILE, indent=2)}
+                Student profile:
+                {json.dumps(STUDENT_PROFILE, indent=2)}
 
-Skill match result:
-- matched_required_skills: {job["matched_required_skills"]}
-- partial_required_skills: {job["partial_required_skills"]}
-- no_match_skills: {job["no_match_skills"]}
-""".strip()
+                Skill match result:
+                - matched_required_skills: {job["matched_required_skills"]}
+                - partial_required_skills: {job["partial_required_skills"]}
+                - no_match_skills: {job["no_match_skills"]}
+            """).strip()
 
             response = self.client.responses.create(
                 model=MODEL,
@@ -118,8 +113,10 @@ Skill match result:
             match = json.loads(response.output_text)
 
             job["overall_match_score"] = max(
-                0, min(100, int(match["overall_match_score"]))
+                0, min(1, float(match["overall_match_score"]))
             )
+            print(f"Overall match score: {job['overall_match_score']:.2f}")
+
             job["application_decision"] = match["application_decision"]
             job["application_decision_reason"] = match["application_decision_reason"]
             job["mismatch_summary"] = match["mismatch_summary"]
@@ -128,8 +125,6 @@ Skill match result:
 
         return sorted(
             matched_jobs,
-            key=lambda job: (
-                -job["overall_match_score"],
-                APPLICATION_DECISION_RANK[job["application_decision"]],
-            ),
+            key=lambda job: job["overall_match_score"],
+            reverse=True,
         )
