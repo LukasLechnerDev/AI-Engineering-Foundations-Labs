@@ -14,12 +14,15 @@ SKILL_MATCH_INSTRUCTIONS = dedent("""
     Rules:
     - Return exactly one match decision for every required skill.
     - Be conservative. Do not match skills just because they are both technical.
+                                  
     - Use "full-match" when the student profile clearly covers the required skill.
     - Use "partial-match" when the student profile has related experience but does not fully cover the required skill.
     - Use "no-match" when the student profile does not cover the required skill.
+                                  
     - Match provider-specific skills to broader profile skills when appropriate, for example OpenAI API to LLM APIs.
     - Match cloud subservices to the broader cloud provider when appropriate, for example ECS Fargate or S3 to AWS.
     - Match testing tools to testing when appropriate, for example pytest to testing.
+    
     - Do not match different concepts, for example RAG to LLM APIs, Docker to Kubernetes, or prompt engineering to fine-tuning.
 """)
 
@@ -75,15 +78,15 @@ class SkillMatchingStep:
                 continue
 
             # Ask the model to compare the job skills with the student's profile.
-            prompt = f"""
-Match these required job skills against the student profile skills.
+            prompt = dedent(f"""
+                Match these required job skills against the student profile skills.
 
-Required job skills:
-{", ".join(required_skills)}
+                Required job skills:
+                {", ".join(required_skills)}
 
-Student profile skills:
-{", ".join(STUDENT_PROFILE["skills"])}
-""".strip()
+                Student profile skills:
+                {", ".join(STUDENT_PROFILE["skills"])}
+            """).strip()
 
             response = self.client.responses.create(
                 model=MODEL,

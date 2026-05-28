@@ -20,14 +20,21 @@ ENRICHMENT_INSTRUCTIONS = dedent("""
 
     Extract only information supported by the posting.
     Use concise normalized skill names like 'python', 'rag', 'sql', 'aws', or 'docker'.
+    
     Return a short, faithful job summary and a separate company summary.
     If the posting does not describe the company, set company_summary to "Not enough company information in the posting."
+    
     Return one concise highlights_and_benefits sentence.
     Include notable role highlights, benefits, or perks only when the posting clearly states them.
     If none are listed, return "None listed".
-    For salary, use only explicit compensation text from the description. If no salary is listed in the description, return "Not listed".
+    
+    For salary, use only explicit compensation text from the description. 
+    If no salary is listed in the description, return "Not listed".
+    
     For job_type, return "remote", "hybrid", "on-site", or "unknown" based only on the posting.
-    For location, return the location stated in the posting. If no location is listed, return "Unknown".
+                                 
+    For location, return the location stated in the posting. 
+    If no location is listed, return "Unknown".
 """)
 
 ENRICHMENT_SCHEMA = {
@@ -79,18 +86,18 @@ class EnrichmentStep:
         for i, job in enumerate(jobs, start=1):
             print(f"Enriching job {i}/{len(jobs)}: {job['title']}")
 
-            prompt = f"""
-Enrich this AI engineering job posting.
+            prompt = dedent(f"""
+                Enrich this AI engineering job posting.
 
-Use only these skill categories:
-{", ".join(SKILL_CATEGORIES)}
+                Use only these skill categories:
+                {", ".join(SKILL_CATEGORIES)}
 
-Title: {job["title"]}
-Company: {job.get("company", "")}
+                Title: {job["title"]}
+                Company: {job.get("company", "")}
 
-Description:
-{job["description"]}
-""".strip()
+                Description:
+                {job["description"]}
+            """).strip()
 
             response = self.client.responses.create(
                 model=MODEL,
