@@ -2,7 +2,6 @@ import json
 from textwrap import dedent
 
 from profile.student_profile import STUDENT_PROFILE
-from steps.helpers import calculate_match
 
 MODEL = "gpt-5.4-mini"
 
@@ -72,8 +71,9 @@ class SkillMatchingStep:
 
             # If no skills were extracted, there is nothing to compare.
             if not required_skills:
-                job.update(calculate_match([]))
-                job["skill_match_decisions"] = []
+                job["matched_required_skills"] = []
+                job["partial_required_skills"] = []
+                job["no_match_skills"] = []
                 matched_jobs.append(job)
                 continue
 
@@ -105,7 +105,9 @@ class SkillMatchingStep:
 
             result = json.loads(response.output_text)
 
-            # Store the model decisions by skill name so we can look them up below.
+            # The model returns a list of match decisions.
+            # Convert that list into a dictionary where each required skill is the key.
+            # This makes it easy to find the model's decision for each skill below.
             decisions_by_skill = {
                 item["required_skill"]: item for item in result["matches"]
             }
@@ -114,7 +116,7 @@ class SkillMatchingStep:
             for required_skill in required_skills:
                 decision = decisions_by_skill.get(required_skill)
 
-                # If the model missed a skill, mark it as no-match instead of crashing.
+                # If the model missed a skill, mark it as no-match
                 if decision is None:
                     decision = {
                         "required_skill": required_skill,
@@ -128,9 +130,26 @@ class SkillMatchingStep:
 
                 match_decisions.append(decision)
 
-            # Convert the individual match decisions into a simple score and lists.
-            job.update(calculate_match(match_decisions))
-            job["skill_match_decisions"] = match_decisions
+            # Split the skill decisions into simple lists for the next step.
+            matched = [
+                item["required_skill"]
+                for item in match_decisions
+                if item["match_type"] == "full-match"
+            ]
+            partial = [
+                item["required_skill"]
+                for item in match_decisions
+                if item["match_type"] == "partial-match"
+            ]
+            no_match = [
+                item["required_skill"]
+                for item in match_decisions
+                if item["match_type"] == "no-match"
+            ]
+
+            job["matched_required_skills"] = matched
+            job["partial_required_skills"] = partial
+            job["no_match_skills"] = no_match
             matched_jobs.append(job)
 
         return matched_jobs

@@ -96,11 +96,9 @@ Student profile:
 {json.dumps(STUDENT_PROFILE, indent=2)}
 
 Skill match result:
-- skill_match_score_internal: {job["fit_score"]}
 - matched_required_skills: {job["matched_required_skills"]}
 - partial_required_skills: {job["partial_required_skills"]}
-- missing_skills: {job["missing_skills"]}
-- skill_match_decisions: {json.dumps(job["skill_match_decisions"], indent=2)}
+- no_match_skills: {job["no_match_skills"]}
 """.strip()
 
             response = self.client.responses.create(
@@ -131,8 +129,7 @@ Skill match result:
         return sorted(
             matched_jobs,
             key=lambda job: (
-                APPLICATION_DECISION_RANK[job["application_decision"]],
                 -job["overall_match_score"],
-                -job["fit_score"],
+                APPLICATION_DECISION_RANK[job["application_decision"]],
             ),
         )
