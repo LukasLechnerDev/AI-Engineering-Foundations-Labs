@@ -19,7 +19,7 @@ SKILL_CATEGORIES = [
 ]
 
 
-class RenderingStep:
+class HtmlRenderingStep:
     def run(self, results):
         print("\n--- Step 4: Rendering HTML report ---")
 
@@ -54,11 +54,14 @@ class RenderingStep:
             )
 
         title = escape(job["title"])
+        company = str(job.get("company", "")).strip()
+        company_html = f'<p class="company">{escape(company)}</p>' if company else ""
         job_url = escape(job["job_url"], quote=True)
 
         return f"""
         <article class="card">
             <h2><a href="{job_url}" target="_blank" rel="noopener noreferrer">{title}</a></h2>
+            {company_html}
             {"".join(category_blocks)}
         </article>
         """
@@ -68,7 +71,8 @@ class RenderingStep:
         template = TEMPLATE_PATH.read_text(encoding="utf-8")
 
         return (
-            template.replace("{{ result_count }}", str(result_count))
+            template
+            .replace("{{ result_count }}", str(result_count))
             .replace("{{ job_plural }}", job_plural)
             .replace("{{ job_cards }}", "".join(cards))
         )

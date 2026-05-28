@@ -59,10 +59,12 @@ class SkillExtractionStep:
         for i, job in enumerate(jobs, start=1):
             print(f"Extracting skills for job {i}/{len(jobs)}: {job['title']}")
 
+            prompt = job["description"]
+
             skills_response = self.client.responses.create(
                 model=MODEL,
                 instructions=SKILLS_INSTRUCTIONS,
-                input=job["description"],
+                input=prompt,
                 text={
                     "format": {
                         "type": "json_schema",
@@ -76,8 +78,11 @@ class SkillExtractionStep:
             skills = json.loads(skills_response.output_text)["skills"]
             print(f"  -> Extracted {len(skills)} skills")
 
-            results.append(
-                {"title": job["title"], "job_url": job["job_url"], "skills": skills}
-            )
+            results.append({
+                "title": job["title"],
+                "company": job.get("company", ""),
+                "job_url": job["job_url"],
+                "skills": skills,
+            })
 
         return results

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Engineer Job Digest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'IBM Plex Sans', sans-serif; background: #FAFBFD; color: #0B1020; }
+
+    .header {
+      max-width: 800px;
+      margin: 0 auto 28px auto;
+      padding: 32px 40px 0 40px;
+    }
+    .header-meta {
+      color: #64748B;
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+    .header h1 {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.1;
+      color: #0B1020;
+    }
+    .content {
+      max-width: 800px;
+      margin: 0 auto 36px auto;
+      padding: 0 40px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 12px;
+      border: 1px solid #8FB2FF;
+    }
+    .card-top {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 14px;
+    }
+    .rank,
+    .decision {
+      background: #E7EDF7;
+      color: #2F6BFF;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      padding: 6px 10px;
+      white-space: nowrap;
+    }
+    .decision {
+      background: #2F6BFF;
+      color: #FFFFFF;
+    }
+    .card h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .card h2 a { color: #0B1020; text-decoration: none; }
+    .card h2 a:hover { color: #2F6BFF; }
+    .company { color: #6B7280; font-size: 0.825rem; font-weight: 500; }
+    .reason { color: #3D4660; font-size: 0.875rem; line-height: 1.6; margin-top: 10px; }
+
+    .skills { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+    .skill-group { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .skill-category {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #6B7280;
+      min-width: 130px;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      background: #E7EDF7;
+      color: #0B1020;
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+    .chip--full-match {
+      background: #15803D;
+      color: #FFFFFF;
+      border-color: #166534;
+    }
+    .chip--partial-match {
+      background: #ECFDF5;
+      color: #166534;
+      border-color: #A7F3D0;
+    }
+    .chip--no-match {
+      background: #F8FAFC;
+      color: #475569;
+      border-color: #E2E8F0;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <p class="header-meta">{{ report_date }} · Calendar week {{ calendar_week }}</p>
+    <h1>{{ report_title }}</h1>
+  </header>
+  <div class="content">
+    {{ cards }}
+  </div>
+</body>
+</html>

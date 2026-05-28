@@ -41,13 +41,20 @@ class ClassificationStep:
             title = job["title"]
             description = job["description"]
             job_url = job["job_url"]
+            company = job.get("company", "")
 
             print(f"Classifying job {i}/{len(jobs)}: {title}")
+
+            prompt = (
+                f"Classify this job posting.\n\n"
+                f"Title: {title}\n\n"
+                f"Description:\n{description}"
+            )
 
             classify_response = self.client.responses.create(
                 model=MODEL,
                 instructions=CLASSIFY_INSTRUCTIONS,
-                input=f"Classify this job posting.\n\nTitle: {title}\n\nDescription:\n{description}",
+                input=prompt,
                 text={
                     "format": {
                         "type": "json_schema",
@@ -62,13 +69,16 @@ class ClassificationStep:
 
             if classification["is_ai_engineering_role"]:
                 print(f"  -> Kept (AI Engineer): {classification['reason']}")
-                ai_engineering_jobs.append(
-                    {"title": title, "job_url": job_url, "description": description}
-                )
+                ai_engineering_jobs.append({
+                    "title": title,
+                    "company": company,
+                    "job_url": job_url,
+                    "description": description,
+                })
             else:
                 print(f"  -> Skipped (not AI Engineer): {classification['reason']}")
 
         print(
-            f"\n{len(ai_engineering_jobs)}/{len(jobs)} jobs classified as AI engineering roles"
+            f"{len(ai_engineering_jobs)}/{len(jobs)} jobs classified as AI engineering roles"
         )
         return ai_engineering_jobs
