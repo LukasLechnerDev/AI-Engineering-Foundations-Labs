@@ -118,6 +118,8 @@ class OverallMatchingStep:
             print(f"Overall match score: {job['overall_match_score']:.2f}")
 
             job["application_decision"] = match["application_decision"]
+            print(f"Application decision: {job['application_decision']}")
+
             job["application_decision_reason"] = match["application_decision_reason"]
             job["mismatch_summary"] = match["mismatch_summary"]
             job["recommended_action"] = match["recommended_action"]

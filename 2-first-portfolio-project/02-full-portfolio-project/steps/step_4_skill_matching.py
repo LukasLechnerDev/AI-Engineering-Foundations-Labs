@@ -102,6 +102,12 @@ class SkillMatchingStep:
             job["matched_required_skills"] = result["matched_required_skills"]
             job["partial_required_skills"] = result["partial_required_skills"]
             job["no_match_skills"] = result["no_match_skills"]
+            print(
+                "Skill matches: "
+                f"{len(job['matched_required_skills'])} matched, "
+                f"{len(job['partial_required_skills'])} partial, "
+                f"{len(job['no_match_skills'])} no match"
+            )
             matched_jobs.append(job)
 
         return matched_jobs

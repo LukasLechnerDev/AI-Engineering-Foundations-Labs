@@ -7,7 +7,7 @@ import pandas as pd
 PROJECT_DIR = Path(__file__).parent.parent
 REPORT_DIR = PROJECT_DIR / "report"
 TEMPLATE_PATH = REPORT_DIR / "report-template.html"
-OUTPUT_PATH = REPORT_DIR / "report.html"
+OUTPUT_PATH = REPORT_DIR / "job-agent-report.html"
 TOP_JOB_LIMIT = 10
 
 SKILL_CATEGORIES = [
