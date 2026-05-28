@@ -7,16 +7,17 @@ MODEL = "gpt-5.4-mini"
 
 SKILL_MATCH_INSTRUCTIONS = dedent("""
     You semantically match required job skills to a student's profile skills.
+                                  
+    There are three output categories for each required skill:
+    - matched_required_skills: the student profile clearly covers the required skill.
+    - partial_required_skills: the student profile has related experience but does not fully cover the required skill.
+    - no_match_skills: the student profile does not cover the required skill.
 
     Rules:
-    - Put every required skill into exactly one output list.
+    - Put every required skill into exactly one category.
     - Use the exact required skill names from the input.
     - Be conservative. Do not match skills just because they are both technical.
-                                  
-    - Use matched_required_skills when the student profile clearly covers the required skill.
-    - Use partial_required_skills when the student profile has related experience but does not fully cover the required skill.
-    - Use no_match_skills when the student profile does not cover the required skill.
-                                  
+                                                         
     - Match provider-specific skills to broader profile skills when appropriate, for example OpenAI API to LLM APIs.
     - Match cloud subservices to the broader cloud provider when appropriate, for example ECS Fargate or S3 to AWS.
     - Match testing tools to testing when appropriate, for example pytest to testing.
@@ -102,6 +103,7 @@ class SkillMatchingStep:
             job["matched_required_skills"] = result["matched_required_skills"]
             job["partial_required_skills"] = result["partial_required_skills"]
             job["no_match_skills"] = result["no_match_skills"]
+            
             print(
                 "Skill matches: "
                 f"{len(job['matched_required_skills'])} matched, "

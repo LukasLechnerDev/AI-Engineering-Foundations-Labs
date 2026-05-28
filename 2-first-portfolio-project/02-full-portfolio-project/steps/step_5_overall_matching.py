@@ -112,9 +112,7 @@ class OverallMatchingStep:
             )
             match = json.loads(response.output_text)
 
-            job["overall_match_score"] = max(
-                0, min(1, float(match["overall_match_score"]))
-            )
+            job["overall_match_score"] = float(match["overall_match_score"])
             print(f"Overall match score: {job['overall_match_score']:.2f}")
 
             job["application_decision"] = match["application_decision"]
