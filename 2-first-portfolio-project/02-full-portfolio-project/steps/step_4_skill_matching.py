@@ -6,23 +6,27 @@ from profile.student_profile import STUDENT_PROFILE
 MODEL = "gpt-5.4-mini"
 
 SKILL_MATCH_INSTRUCTIONS = dedent("""
-    You semantically match required job skills to a student's profile skills.
-                                  
-    There are three output categories for each required skill:
-    - matched_required_skills: the student profile clearly covers the required skill.
-    - partial_required_skills: the student profile has related experience but does not fully cover the required skill.
-    - no_match_skills: the student profile does not cover the required skill.
+    Compare each required job skill with the student's profile skills.
+
+    Return three lists:
+    - matched_required_skills: the profile clearly covers the required skill.
+    - partial_required_skills: the profile has related experience, but not a clear match.
+    - no_match_skills: the profile does not show this skill.
 
     Rules:
-    - Put every required skill into exactly one category.
-    - Use the exact required skill names from the input.
-    - Be conservative. Do not match skills just because they are both technical.
-                                                         
-    - Match provider-specific skills to broader profile skills when appropriate, for example OpenAI API to LLM APIs.
-    - Match cloud subservices to the broader cloud provider when appropriate, for example ECS Fargate or S3 to AWS.
-    - Match testing tools to testing when appropriate, for example pytest to testing.
-    
-    - Do not match different concepts, for example RAG to LLM APIs, Docker to Kubernetes, or prompt engineering to fine-tuning.
+    - Put every required skill into exactly one list.
+    - Use only the exact required skill names from the input.
+    - Do not add profile skills, explanations, or new skill names.
+    - Be conservative. If you are unsure, use no_match_skills.
+    - Use partial_required_skills for related but different skills.
+
+    Matching examples:
+    - OpenAI API can match LLM APIs.
+    - ECS Fargate or S3 can match AWS.
+    - pytest can match testing.
+    - RAG does not match LLM APIs.
+    - Docker does not match Kubernetes.
+    - prompt engineering does not match fine-tuning.
 """)
 
 SKILL_MATCH_SCHEMA = {
@@ -103,7 +107,7 @@ class SkillMatchingStep:
             job["matched_required_skills"] = result["matched_required_skills"]
             job["partial_required_skills"] = result["partial_required_skills"]
             job["no_match_skills"] = result["no_match_skills"]
-            
+
             print(
                 "Skill matches: "
                 f"{len(job['matched_required_skills'])} matched, "
