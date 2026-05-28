@@ -5,18 +5,17 @@ from profile.student_profile import STUDENT_PROFILE
 
 MODEL = "gpt-5.4-mini"
 
-MATCH_TYPES = ["full-match", "partial-match", "no-match"]
-
 SKILL_MATCH_INSTRUCTIONS = dedent("""
     You semantically match required job skills to a student's profile skills.
 
     Rules:
-    - Return exactly one match decision for every required skill.
+    - Put every required skill into exactly one output list.
+    - Use the exact required skill names from the input.
     - Be conservative. Do not match skills just because they are both technical.
                                   
-    - Use "full-match" when the student profile clearly covers the required skill.
-    - Use "partial-match" when the student profile has related experience but does not fully cover the required skill.
-    - Use "no-match" when the student profile does not cover the required skill.
+    - Use matched_required_skills when the student profile clearly covers the required skill.
+    - Use partial_required_skills when the student profile has related experience but does not fully cover the required skill.
+    - Use no_match_skills when the student profile does not cover the required skill.
                                   
     - Match provider-specific skills to broader profile skills when appropriate, for example OpenAI API to LLM APIs.
     - Match cloud subservices to the broader cloud provider when appropriate, for example ECS Fargate or S3 to AWS.
@@ -28,27 +27,24 @@ SKILL_MATCH_INSTRUCTIONS = dedent("""
 SKILL_MATCH_SCHEMA = {
     "type": "object",
     "properties": {
-        "matches": {
+        "matched_required_skills": {
             "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "required_skill": {"type": "string"},
-                    "matched_profile_skill": {"type": ["string", "null"]},
-                    "match_type": {"type": "string", "enum": MATCH_TYPES},
-                    "reason": {"type": "string"},
-                },
-                "required": [
-                    "required_skill",
-                    "matched_profile_skill",
-                    "match_type",
-                    "reason",
-                ],
-                "additionalProperties": False,
-            },
-        }
+            "items": {"type": "string"},
+        },
+        "partial_required_skills": {
+            "type": "array",
+            "items": {"type": "string"},
+        },
+        "no_match_skills": {
+            "type": "array",
+            "items": {"type": "string"},
+        },
     },
-    "required": ["matches"],
+    "required": [
+        "matched_required_skills",
+        "partial_required_skills",
+        "no_match_skills",
+    ],
     "additionalProperties": False,
 }
 
@@ -103,50 +99,9 @@ class SkillMatchingStep:
 
             result = json.loads(response.output_text)
 
-            # The model returns a list of match decisions.
-            # Convert that list into a dictionary where each required skill is the key.
-            # This makes it easy to find the model's decision for each skill below.
-            decisions_by_skill = {
-                item["required_skill"]: item for item in result["matches"]
-            }
-
-            match_decisions = []
-            for required_skill in required_skills:
-                decision = decisions_by_skill.get(required_skill)
-
-                # If the model missed a skill, mark it as no-match
-                if decision is None:
-                    decision = {
-                        "required_skill": required_skill,
-                        "matched_profile_skill": None,
-                        "match_type": "no-match",
-                        "reason": "The model did not return a decision for this skill.",
-                    }
-                else:
-                    decision["required_skill"] = required_skill
-
-                match_decisions.append(decision)
-
-            # Split the skill decisions into simple lists for the next step.
-            matched = [
-                item["required_skill"]
-                for item in match_decisions
-                if item["match_type"] == "full-match"
-            ]
-            partial = [
-                item["required_skill"]
-                for item in match_decisions
-                if item["match_type"] == "partial-match"
-            ]
-            no_match = [
-                item["required_skill"]
-                for item in match_decisions
-                if item["match_type"] == "no-match"
-            ]
-
-            job["matched_required_skills"] = matched
-            job["partial_required_skills"] = partial
-            job["no_match_skills"] = no_match
+            job["matched_required_skills"] = result["matched_required_skills"]
+            job["partial_required_skills"] = result["partial_required_skills"]
+            job["no_match_skills"] = result["no_match_skills"]
             matched_jobs.append(job)
 
         return matched_jobs
