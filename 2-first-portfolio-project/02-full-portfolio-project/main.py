@@ -1,3 +1,5 @@
+import os
+
 from dotenv import load_dotenv
 from openai import OpenAI
 
@@ -7,6 +9,7 @@ from steps.step_3_enrichment import EnrichmentStep
 from steps.step_4_skill_matching import SkillMatchingStep
 from steps.step_5_overall_matching import OverallMatchingStep
 from steps.step_6_rendering import RenderingStep
+from steps.step_7_email import EmailStep
 
 
 def main():
@@ -22,7 +25,10 @@ def main():
     skill_matched_jobs = SkillMatchingStep(client).run(enriched_jobs)
     ranked_jobs = OverallMatchingStep(client).run(skill_matched_jobs)
 
-    RenderingStep().run(ranked_jobs)
+    report_path = RenderingStep().run(ranked_jobs)
+    send_email = os.environ.get("SEND_EMAIL", "false").lower() == "true"
+    if send_email:
+        EmailStep().run(report_path)
 
     print("\nDone!")
 

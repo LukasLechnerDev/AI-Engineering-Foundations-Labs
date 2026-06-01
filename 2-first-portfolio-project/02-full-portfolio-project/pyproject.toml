@@ -9,4 +9,5 @@ dependencies = [
     "pandas>=2.2.0",
     "python-dotenv>=1.0.1",
     "python-jobspy>=1.1.80",
+    "resend>=2.0.0",
 ]

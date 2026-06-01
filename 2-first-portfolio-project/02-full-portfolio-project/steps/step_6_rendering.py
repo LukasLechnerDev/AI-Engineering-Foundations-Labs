@@ -48,6 +48,7 @@ class RenderingStep:
 
         OUTPUT_PATH.write_text(html, encoding="utf-8")
         print(f"Saved report with {len(visible_jobs)} jobs to {OUTPUT_PATH}")
+        return OUTPUT_PATH
 
     def _render_job_card(self, rank, job):
         escaped = {
