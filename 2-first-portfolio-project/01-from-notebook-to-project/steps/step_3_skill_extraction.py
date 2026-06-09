@@ -78,11 +78,13 @@ class SkillExtractionStep:
             skills = json.loads(skills_response.output_text)["skills"]
             print(f"  -> Extracted {len(skills)} skills")
 
-            results.append({
-                "title": job["title"],
-                "company": job.get("company", ""),
-                "job_url": job["job_url"],
-                "skills": skills,
-            })
+            results.append(
+                {
+                    "title": job["title"],
+                    "company": job.get("company", ""),
+                    "job_url": job["job_url"],
+                    "skills": skills,
+                }
+            )
 
         return results

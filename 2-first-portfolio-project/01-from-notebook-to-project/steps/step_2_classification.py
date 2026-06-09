@@ -69,12 +69,14 @@ class ClassificationStep:
 
             if classification["is_ai_engineering_role"]:
                 print(f"  -> Kept (AI Engineer): {classification['reason']}")
-                ai_engineering_jobs.append({
-                    "title": title,
-                    "company": company,
-                    "job_url": job_url,
-                    "description": description,
-                })
+                ai_engineering_jobs.append(
+                    {
+                        "title": title,
+                        "company": company,
+                        "job_url": job_url,
+                        "description": description,
+                    }
+                )
             else:
                 print(f"  -> Skipped (not AI Engineer): {classification['reason']}")
 

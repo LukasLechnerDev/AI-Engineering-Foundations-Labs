@@ -24,7 +24,11 @@ def load_eval_jobs() -> pd.DataFrame:
             f"{unlabeled} rows are missing a human_classification — fill them in before running the test."
         )
     labels["human_classification"] = (
-        labels["human_classification"].astype(str).str.strip().str.lower().map({"true": True, "false": False})
+        labels["human_classification"]
+        .astype(str)
+        .str.strip()
+        .str.lower()
+        .map({"true": True, "false": False})
     )
 
     jobs = [json.loads(line) for line in JSONL_FILE.read_text().splitlines() if line]
@@ -51,7 +55,9 @@ def test_classify_eval():
         if predicted == row["human_classification"]:
             correct += 1
         else:
-            reason = url_to_reason.get(row["job_url"], "filtered out as non-AI-engineering role")
+            reason = url_to_reason.get(
+                row["job_url"], "filtered out as non-AI-engineering role"
+            )
             print(f"  MISMATCH: {row['title']}")
             print(f"    human={row['human_classification']}, llm={predicted}")
             print(f"    reason={reason}")

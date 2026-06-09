@@ -14,7 +14,7 @@ STUDENT_PROFILE = {
         "CI/CD",
         "agentic workflows",
         "AI Agents",
-        "git"
+        "git",
     ],
     "additional_preferences": (
         "I speak English and German."

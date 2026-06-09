@@ -71,8 +71,7 @@ class HtmlRenderingStep:
         template = TEMPLATE_PATH.read_text(encoding="utf-8")
 
         return (
-            template
-            .replace("{{ result_count }}", str(result_count))
+            template.replace("{{ result_count }}", str(result_count))
             .replace("{{ job_plural }}", job_plural)
             .replace("{{ job_cards }}", "".join(cards))
         )
