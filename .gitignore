@@ -12,8 +12,8 @@ wheels/
 # Secrets
 .env
 
-# scripts (author-only, lives in a separate private repo)
-scripts/
+# content (author-only, lives in a separate private repo)
+content/
 
 # Claude Code local settings (user-specific, not shared)
 .claude/settings.local.json
