@@ -1,7 +1,7 @@
 [project]
 name = "ai-engineering-foundations-labs"
 version = "0.1.0"
-description = "Add your description here"
+description = "Companion project for the AI Engineering Fundamentals course"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -10,14 +10,11 @@ dependencies = [
     "openai>=2.29.0",
     "pandas>=2.3.3",
     "python-jobspy>=1.1.82",
-    "langfuse>=2.0.0",
     "requests>=2.33.0",
     "resend>=2.0.0",
-    "premailer>=3.10.0",
     "tiktoken>=0.12.0",
     "pydantic>=2.12.5",
     "pymupdf4llm>=1.27.2.3",
-    "gradio>=6.19.0",
 ]
 
 [dependency-groups]
@@ -25,6 +22,3 @@ dev = [
     "pytest>=9.0.3",
     "ruff>=0.15.9",
 ]
-
-[tool.pytest.ini_options]
-testpaths = ["5-professionalize-project-1/tests"]
