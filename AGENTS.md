@@ -4,14 +4,6 @@ This repository is a companion repository for the AI Engineering Fundamentals co
 ## Core Goal
 Everything in this repository should be optimized for students learning the material.
 
-## MVP Release Priority
-- Ship the first MVP of the course as fast as possible.
-- Center the MVP around building the `ai-engineer-job-digest` project together with the student.
-- Teach only the minimum theory students need to understand and complete the project.
-- If a topic is not needed for the MVP, cut it or defer it to a later version of the course.
-- Prefer practical project progress over broad or comprehensive theory coverage.
-- Add deeper explanations only when they are clearly necessary for the current lesson.
-
 ## Development Principles
 - Keep code short.
 - Keep code readable.
@@ -32,18 +24,6 @@ When choosing between broader theory coverage and faster progress toward the MVP
 - Do not make scope, sequencing, or lesson-placement decisions based only on the current file or module.
 - Use the broader course context to avoid duplication, misplaced topics, and inconsistencies across modules.
 
-## Environment Workflow
-- Use `uv sync` to create or refresh the project environment when dependencies or the notebook kernel are missing.
-- In notebooks, use the repo `.venv` as the Jupyter kernel.
-- After setup, verify regular Python execution with `uv run python 1-what-is-ai-engineering/0-uv-check.py`. It should print the installed OpenAI client version.
-- Preserve the existing project-output flow between lessons. If a notebook depends on files from an earlier step such as `jobs/1-scraped_jobs.jsonl`, keep that dependency explicit instead of hiding it.
-- The current MVP app flow in `5-professionalize-project-1/` is organized as `step_1_scrape.py` through `step_7_save.py`, with `step_6_render.py` producing the HTML and `workflow.py` wiring the steps together.
-- Run the end-to-end MVP app with `uv run python 5-professionalize-project-1/workflow.py`. It writes the digest to `5-professionalize-project-1/digest.html`.
-- Run the project tests from the repo root with `uv run pytest`. `pyproject.toml` currently points pytest at `5-professionalize-project-1/tests`.
-- The eval dataset lives at `5-professionalize-project-1/evals/eval-jobs.jsonl`. The current eval tests call the OpenAI API, so they require the relevant environment variables and are not offline checks.
-- To prepare the classification eval labels, run `uv run python 5-professionalize-project-1/evals/make_eval_csv.py 5-professionalize-project-1/evals/1-scraped_jobs.jsonl`, fill in `human_classification` in the generated CSV, then run `uv run pytest 5-professionalize-project-1/tests/test_classify_eval.py -s`.
-- Run the LLM-judge evals with `uv run pytest 5-professionalize-project-1/tests/test_reason_eval.py -s` and `uv run pytest 5-professionalize-project-1/tests/test_summary_eval.py -s`. They write HTML reports to `5-professionalize-project-1/tests/llm-judge-report.html` and `5-professionalize-project-1/tests/llm-judge-summary-report.html`.
-
 ## Notebook Priority
 - Keep notebook cells focused and easy to scan.
 - Prefer explicit code over compact but hard-to-read code.
@@ -57,15 +37,6 @@ When choosing between broader theory coverage and faster progress toward the MVP
   3. `## Script` — the actual lecture content.
   4. `## Sources` — links or references used to prepare the lecture (optional, omit if empty).
 - Apply this structure to every lecture and overview file, including module outline files.
-
-## Excalidraw Diagrams
-- Only adjust Excalidraw diagrams when the user specifically asks for diagram changes.
-Always use the brand colors from `brand-assets/system/` when creating Excalidraw diagrams:
-- Default box fill: `#E7EDF7` (Mist 100), text `#0B1020` (Ink 950)
-- Accent/highlight fill: `#2F6BFF` (Signal Blue), text `#FFFFFF`
-- Supporting text: `#6B7280` (Slate 500)
-- Arrows: `#0B1020` (Ink 950)
-- Canvas background: `#FAFBFD` (Paper)
 
 ## General Instructions 
 - ALWAYS run `.venv/bin/ruff format` after you are done with your task to get the code style right, but only do this if you have added or modified python code.
