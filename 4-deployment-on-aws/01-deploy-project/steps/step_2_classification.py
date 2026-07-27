@@ -38,7 +38,6 @@ class ClassificationStep:
                 instructions=CLASSIFY_INSTRUCTIONS,
                 input=prompt,
                 text_format=JobClassification,
-                verbosity="low",
             )
             classification = response.output_parsed
             if classification is None:
