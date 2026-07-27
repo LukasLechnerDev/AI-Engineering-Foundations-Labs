@@ -55,8 +55,7 @@ class EnrichmentStep:
                 model=MODEL,
                 instructions=ENRICHMENT_INSTRUCTIONS,
                 input=prompt,
-                text_format=JobEnrichment,
-                verbosity="low",
+                text_format=JobEnrichment
             )
             enrichment = response.output_parsed
             if enrichment is None:

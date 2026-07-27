@@ -67,8 +67,7 @@ class SkillMatchingStep:
                 model=MODEL,
                 instructions=SKILL_MATCH_INSTRUCTIONS,
                 input=prompt,
-                text_format=SkillMatch,
-                verbosity="low",
+                text_format=SkillMatch
             )
 
             result = response.output_parsed

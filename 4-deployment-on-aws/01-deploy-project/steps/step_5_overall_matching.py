@@ -72,8 +72,7 @@ class OverallMatchingStep:
                 model=MODEL,
                 instructions=OVERALL_MATCH_INSTRUCTIONS,
                 input=prompt,
-                text_format=OverallJobMatch,
-                verbosity="low",
+                text_format=OverallJobMatch
             )
             match = response.output_parsed
             if match is None:
