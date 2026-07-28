@@ -1,0 +1,14 @@
+[project]
+name = "02-dockerized-project"
+version = "0.1.0"
+description = "AI Engineering Job Agent packaged as a Docker image for deployment on AWS EC2"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "openai>=1.50.0",
+    "pandas>=2.2.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.1",
+    "python-jobspy>=1.1.80",
+    "resend>=2.0.0",
+]

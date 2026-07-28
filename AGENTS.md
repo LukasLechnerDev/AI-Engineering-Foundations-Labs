@@ -4,6 +4,9 @@ This repository is a companion repository for the AI Engineering Fundamentals co
 ## Core Goal
 Everything in this repository should be optimized for students learning the material.
 
+## Misc
+Always let me know if I use the wrong or improper terminology!
+
 ## Development Principles
 - Keep code short.
 - Keep code readable.
