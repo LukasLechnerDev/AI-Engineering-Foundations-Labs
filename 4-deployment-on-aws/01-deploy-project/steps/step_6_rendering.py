@@ -33,7 +33,7 @@ CHIP_STYLES = {
 
 
 class RenderingStep:
-    def run(self, jobs):
+    def run(self, jobs, location):
         print("\n--- Step 6: Rendering HTML report ---")
 
         visible_jobs = jobs[:TOP_JOB_LIMIT]
@@ -44,8 +44,10 @@ class RenderingStep:
 
         report_date = date.today()
         job_label = "Job" if len(visible_jobs) == 1 else "Jobs"
+        escaped_location = escape(str(location))
         report_title = (
-            f"Your Top {len(visible_jobs)} AI Engineering {job_label} of the Week"
+            f"Your Top {len(visible_jobs)} AI Engineering {job_label} "
+            f"of the Week in {escaped_location}"
         )
         template = TEMPLATE_PATH.read_text(encoding="utf-8")
         html = (

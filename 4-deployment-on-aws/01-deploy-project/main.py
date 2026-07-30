@@ -34,7 +34,7 @@ def main():
     skill_matched_jobs = SkillMatchingStep(client).run(enriched_jobs)
     ranked_jobs = OverallMatchingStep(client).run(skill_matched_jobs)
 
-    report_path = RenderingStep().run(ranked_jobs)
+    report_path = RenderingStep().run(ranked_jobs, arguments.location)
     send_email = os.environ.get("SEND_EMAIL", "false").lower() == "true"
     if send_email:
         EmailStep().run(report_path)
