@@ -14,6 +14,15 @@ wheels/
 
 # Secrets
 .env
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform/
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
 
 # content (author-only, lives in a separate private repo)
 content/
