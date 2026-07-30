@@ -3,19 +3,27 @@ from jobspy import scrape_jobs
 
 
 class ScrapingStep:
-    def run(self):
+    def run(
+        self,
+        site_name,
+        location,
+        country_indeed,
+        job_type,
+        hours_old,
+        results_wanted,
+    ):
         print("\n--- Step 1: Scraping jobs ---")
 
         # Scrape recent AI Engineer job postings.
         jobs = scrape_jobs(
-            site_name=["linkedin", "indeed"],
+            site_name=site_name,
             linkedin_fetch_description=True,
             search_term='"AI Engineer"',
-            location="USA",
-            country_indeed="USA",
-            job_type="fulltime",
-            hours_old=72,
-            results_wanted=10,
+            location=location,
+            country_indeed=country_indeed,
+            job_type=job_type,
+            hours_old=hours_old,
+            results_wanted=results_wanted,
         )
 
         jobs_df = pd.DataFrame(jobs)

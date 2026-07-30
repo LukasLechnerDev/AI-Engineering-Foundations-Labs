@@ -7,25 +7,27 @@ from profile.student_profile import STUDENT_PROFILE
 MODEL = "gpt-5.4-mini"
 
 OVERALL_MATCH_INSTRUCTIONS = dedent("""
-    You evaluate how well an AI engineering job fits a student.
+    You evaluate how well an AI engineering job fits the provided profile.
 
     Consider:
     - role type
-    - additional student preferences
+    - additional preferences
     - skill match results
 
     Decision categories:
-    - Apply this week: strong role fit, enough matched skills, aligned with student requirements, worth near-term application effort.
+    - Apply this week: strong role fit, enough matched skills, aligned with your requirements, worth near-term application effort.
     - Consider applying: plausible fit with useful upside, but has notable gaps or uncertainty.
     - Not ready yet: not a near-term application priority, but useful for identifying skills to build.
-    - No fit: the role has a hard mismatch with the student's requirements or goals. The student should not apply and should not use this role as a learning target.
+    - No fit: the role has a hard mismatch with your requirements or goals. You should not apply or use this role as a learning target.
 
     Rules:
     - Return an overall match score from 0 to 1, where 1 is the strongest fit.
     - Be conservative and grounded in the provided data.
-    - Do not invent facts about the student, company, or role.
+    - Do not invent facts about the person described by the profile, company, or role.
     - Do not mention numeric scores or percentages in the reasoning.
-    - Use the additional student preferences as plain text guidance.
+    - Use the additional preferences as plain text guidance.
+    - Address the reader directly as "you" and "your" in every user-facing response field.
+    - Never refer to the reader as "the student", "student", "the candidate", or "candidate".
     - Choose exactly one decision category.
     - Keep the reason under 70 words.
     - Keep the mismatch summary under 50 words.
@@ -45,7 +47,7 @@ class OverallMatchingStep:
             print(f"Calculating overall match {i}/{len(jobs)}: {job['title']}")
 
             prompt = dedent(f"""
-                Evaluate the overall match between this job and the student profile.
+                Evaluate the overall match between this job and the profile.
 
                 Job:
                 - title: {job["title"]}
@@ -59,7 +61,7 @@ class OverallMatchingStep:
                 - required_skills: {json.dumps([item["skill"] for item in job["skills"]], indent=2)}
                 - posting_description: {job["description"]}
 
-                Student profile:
+                Profile:
                 {json.dumps(STUDENT_PROFILE, indent=2)}
 
                 Skill match result:
@@ -72,7 +74,7 @@ class OverallMatchingStep:
                 model=MODEL,
                 instructions=OVERALL_MATCH_INSTRUCTIONS,
                 input=prompt,
-                text_format=OverallJobMatch
+                text_format=OverallJobMatch,
             )
             match = response.output_parsed
             if match is None:

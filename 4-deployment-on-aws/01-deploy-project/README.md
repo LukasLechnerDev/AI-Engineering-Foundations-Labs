@@ -33,6 +33,34 @@ uv run python main.py
 
 The app writes the HTML report to `report/job-agent-report.html`.
 
+The job search can be configured in `.env` or with exported environment
+variables:
+
+```dotenv
+SITE_NAME=linkedin,indeed
+LOCATION=USA
+COUNTRY_INDEED=USA
+JOB_TYPE=fulltime
+HOURS_OLD=72
+RESULTS_WANTED=10
+```
+
+You can override any of these values for one run with CLI arguments:
+
+```bash
+uv run python main.py \
+  --site-name linkedin indeed \
+  --location "New York, NY" \
+  --country-indeed USA \
+  --job-type fulltime \
+  --hours-old 24 \
+  --results-wanted 20
+```
+
+CLI arguments take precedence over exported environment variables, which take
+precedence over values in `.env`. The underscore forms, such as `--site_name`
+and `--results_wanted`, are also supported.
+
 To email the report, set `SEND_EMAIL=true` and configure the Resend values shown
 in `.env.example`. Leave `JOB_AGENT_SENDER_EMAIL` commented out to use the
 default Resend test sender.
