@@ -3,9 +3,9 @@
 This is the completed AI Engineering Job Agent from the previous modules,
 prepared for its first manual deployment on an AWS EC2 instance.
 
-This project intentionally does not use Docker, cron, or CI/CD yet. The goal is
-to experience the manual deployment steps before introducing the tools that
-make deployments more reproducible and easier to operate.
+This project can be deployed manually to experience the individual deployment
+steps. It also includes a Dockerfile and a GitHub Actions workflow that builds
+the image and publishes it to Amazon ECR.
 
 ## What changed from the previous project?
 
@@ -64,6 +64,26 @@ and `--results_wanted`, are also supported.
 To email the report, set `SEND_EMAIL=true` and configure the Resend values shown
 in `.env.example`. Leave `JOB_AGENT_SENDER_EMAIL` commented out to use the
 default Resend test sender.
+
+## Build and publish with GitHub Actions
+
+The GitHub Actions workflow builds the Docker image and publishes it to Amazon
+ECR whenever relevant changes are pushed to `main`. It can also be started
+manually from the Actions tab.
+
+In the GitHub repository, open **Settings → Secrets and variables → Actions →
+Variables** and add these repository variables:
+
+- `AWS_REGION`: AWS Region containing the ECR repository, for example
+  `eu-north-1`.
+- `AWS_ROLE_ARN`: ARN of the IAM role that GitHub Actions can assume through
+  OpenID Connect (OIDC).
+- `ECR_REPOSITORY`: ECR repository name only, for example `ai-job-agent`. Do not
+  enter the full repository URI.
+
+These values configure the GitHub Actions runner and do not belong in the
+project's local `.env` file. The workflow obtains the AWS account-specific ECR
+registry address automatically after authentication.
 
 ## Deploy manually on AWS EC2
 
