@@ -35,9 +35,9 @@ Every region has a display name and a short **region code**:
 | US East (N. Virginia) | `us-east-1`    |
 | Asia Pacific (Mumbai) | `ap-south-1`   |
 
-The region code is what you find in ARNs (Amazone resource names)
+The region code is what you find in ARNs (Amazon Resource Name) or endpoints
 
-Example: `arn:aws:ec2:eu-north-1:123456789012:instance/i-0123456789abcdef0`
+Example: `ec2-16-171-161-221.eu-north-1.compute.amazonaws.com`
 
 ## Which region should you choose?
 
