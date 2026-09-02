@@ -31,6 +31,7 @@ In AWS you normally do not attach permissions directly to a user. Instead you cr
    - `AmazonEC2ContainerRegistryFullAccess`
    - `AmazonECS_FullAccess`
    - `AmazonEventBridgeSchedulerFullAccess`
+   - `Billing`
 4. Click "Create user group"
 5. Select the new group, click "Next", review, and click "Create user"
 
