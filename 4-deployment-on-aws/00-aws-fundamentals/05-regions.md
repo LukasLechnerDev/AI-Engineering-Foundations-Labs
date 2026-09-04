@@ -37,7 +37,13 @@ Every region has a display name and a short **region code**:
 
 The region code is what you find in ARNs (Amazon Resource Name) or endpoints
 
-Example: `ec2-16-171-161-221.eu-north-1.compute.amazonaws.com`
+Example ARN: `arn:aws:ec2:eu-north-1:123456789012:instance/i-0abc123def4567890`
+
+An ARN uniquely identifies one resource. It reads as prefix, service, region, account ID, and
+then the resource itself, so you can tell from the ARN alone that this EC2 instance lives in
+`eu-north-1`.
+
+Example endpoint: `ec2-16-171-161-221.eu-north-1.compute.amazonaws.com`
 
 ## Which region should you choose?
 
