@@ -20,7 +20,7 @@ env:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
 
     steps:
       - name: Check out repository
@@ -42,7 +42,7 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
           docker build \
-            --platform linux/amd64 \
+            --platform linux/arm64 \
             --tag "${ECR_REGISTRY}/${ECR_REPOSITORY}:latest" \
             4-deployment-on-aws/01-deploy-project
 
