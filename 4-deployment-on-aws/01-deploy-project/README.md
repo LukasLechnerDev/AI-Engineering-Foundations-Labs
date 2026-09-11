@@ -1,18 +1,14 @@
 # Deploy project
 
 This is the completed AI Engineering Job Agent from the previous modules,
-prepared for its first manual deployment on an AWS EC2 instance.
-
-This project can be deployed manually to experience the individual deployment
-steps. It also includes a Dockerfile and a GitHub Actions workflow that builds
-the image and publishes it to Amazon ECR.
+prepared for its first deployment on a AWS.
 
 ## What changed from the previous project?
 
 - Raw JSON schemas were replaced with Pydantic models.
 - The OpenAI calls now use `responses.parse()` and `output_parsed`.
 - `.env.example` documents the required configuration.
-- Local secrets and the generated report are excluded from Git.
+
 - Environment variables take precedence over values from `.env`.
 
 ## Run locally
