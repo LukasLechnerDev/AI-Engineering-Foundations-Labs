@@ -15,6 +15,9 @@ wheels/
 # Secrets
 .env
 
+# Generated vector databases (rebuilt by running the notebooks)
+vector_db/
+
 # content (author-only, lives in a separate private repo)
 content/
 
