@@ -24,6 +24,7 @@ dependencies = [
     { name = "langchain-text-splitters" },
     { name = "nbformat" },
     { name = "openai" },
+    { name = "openevals" },
     { name = "pandas" },
     { name = "plotly" },
     { name = "pydantic" },
@@ -57,6 +58,7 @@ requires-dist = [
     { name = "langchain-text-splitters", specifier = ">=0.3.11" },
     { name = "nbformat", specifier = ">=5.11.1" },
     { name = "openai", specifier = ">=2.29.0" },
+    { name = "openevals", specifier = ">=0.2.0" },
     { name = "pandas", specifier = ">=2.3.3" },
     { name = "plotly", specifier = ">=6.3.0" },
     { name = "pydantic", specifier = ">=2.12.5" },
@@ -1708,6 +1710,21 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/40/f1/4874c4f7db30121885e6a763e2670b2fe1d76c79ed4732f8acbb51c8d96e/openai-3.13.0.tar.gz", hash = "sha256:a8f87a9b3b9c08eb446d68bd0a80e8ec907c4c35fdea63f4265c7b34b2de3a60", size = 1624217, upload-time = "2026-09-10T19:38:27.597Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/63/7f/ee9ebb7c5ab7abf016969faec7c748a91c1fd893078bfe1e5ba5d82e96c2/openai-3.13.0-py3-none-any.whl", hash = "sha256:e35b1f6fe99245e86e37504d9fad1ad2a363807307c424232c1d849bd0666c8e", size = 2009683, upload-time = "2026-09-10T19:38:25.855Z" },
+]
+
+[[package]]
+name = "openevals"
+version = "0.2.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "langchain" },
+    { name = "langchain-openai" },
+    { name = "langsmith" },
+    { name = "rich" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/b0/b1/028a05846136805b29b7a3afb58a940c2d213fa2c3d0a7d7003c7fbaa115/openevals-0.2.0.tar.gz", hash = "sha256:7e95fa64625be53eaa8c657d7f69b842a52bda10bdf3bb91781c7d09a385b069", size = 140711, upload-time = "2026-04-07T19:45:22.749Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/4a/8b/00f402b7f3475e235c339a9bc82d2eaf46cc08b53ecd85d4a117850170d3/openevals-0.2.0-py3-none-any.whl", hash = "sha256:2bce5964be9d162e3d38c2dfd026739156e1ac521536ade6b8e2f0a89b632f2c", size = 106958, upload-time = "2026-04-07T19:45:21.575Z" },
 ]
 
 [[package]]

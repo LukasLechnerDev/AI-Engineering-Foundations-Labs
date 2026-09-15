@@ -28,6 +28,7 @@ dependencies = [
     "scikit-learn>=1.7.2",
     "nbformat>=5.11.1",
     "gradio>=6.27.0",
+    "openevals>=0.2.0",
 ]
 
 [dependency-groups]
