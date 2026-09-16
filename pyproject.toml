@@ -29,6 +29,7 @@ dependencies = [
     "nbformat>=5.11.1",
     "gradio>=6.27.0",
     "openevals>=0.2.0",
+    "langfuse>=4.15.2",
 ]
 
 [dependency-groups]

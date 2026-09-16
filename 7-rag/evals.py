@@ -1,59 +1,59 @@
-import csv
-from pathlib import Path
-
-import pytest
+from langfuse import Evaluation
 from openevals.llm import create_llm_as_judge
 from openevals.prompts import CORRECTNESS_PROMPT
 
-from rag_app import answer_question
+from rag_app import MODEL, answer_question, langfuse
 
-DATASET_PATH = Path(__file__).with_name("eval_dataset.csv")
-REQUIRED_COLUMNS = {
-    "id",
-    "category",
-    "question",
-    "reference_answer",
-    "source_documents",
-}
-
-
-def load_eval_cases() -> list[dict[str, str]]:
-    with DATASET_PATH.open(encoding="utf-8", newline="") as file:
-        reader = csv.DictReader(file)
-
-        missing_columns = REQUIRED_COLUMNS - set(reader.fieldnames or [])
-        if missing_columns:
-            missing = ", ".join(sorted(missing_columns))
-            raise ValueError(f"Missing columns in {DATASET_PATH.name}: {missing}")
-
-        cases = list(reader)
-
-    case_ids = [case["id"] for case in cases]
-    if len(case_ids) != len(set(case_ids)):
-        raise ValueError(f"Each case in {DATASET_PATH.name} needs a unique id")
-
-    return cases
-
-
-EVAL_CASES = load_eval_cases()
+DATASET_NAME = "eval-1-simple-lookup"
+JUDGE_MODEL = "openai:gpt-5.6-luna"
 
 correctness_evaluator = create_llm_as_judge(
     prompt=CORRECTNESS_PROMPT,
     feedback_key="correctness",
-    model="openai:gpt-5.6-luna",
+    model=JUDGE_MODEL,
 )
 
 
-@pytest.mark.parametrize("case", EVAL_CASES, ids=lambda case: case["id"])
-def test_correctness(case: dict[str, str]):
-    question = case["question"]
-    reference_answer = case["reference_answer"]
-    answer = answer_question(question)
-
-    evaluation = correctness_evaluator(
-        inputs=question,
-        outputs=answer,
-        reference_outputs=reference_answer,
+def evaluate_correctness(*, input, output, expected_output, **kwargs) -> Evaluation:
+    """Evaluate one answer and return a Langfuse score."""
+    result = correctness_evaluator(
+        inputs=input,
+        outputs=output,
+        reference_outputs=expected_output,
+    )
+    return Evaluation(
+        name="correctness",
+        value=result["score"],
+        comment=result["comment"],
+        data_type="BOOLEAN",
     )
 
-    assert evaluation["score"] is True, evaluation["comment"]
+
+def run_rag_app(*, item, **kwargs) -> str:
+    """Run the RAG application for one Langfuse experiment item."""
+    return answer_question(item.input)
+
+
+def run_langfuse_experiment():
+    """Run an experiment on the hosted Langfuse dataset."""
+    dataset = langfuse.get_dataset(DATASET_NAME)
+
+    return dataset.run_experiment(
+        name="rag-correctness",
+        description="Evaluate RAG answers against reviewed reference answers.",
+        task=run_rag_app,
+        evaluators=[evaluate_correctness],
+        max_concurrency=4,
+        metadata={"rag_model": MODEL, "judge_model": JUDGE_MODEL},
+    )
+
+
+if __name__ == "__main__":
+    if not langfuse.auth_check():
+        raise RuntimeError("Check the Langfuse credentials in 7-rag/.env")
+
+    try:
+        experiment = run_langfuse_experiment()
+        print(experiment.format())
+    finally:
+        langfuse.flush()
