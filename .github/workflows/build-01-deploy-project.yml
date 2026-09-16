@@ -1,4 +1,4 @@
-name: Build 01-deploy-project
+name: Build Module 5 01-deploy-project
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
       - deployment-on-aws
     paths:
-      - "4-deployment-on-aws/01-deploy-project/**"
+      - "5-observability-with-langfuse/01-deploy-project/**"
       - ".github/workflows/build-01-deploy-project.yml"
   workflow_dispatch:
 
@@ -44,7 +44,7 @@ jobs:
           docker build \
             --platform linux/arm64 \
             --tag "${ECR_REGISTRY}/${ECR_REPOSITORY}:latest" \
-            4-deployment-on-aws/01-deploy-project
+            5-observability-with-langfuse/01-deploy-project
 
       - name: Push image
         env:
