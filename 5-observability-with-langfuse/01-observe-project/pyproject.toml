@@ -1,5 +1,5 @@
 [project]
-name = "01-deploy-project"
+name = "01-observe-project"
 version = "0.1.0"
 description = "AI Engineering Job Agent prepared for manual deployment on AWS EC2"
 readme = "README.md"

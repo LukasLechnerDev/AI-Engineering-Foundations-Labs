@@ -1,4 +1,4 @@
-# Deploy project
+# Observe project
 
 This is the completed AI Engineering Job Agent from the previous modules,
 prepared for its first deployment on AWS.
@@ -105,7 +105,7 @@ source ~/.local/bin/env
 
 ```bash
 git clone <repository-url>
-cd AI-Engineering-Foundations-Labs/5-observability-with-langfuse/01-deploy-project
+cd AI-Engineering-Foundations-Labs/5-observability-with-langfuse/01-observe-project
 cp .env.example .env
 ```
 
