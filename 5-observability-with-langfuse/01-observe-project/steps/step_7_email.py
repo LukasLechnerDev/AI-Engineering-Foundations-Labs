@@ -2,12 +2,14 @@ import os
 from pathlib import Path
 
 import resend
+from langfuse import observe
 
 DEFAULT_SENDER_EMAIL = "AI Engineering Job Report <onboarding@resend.dev>"
 SUBJECT = "Your AI Engineering Job Report"
 
 
 class EmailStep:
+    @observe(name="send-email", as_type="tool")
     def run(self, report_path):
         print("\n--- Step 7: Sending email report ---")
 

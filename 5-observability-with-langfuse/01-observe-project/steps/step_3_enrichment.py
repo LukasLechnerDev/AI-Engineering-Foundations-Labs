@@ -1,5 +1,7 @@
 from textwrap import dedent
 
+from langfuse import observe
+
 from models import JobEnrichment, SkillCategory
 
 MODEL = "gpt-5.4-mini"
@@ -31,6 +33,7 @@ class EnrichmentStep:
     def __init__(self, client):
         self.client = client
 
+    @observe(name="enrich-jobs", as_type="chain")
     def run(self, jobs):
         print("\n--- Step 3: Enriching jobs ---")
 
@@ -52,10 +55,11 @@ class EnrichmentStep:
             """).strip()
 
             response = self.client.responses.parse(
+                name="enrich-job",
                 model=MODEL,
                 instructions=ENRICHMENT_INSTRUCTIONS,
                 input=prompt,
-                text_format=JobEnrichment
+                text_format=JobEnrichment,
             )
             enrichment = response.output_parsed
             if enrichment is None:

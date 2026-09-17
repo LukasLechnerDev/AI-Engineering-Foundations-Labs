@@ -3,6 +3,7 @@ from html import escape
 from pathlib import Path
 
 import pandas as pd
+from langfuse import observe
 
 from models import SkillCategory
 
@@ -33,6 +34,7 @@ CHIP_STYLES = {
 
 
 class RenderingStep:
+    @observe(name="render-report", as_type="span")
     def run(self, jobs, location):
         print("\n--- Step 6: Rendering HTML report ---")
 

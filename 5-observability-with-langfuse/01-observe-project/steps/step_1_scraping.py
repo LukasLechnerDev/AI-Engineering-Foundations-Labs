@@ -1,8 +1,10 @@
 import pandas as pd
 from jobspy import scrape_jobs
+from langfuse import observe
 
 
 class ScrapingStep:
+    @observe(name="scrape-jobs", as_type="retriever")
     def run(
         self,
         site_name,
