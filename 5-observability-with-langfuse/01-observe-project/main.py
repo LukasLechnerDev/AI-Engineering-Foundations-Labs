@@ -1,7 +1,8 @@
 import os
 
 from dotenv import load_dotenv
-from openai import OpenAI
+from langfuse import get_client, observe
+from langfuse.openai import OpenAI
 
 from helper.argument_parser import parse_arguments
 from steps.step_1_scraping import ScrapingStep
@@ -13,9 +14,12 @@ from steps.step_6_rendering import RenderingStep
 from steps.step_7_email import EmailStep
 
 
-def main():
-    load_dotenv(override=False)
-    arguments = parse_arguments()
+# This decorator turns one pipeline run into one Langfuse trace.
+# Every step below shows up as a nested observation inside it.
+@observe(name="generate-job-report", as_type="span")
+def generate_job_report(arguments):
+    # Show the search parameters as the trace input, instead of raw function arguments.
+    get_client().update_current_span(input=vars(arguments))
 
     client = OpenAI()
 
@@ -38,6 +42,18 @@ def main():
     send_email = os.environ.get("SEND_EMAIL", "false").lower() == "true"
     if send_email:
         EmailStep().run(report_path)
+
+    return {"matched_jobs": len(ranked_jobs), "report_path": str(report_path)}
+
+
+def main():
+    load_dotenv(override=False)
+    arguments = parse_arguments()
+
+    generate_job_report(arguments)
+
+    # This script is short lived, so send the buffered traces to langfuse before we exit.
+    get_client().flush()
 
     print("\nDone!")
 

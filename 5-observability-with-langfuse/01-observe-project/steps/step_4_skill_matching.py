@@ -1,5 +1,7 @@
 from textwrap import dedent
 
+from langfuse import observe
+
 from models import SkillMatch
 from profile.student_profile import STUDENT_PROFILE
 
@@ -34,6 +36,7 @@ class SkillMatchingStep:
     def __init__(self, client):
         self.client = client
 
+    @observe(name="match-skills", as_type="chain")
     def run(self, jobs):
         print("\n--- Step 4: Matching skills ---")
 
@@ -64,10 +67,11 @@ class SkillMatchingStep:
             """).strip()
 
             response = self.client.responses.parse(
+                name="match-job-skills",
                 model=MODEL,
                 instructions=SKILL_MATCH_INSTRUCTIONS,
                 input=prompt,
-                text_format=SkillMatch
+                text_format=SkillMatch,
             )
 
             result = response.output_parsed

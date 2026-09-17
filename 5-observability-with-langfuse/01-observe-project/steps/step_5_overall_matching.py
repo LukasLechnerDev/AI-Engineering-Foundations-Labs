@@ -1,6 +1,8 @@
 import json
 from textwrap import dedent
 
+from langfuse import observe
+
 from models import OverallJobMatch
 from profile.student_profile import STUDENT_PROFILE
 
@@ -39,6 +41,7 @@ class OverallMatchingStep:
     def __init__(self, client):
         self.client = client
 
+    @observe(name="score-job-matches", as_type="chain")
     def run(self, jobs):
         print("\n--- Step 5: Calculating overall match ---")
 
@@ -71,6 +74,7 @@ class OverallMatchingStep:
             """).strip()
 
             response = self.client.responses.parse(
+                name="score-job-match",
                 model=MODEL,
                 instructions=OVERALL_MATCH_INSTRUCTIONS,
                 input=prompt,

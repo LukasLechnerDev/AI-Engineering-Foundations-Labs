@@ -1,5 +1,7 @@
 from textwrap import dedent
 
+from langfuse import observe
+
 from models import JobClassification
 
 MODEL = "gpt-5.4-mini"
@@ -24,6 +26,7 @@ class ClassificationStep:
     def __init__(self, client):
         self.client = client
 
+    @observe(name="classify-jobs", as_type="chain")
     def run(self, jobs):
         print("\n--- Step 2: Classifying jobs ---")
 
@@ -34,6 +37,7 @@ class ClassificationStep:
             prompt = f"Title: {job['title']}\n\nDescription:\n{job['description']}"
 
             response = self.client.responses.parse(
+                name="classify-job",
                 model=MODEL,
                 instructions=CLASSIFY_INSTRUCTIONS,
                 input=prompt,
