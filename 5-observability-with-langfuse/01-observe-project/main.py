@@ -2,7 +2,7 @@ import os
 
 from dotenv import load_dotenv
 from langfuse import get_client, observe
-from langfuse.openai import OpenAI
+from langfuse.openai import OpenAI  # pyright: ignore[reportPrivateImportUsage]
 
 from helper.argument_parser import parse_arguments
 from steps.step_1_scraping import ScrapingStep
