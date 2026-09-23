@@ -24,6 +24,9 @@ override.tf.json
 *_override.tf
 *_override.tf.json
 
+# Generated vector databases (rebuilt by running the notebooks)
+vector_db/
+
 # content (author-only, lives in a separate private repo)
 content/
 
