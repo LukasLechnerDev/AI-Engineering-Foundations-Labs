@@ -13,3 +13,11 @@ dependencies = [
     "python-jobspy>=1.1.80",
     "resend>=2.0.0",
 ]
+
+[tool.uv]
+# Supply-chain safety:
+# "uv add" pins an exact version instead of a ">=" range.
+add-bounds = "exact"
+# Only consider releases that are at least 7 days old.
+# A compromised release is usually pulled from PyPI within a few days.
+exclude-newer = "7 days"
