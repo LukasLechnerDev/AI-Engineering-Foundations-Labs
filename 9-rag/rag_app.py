@@ -21,6 +21,7 @@ if not os.getenv("LANGFUSE_PUBLIC_KEY") or not os.getenv("LANGFUSE_SECRET_KEY"):
 from langfuse import get_client, propagate_attributes  # noqa: E402
 from langfuse.langchain import CallbackHandler  # noqa: E402
 from langchain_chroma import Chroma  # noqa: E402
+from langchain_core.documents import Document  # noqa: E402
 from langchain_core.messages import HumanMessage, SystemMessage  # noqa: E402
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings  # noqa: E402
 
@@ -48,13 +49,22 @@ def get_retriever():
         persist_directory=str(VECTOR_DB_PATH),
         embedding_function=embeddings,
     )
-    return vectorstore.as_retriever()
+    # Several chunks often come from the same document, so we fetch 10 instead of 4
+    return vectorstore.as_retriever(search_kwargs={"k": 10})
 
 
 @lru_cache
 def get_llm():
     """Create the language model once and reuse it for later questions."""
     return ChatOpenAI(temperature=0, model=MODEL, reasoning_effort="none")
+
+
+def load_parent_documents(chunks: list[Document]) -> list[str]:
+    """Load the whole document of every chunk (parent document retrieval)."""
+    # dict.fromkeys removes duplicate paths but keeps the order
+    sources = dict.fromkeys(chunk.metadata["source"] for chunk in chunks)
+    # The paths are relative to the RAG directory, not to the current working directory
+    return [(RAG_DIRECTORY / source).read_text() for source in sources]
 
 
 def answer_question(
@@ -76,7 +86,7 @@ def answer_question(
             session_id=session_id,
             tags=["rag-chat"],
         ):
-            documents = get_retriever().invoke(
+            chunks = get_retriever().invoke(
                 question,
                 config={
                     "callbacks": [langfuse_handler],
@@ -84,7 +94,8 @@ def answer_question(
                     "metadata": {"index": "ai-engineering-jobs"},
                 },
             )
-            context = "\n\n".join(document.page_content for document in documents)
+            documents = load_parent_documents(chunks)
+            context = "\n\n".join(documents)
             system_prompt = SYSTEM_PROMPT_TEMPLATE.format(context=context)
 
             response = get_llm().invoke(
@@ -97,7 +108,10 @@ def answer_question(
 
         root_span.update(
             output=response.content,
-            metadata={"retrieved_documents": len(documents)},
+            metadata={
+                "retrieved_chunks": len(chunks),
+                "retrieved_documents": len(documents),
+            },
         )
         return response.content
 

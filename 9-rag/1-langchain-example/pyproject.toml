@@ -1,0 +1,13 @@
+[project]
+name = "langchain-rag-example"
+version = "0.1.0"
+description = "RAG agent over job postings and companies, based on the LangChain Deep Agents RAG tutorial"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "deepagents>=0.7.18",
+    "langchain-text-splitters>=1.1.2",
+    "langchain[openai]>=1.4.2",
+    "numpy>=2.5.3",
+    "python-dotenv>=1.2.3",
+]
