@@ -1,9 +1,12 @@
+import html
 import os
 from functools import lru_cache
 from pathlib import Path
 
 import gradio as gr
+import yaml
 from dotenv import load_dotenv
+from pydantic import BaseModel, Field
 
 MODEL = "gpt-5.6-luna"
 EMBEDDING_MODEL = "text-embedding-3-large"
@@ -36,9 +39,38 @@ building applications on top of LLMs.
 If relevant, use the given context to answer any question.
 If you don't know the answer, say so.
 
+Each document in the context starts with its source path. If your answer mentions
+specific job postings, add each of them to `jobs` with its source path. The app
+shows these jobs as cards with title, company, location, your reason, and link.
+So don't list the jobs one by one in your answer. Keep it to a short summary.
+
 Context:
 {context}
 """
+
+JOB_CARD_CSS = """
+.job-card {
+    border: 1px solid var(--border-color-primary);
+    border-left: 4px solid var(--color-accent);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 8px 0;
+    background: var(--background-fill-secondary);
+}
+.job-card h3 { margin: 0 0 4px; }
+.job-card p { margin: 0 0 8px; }
+.job-meta { color: var(--body-text-color-subdued); }
+"""
+
+
+class JobPick(BaseModel):
+    source: str = Field(description="Source path of the job posting")
+    why_it_fits: str = Field(description="One sentence on why this job fits")
+
+
+class JobAnswer(BaseModel):
+    answer: str = Field(description="Answer to the question, in Markdown")
+    jobs: list[JobPick] = Field(description="Job postings mentioned in the answer")
 
 
 @lru_cache
@@ -59,12 +91,46 @@ def get_llm():
     return ChatOpenAI(temperature=0, model=MODEL, reasoning_effort="none")
 
 
-def load_parent_documents(chunks: list[Document]) -> list[str]:
+def load_parent_documents(chunks: list[Document]) -> dict[str, str]:
     """Load the whole document of every chunk (parent document retrieval)."""
     # dict.fromkeys removes duplicate paths but keeps the order
     sources = dict.fromkeys(chunk.metadata["source"] for chunk in chunks)
     # The paths are relative to the RAG directory, not to the current working directory
-    return [(RAG_DIRECTORY / source).read_text() for source in sources]
+    return {source: (RAG_DIRECTORY / source).read_text() for source in sources}
+
+
+def read_frontmatter(document: str) -> dict:
+    """Read the YAML block between the first two '---' lines of a document."""
+    _, frontmatter, _ = document.split("---", 2)
+    return yaml.safe_load(frontmatter)
+
+
+def render_job_cards(jobs: list[JobPick], documents: dict[str, str]) -> str:
+    """Turn the jobs picked by the LLM into HTML cards.
+
+    Title, company, and URL come from the document itself, not from the LLM,
+    so the link is always there and always correct.
+    """
+    cards = []
+    for job in jobs:
+        # Skip sources the LLM made up
+        if job.source not in documents:
+            continue
+        posting = read_frontmatter(documents[job.source])
+        # Skip documents that are not job postings, like company profiles
+        if "job_url" not in posting:
+            continue
+        url = html.escape(posting["job_url"])
+        # No blank lines inside a card, otherwise Markdown breaks the HTML apart
+        cards.append(
+            f'''<div class="job-card">
+<h3>{html.escape(posting["title"])}</h3>
+<p class="job-meta">{html.escape(posting["company"])} · {html.escape(posting["location"])}</p>
+<p>{html.escape(job.why_it_fits)}</p>
+<a href="{url}" target="_blank">{url}</a>
+</div>'''
+        )
+    return "\n\n".join(cards)
 
 
 def answer_question(
@@ -95,25 +161,36 @@ def answer_question(
                 },
             )
             documents = load_parent_documents(chunks)
-            context = "\n\n".join(documents)
+            context = "\n\n".join(
+                f"Source: {source}\n{text}" for source, text in documents.items()
+            )
             system_prompt = SYSTEM_PROMPT_TEMPLATE.format(context=context)
 
-            response = get_llm().invoke(
-                [SystemMessage(content=system_prompt), HumanMessage(content=question)],
-                config={
-                    "callbacks": [langfuse_handler],
-                    "run_name": "generate-answer",
-                },
+            # The LLM returns a JobAnswer object instead of plain text
+            response = (
+                get_llm()
+                .with_structured_output(JobAnswer)
+                .invoke(
+                    [
+                        SystemMessage(content=system_prompt),
+                        HumanMessage(content=question),
+                    ],
+                    config={
+                        "callbacks": [langfuse_handler],
+                        "run_name": "generate-answer",
+                    },
+                )
             )
 
+        reply = f"{response.answer}\n\n{render_job_cards(response.jobs, documents)}"
         root_span.update(
-            output=response.content,
+            output=reply,
             metadata={
                 "retrieved_chunks": len(chunks),
                 "retrieved_documents": len(documents),
             },
         )
-        return response.content
+        return reply
 
 
 def create_app() -> gr.ChatInterface:
@@ -125,4 +202,4 @@ def create_app() -> gr.ChatInterface:
 
 
 if __name__ == "__main__":
-    create_app().launch()
+    create_app().launch(css=JOB_CARD_CSS)
