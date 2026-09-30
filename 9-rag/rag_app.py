@@ -42,7 +42,7 @@ If you don't know the answer, say so.
 Each document in the context starts with its source path. If your answer mentions
 specific job postings, add each of them to `jobs` with its source path. The app
 shows these jobs as cards with title, company, location, your reason, and link.
-So don't list the jobs one by one in your answer. Keep it to a short summary.
+So keep your answer short and don't repeat these details for every job.
 
 Context:
 {context}

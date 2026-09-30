@@ -2,9 +2,9 @@ from langfuse import Evaluation
 from openevals.llm import create_llm_as_judge
 from openevals.prompts import CORRECTNESS_PROMPT
 
-from rag_app import MODEL, answer_question, langfuse
+from rag_app import MODEL, answer_question, get_retriever, langfuse
 
-DATASET_NAME = "eval-1-simple-lookup"
+DATASET_NAME = "rag/ai-engineering-jobs"
 JUDGE_MODEL = "openai:gpt-5.6-luna"
 
 correctness_evaluator = create_llm_as_judge(
@@ -36,6 +36,10 @@ def run_rag_app(*, item, **kwargs) -> str:
 
 def run_langfuse_experiment():
     """Run an experiment on the hosted Langfuse dataset."""
+    # Open the vector database before the parallel runs start. Several threads
+    # opening it at the same time makes Chroma fail.
+    get_retriever()
+
     dataset = langfuse.get_dataset(DATASET_NAME)
 
     return dataset.run_experiment(
@@ -50,7 +54,7 @@ def run_langfuse_experiment():
 
 if __name__ == "__main__":
     if not langfuse.auth_check():
-        raise RuntimeError("Check the Langfuse credentials in 7-rag/.env")
+        raise RuntimeError("Check the Langfuse credentials in 9-rag/.env")
 
     try:
         experiment = run_langfuse_experiment()

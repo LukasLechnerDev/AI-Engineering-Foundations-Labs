@@ -5,9 +5,17 @@ description = "RAG agent over job postings and companies, based on the LangChain
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "deepagents>=0.7.18",
+    "deepagents>=0.7.15",
     "langchain-text-splitters>=1.1.2",
-    "langchain[openai]>=1.4.2",
+    "langchain[openai]>=1.4.1",
     "numpy>=2.5.3",
     "python-dotenv>=1.2.3",
 ]
+
+[tool.uv]
+# Supply-chain safety:
+# "uv add" pins an exact version instead of a ">=" range.
+add-bounds = "exact"
+# Only consider releases that are at least 7 days old.
+# A compromised release is usually pulled from PyPI within a few days.
+exclude-newer = "7 days"

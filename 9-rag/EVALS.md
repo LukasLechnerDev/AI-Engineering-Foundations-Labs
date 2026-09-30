@@ -3,6 +3,28 @@
 The source of truth is the `rag/ai-engineering-jobs` dataset in Langfuse. Add and
 review test cases in Langfuse; the repository no longer keeps a separate copy.
 
+## Generating questions
+
+`4-generate-synthetic-questions.py` writes the questions we start from. It first
+picks combinations of four dimensions, then writes one question per combination:
+
+- `question_type`: `values_mission`, `domain_interest`, `career_transition`,
+  `constraint_filter`, `comparison`, `aggregate`, `direct_fact`
+- `corpus_support`: `strong`, `partial`, `none`
+- `clarity`: `well_specified`, `vague`, `conflicting`
+- `user_focus`: the industry or requirement the user anchors on, such as
+  `healthcare`, `automotive`, `remote_work`, or `compensation`
+
+`corpus_support: none` is the important one. Those questions have no good match in
+the knowledge base, so a good answer says so instead of offering the next best job.
+`user_focus` exists because without it almost every generated question was about
+healthcare.
+
+The script saves a draft to `synthetic-questions.json`. Read that file, fix or drop
+weak questions, and only then upload it. The script uploads questions only. Expected
+outputs are written by hand afterwards, because they have to be checked against the
+documents in the knowledge base.
+
 ## Dataset items
 
 - `Input`: A realistic user question.
@@ -22,7 +44,7 @@ uses the latest version by default.
 1. Add or edit a dataset item in Langfuse.
 2. Have a domain expert review the expected output against the source documents.
 3. Have a second reviewer verify factual claims and metadata.
-4. Run `uv run --locked python 7-rag/evals.py` before and after changing
+4. Run `uv run --locked python 9-rag/evals.py` before and after changing
    retrieval, prompts, or models.
 5. Inspect failures individually. A score alone does not explain what broke.
 6. Compare experiment runs in Langfuse and add useful production failures to the

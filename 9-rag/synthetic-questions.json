@@ -1,0 +1,242 @@
+[
+  {
+    "id": "syn-01",
+    "question": "I want to use my machine learning skills to improve patient care, medical access, or healthcare outcomes. Which AI engineering roles focus on work with a clear positive impact in healthcare?",
+    "question_type": "values_mission",
+    "corpus_support": "strong",
+    "clarity": "well_specified",
+    "user_focus": "healthcare"
+  },
+  {
+    "id": "syn-02",
+    "question": "I want to work on AI that helps make technology more sustainable. Are there any roles that seem aligned with that goal?",
+    "question_type": "values_mission",
+    "corpus_support": "partial",
+    "clarity": "vague",
+    "user_focus": "sustainability"
+  },
+  {
+    "id": "syn-03",
+    "question": "I\u2019m looking for an AI engineering role focused on improving access to quality education for underserved students. Are there any openings in the listings whose mission directly supports that goal?",
+    "question_type": "values_mission",
+    "corpus_support": "none",
+    "clarity": "well_specified",
+    "user_focus": "education"
+  },
+  {
+    "id": "syn-04",
+    "question": "I\u2019m interested in AI engineering roles in the automotive industry, especially work on autonomous driving, driver-assistance systems, or intelligent vehicle technology. What opportunities in the available postings align with those interests?",
+    "question_type": "domain_interest",
+    "corpus_support": "partial",
+    "clarity": "well_specified",
+    "user_focus": "automotive"
+  },
+  {
+    "id": "syn-05",
+    "question": "Are there any AI engineering jobs related to real estate or property technology?",
+    "question_type": "domain_interest",
+    "corpus_support": "strong",
+    "clarity": "vague",
+    "user_focus": "real_estate"
+  },
+  {
+    "id": "syn-06",
+    "question": "Are there any AI engineering roles focused on manufacturing, such as improving factory operations, industrial automation, or production processes?",
+    "question_type": "domain_interest",
+    "corpus_support": "partial",
+    "clarity": "well_specified",
+    "user_focus": "manufacturing"
+  },
+  {
+    "id": "syn-07",
+    "question": "I\u2019m interested in AI engineering roles focused on video games, especially intelligent NPC behavior and adaptive gameplay. Are there any opportunities that match this focus?",
+    "question_type": "domain_interest",
+    "corpus_support": "none",
+    "clarity": "well_specified",
+    "user_focus": "gaming"
+  },
+  {
+    "id": "syn-08",
+    "question": "I\u2019m a practicing lawyer transitioning into AI engineering, with Python and machine-learning experience\u2014are there several roles where I could build products for legal research, contract analysis, or compliance?",
+    "question_type": "career_transition",
+    "corpus_support": "strong",
+    "clarity": "well_specified",
+    "user_focus": "legal"
+  },
+  {
+    "id": "syn-09",
+    "question": "I\u2019ve been working outside of tech and want to transition into building AI solutions for businesses\u2014are there roles that might be a good fit for someone like me?",
+    "question_type": "career_transition",
+    "corpus_support": "strong",
+    "clarity": "vague",
+    "user_focus": "enterprise_ai"
+  },
+  {
+    "id": "syn-10",
+    "question": "I\u2019m transitioning from nursing into AI engineering and would love to work in healthcare\u2014are there any roles that might be a fit for someone like me?",
+    "question_type": "career_transition",
+    "corpus_support": "partial",
+    "clarity": "vague",
+    "user_focus": "healthcare"
+  },
+  {
+    "id": "syn-11",
+    "question": "I\u2019m a tenured classics professor with a PhD in ancient history and no professional programming experience, and I want to transition into AI engineering. Are there any roles suitable for someone making that move?",
+    "question_type": "career_transition",
+    "corpus_support": "none",
+    "clarity": "well_specified",
+    "user_focus": "academia"
+  },
+  {
+    "id": "syn-12",
+    "question": "I\u2019m looking for an AI engineering role that is fully remote, lets me work from anywhere in the U.S., and doesn\u2019t require relocation or regular office visits. Which openings meet those requirements?",
+    "question_type": "constraint_filter",
+    "corpus_support": "strong",
+    "clarity": "well_specified",
+    "user_focus": "remote_work"
+  },
+  {
+    "id": "syn-13",
+    "question": "I\u2019m looking for senior or lead-level AI engineering roles\u2014what options might fit someone with substantial industry experience?",
+    "question_type": "constraint_filter",
+    "corpus_support": "strong",
+    "clarity": "vague",
+    "user_focus": "seniority"
+  },
+  {
+    "id": "syn-14",
+    "question": "I\u2019m looking for an AI engineering role with a disclosed salary range and total compensation of at least $200,000. Are there any postings that meet both requirements?",
+    "question_type": "constraint_filter",
+    "corpus_support": "partial",
+    "clarity": "well_specified",
+    "user_focus": "compensation"
+  },
+  {
+    "id": "syn-15",
+    "question": "I can only work onsite in Berlin, Germany. Are there any AI engineering roles based there?",
+    "question_type": "constraint_filter",
+    "corpus_support": "none",
+    "clarity": "well_specified",
+    "user_focus": "location"
+  },
+  {
+    "id": "syn-16",
+    "question": "I\u2019m early in my AI engineering career and need an entry-level role, but I only want to apply for positions labeled senior or requiring at least five years of experience. Are there any openings that meet both requirements?",
+    "question_type": "constraint_filter",
+    "corpus_support": "strong",
+    "clarity": "conflicting",
+    "user_focus": "seniority"
+  },
+  {
+    "id": "syn-17",
+    "question": "I\u2019m an experienced machine learning engineer looking for roles in financial services; can you compare the available positions by base salary, bonus or equity potential, and the type of financial products I\u2019d work on?",
+    "question_type": "comparison",
+    "corpus_support": "partial",
+    "clarity": "well_specified",
+    "user_focus": "finance"
+  },
+  {
+    "id": "syn-18",
+    "question": "I\u2019m trying to decide between working at a startup or a more established company\u2014what kinds of AI engineering employers in your listings seem like the better option for me?",
+    "question_type": "comparison",
+    "corpus_support": "strong",
+    "clarity": "vague",
+    "user_focus": "employer_type"
+  },
+  {
+    "id": "syn-19",
+    "question": "I\u2019m an AI engineer with strong Python and PyTorch experience; how many of the job postings require both skills?",
+    "question_type": "aggregate",
+    "corpus_support": "strong",
+    "clarity": "well_specified",
+    "user_focus": "skills"
+  },
+  {
+    "id": "syn-20",
+    "question": "I\u2019m looking for an AI engineering role at a nonprofit or public-interest organization; is there one in the listings?",
+    "question_type": "direct_fact",
+    "corpus_support": "none",
+    "clarity": "well_specified",
+    "user_focus": "employer_type"
+  },
+  {
+    "id": "syn-21",
+    "question": "I want to work for an employer whose mission makes a meaningful positive impact. Are there AI engineering opportunities at organizations doing work that benefits society?",
+    "question_type": "values_mission",
+    "corpus_support": "strong",
+    "clarity": "vague",
+    "user_focus": "employer_type"
+  },
+  {
+    "id": "syn-22",
+    "question": "I\u2019m an AI engineer interested in finance roles where the work has a clear positive impact, such as improving financial access or preventing fraud. Are there any openings that align with those goals?",
+    "question_type": "values_mission",
+    "corpus_support": "partial",
+    "clarity": "well_specified",
+    "user_focus": "finance"
+  },
+  {
+    "id": "syn-23",
+    "question": "I\u2019m interested in building AI products that help businesses automate workflows and make better decisions. Are there several AI engineering roles focused on enterprise software or B2B customers?",
+    "question_type": "domain_interest",
+    "corpus_support": "strong",
+    "clarity": "well_specified",
+    "user_focus": "enterprise_ai"
+  },
+  {
+    "id": "syn-24",
+    "question": "I\u2019m interested in building AI products for healthcare and have some machine learning and Python experience\u2014are there any roles where those skills might be useful?",
+    "question_type": "domain_interest",
+    "corpus_support": "partial",
+    "clarity": "vague",
+    "user_focus": "skills"
+  },
+  {
+    "id": "syn-25",
+    "question": "I\u2019m a quantitative analyst transitioning from finance into AI engineering; which available roles would value my experience with financial modeling, risk analysis, and Python?",
+    "question_type": "career_transition",
+    "corpus_support": "strong",
+    "clarity": "well_specified",
+    "user_focus": "finance"
+  },
+  {
+    "id": "syn-26",
+    "question": "I\u2019m transitioning from software QA into AI engineering and want to make that move at an AI consulting firm rather than an in-house tech company. Are there any roles in the listings that fit?",
+    "question_type": "career_transition",
+    "corpus_support": "partial",
+    "clarity": "well_specified",
+    "user_focus": "employer_type"
+  },
+  {
+    "id": "syn-27",
+    "question": "I\u2019m looking for a fully remote AI engineering job, but I also want one that requires me to work from a local office a few days a week\u2014are there any postings that fit both?",
+    "question_type": "constraint_filter",
+    "corpus_support": "partial",
+    "clarity": "conflicting",
+    "user_focus": "remote_work"
+  },
+  {
+    "id": "syn-28",
+    "question": "I live in Toronto and can\u2019t relocate\u2014how do the available AI engineering roles compare in terms of being remote-friendly or based in Toronto?",
+    "question_type": "comparison",
+    "corpus_support": "partial",
+    "clarity": "well_specified",
+    "user_focus": "location"
+  },
+  {
+    "id": "syn-29",
+    "question": "I\u2019m looking for an AI engineering role in gaming, ideally focused on NPC behavior or procedural content generation. Are there multiple options I could compare based on the type of AI work, seniority, and location?",
+    "question_type": "comparison",
+    "corpus_support": "none",
+    "clarity": "well_specified",
+    "user_focus": "gaming"
+  },
+  {
+    "id": "syn-30",
+    "question": "How many of the AI engineering jobs are aimed at people with substantial experience?",
+    "question_type": "aggregate",
+    "corpus_support": "strong",
+    "clarity": "vague",
+    "user_focus": "seniority"
+  }
+]
